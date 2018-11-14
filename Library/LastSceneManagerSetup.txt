@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Battole.unity
+- path: Assets/Scenes/Battle02.unity
   isLoaded: 1
   isActive: 1

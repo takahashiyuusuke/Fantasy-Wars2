@@ -9,10 +9,10 @@ public class UnitManager : MonoBehaviour {
     [SerializeField]
     int MovePoint;
 
-    Vector3 MoveX = new Vector3(100, 0, 0); // 横1マス移動する
-    Vector3 MoveY = new Vector3(0, 100, 0); // 縦1マス移動する
+    Vector3 MoveX = new Vector3(133, 0, 0); // 横1マス移動する
+    Vector3 MoveY = new Vector3(0, 133, 0); // 縦1マス移動する
 
-    float speed = 5;
+    float speed = 10;
     //目的地の座標
     Vector3 targetPos;
     float targetPosX;
@@ -38,26 +38,26 @@ public class UnitManager : MonoBehaviour {
         targetPosY = transform.position.y;
 
         movelist.Add(1);
-        movelist.Add(2);
         movelist.Add(1);
-        movelist.Add(4);
-        movelist.Add(4);
-        movelist.Add(4);
-        movelist.Add(2);
+        movelist.Add(1);
+        movelist.Add(1);
+        movelist.Add(1);
+        movelist.Add(1);
+        movelist.Add(1);
         movelist.Add(1);
         movelist.Add(2);
-        movelist.Add(3);
-        movelist.Add(4);
-        movelist.Add(3);
-        movelist.Add(4);
-        movelist.Add(4);
-        movelist.Add(5);
-        movelist.Add(4);
+        movelist.Add(2);
+        movelist.Add(2);
+        movelist.Add(2);
+        movelist.Add(2);
+        movelist.Add(2);
+        movelist.Add(2);
+        movelist.Add(2);
     }
 
     // Update is called once per frame
     void Update() {
-        SetPos();
+        //SetPos();
         // 移動中かどうかの判定
         if (transform.position == targetPos) {
             // Listの要素があるかどうか
@@ -115,7 +115,7 @@ public class UnitManager : MonoBehaviour {
         {
             //上移動
             case 1:
-                if (transform.position.y < 640 && MovePoint > 0)
+                if (transform.position.y < 1280 && MovePoint > 0)
                 {
                     targetPos = transform.position + MoveY;
                     //return;
@@ -147,7 +147,7 @@ public class UnitManager : MonoBehaviour {
 
             //右移動
             case 4:
-                if (transform.position.x < 400 && MovePoint > 0)
+                if (transform.position.x < 800 && MovePoint > 0)
                 {
                     targetPos = transform.position + MoveX;
                     //return;
@@ -167,12 +167,12 @@ public class UnitManager : MonoBehaviour {
 
     public void SetPos() {
         //タッチされたマスの座標を受け取る
-        movePos = Map.pos;
+        //movePos = Map.pos;
         
         // 受け取った座標と現在の座標を引き算で比較
         PosAAA = transform.position - movePos;
 
-        if(transform.position.y <= PosAAA.y) {
+        if (transform.position.y <= PosAAA.y) {
             movelist.Add(2);
         }
 
@@ -191,6 +191,4 @@ public class UnitManager : MonoBehaviour {
     }
 
     // 移動可能なマスを検索
-    public void ontouch(){
-    }
 }
