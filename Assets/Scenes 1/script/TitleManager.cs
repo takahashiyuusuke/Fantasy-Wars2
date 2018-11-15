@@ -18,6 +18,6 @@ public class TitleManager : MonoBehaviour {
 
 	//スタートボタンを押した
 	public void PushStartButton () {
-		SceneManager.LoadScene ("StageSelectScene");	//ステージ選択シーンへ
+		SceneManager.LoadScene ("home_menu");	//ホームメニューへ
 	}
 }
