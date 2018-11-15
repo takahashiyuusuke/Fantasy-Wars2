@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes 1/Character_power_up.unity
-  isLoaded: 1
-  isActive: 1
