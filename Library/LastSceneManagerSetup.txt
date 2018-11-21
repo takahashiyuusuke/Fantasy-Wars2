@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Scenes/Battole.unity
-  isLoaded: 1
-  isActive: 1

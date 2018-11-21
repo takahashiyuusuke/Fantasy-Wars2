@@ -35,7 +35,6 @@ public class MapManager : MonoBehaviour {
     void Start() {
         //マップ生成処理
         CreateMap();
-
     }
 
 
@@ -46,17 +45,20 @@ public class MapManager : MonoBehaviour {
 
     public void CreateMap() {
         //マップ生成
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 6; x++) {
-                Instantiate(Map[MapTile[(MapTile.GetLength(0) - 1 - y), x]], new Vector3((x + 0.5f) * 100, (y + 1) * 100, 0.0f), Quaternion.identity, MapParent);
+        for (int y = 0; y < 8; y++)
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                Instantiate(Map[MapTile[(MapTile.GetLength(0) - 1 - y), x]], new Vector3((x + 0.5f) * 133, (y + 1) * 133, 0.0f), Quaternion.identity, MapParent);
 
                 //Cells.Add(Map);
             }
         }
         //プレイヤーの生成
-        Instantiate(Player, new Vector3(40, 80, 0), Quaternion.identity, MapParent);
+        Instantiate(Player, new Vector3(66, 133, 0), Quaternion.identity, MapParent);
     }
     void MoveRangeSearch() {
         //
     }
+
 }
