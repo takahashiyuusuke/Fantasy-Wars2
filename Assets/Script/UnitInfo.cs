@@ -8,12 +8,13 @@ public class UnitInfo : MonoBehaviour {
         WALKING,
         ATHLETE,
         HORSE,
-        FKYING,
+        FLYING,
     }
 
     public enum ARMY {
         ALLY,
         ENEMY,
+        NEUTRAL
     }
 
     public int ID = 0;

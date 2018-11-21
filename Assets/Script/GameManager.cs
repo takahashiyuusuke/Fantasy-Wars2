@@ -34,7 +34,4 @@ public class GameManager : MonoBehaviour {
         mapUnitData[-(int)oldPos.y, (int)newPos.x] = null;
     }
     //
-    public static void RemoveMap() {
-
-    }
 }
