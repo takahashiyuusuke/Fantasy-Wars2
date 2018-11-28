@@ -36,8 +36,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328220289900930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -3, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -1.5, y: 4, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,16 +65,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7df0637ec31a046abf3ea54928dbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
-  Level: 1
-  Name: Cat
-  HP: 20
-  maxHP: 20
-  moveDistance: 2
+  id: 0
+  name: 
+  level: 0
+  hp: 0
+  movementRange: 2
   attackRange: 1
   moveType: 0
   isMoving: 0
   aRMY: 0
+  vitality: 0
+  strength: 0
+  dexterity: 0
+  intelligence: 0
+  speed: 0
+  defense: 0
+  mDefense: 0
+  luck: 0
+  physique: 0
+  accompanyId: 0
   moveController: {fileID: 0}
 --- !u!212 &212645348658101032
 SpriteRenderer:
@@ -111,7 +120,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: a9d7968ae74082043accba983adb1937, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77243fa6dfaf4304f9a4c65b6da0c667, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
