@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapData1 : MonoBehaviour {
-    public FieldBase GetData(){
-        FieldBase fieldBase = new FieldBase();
+    public Struct.FieldBase GetData(){
+        Struct.FieldBase fieldBase = new Struct.FieldBase();
         fieldBase.name = "マップ1";
         fieldBase.width = 6;
         fieldBase.height = 8;
