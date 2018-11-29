@@ -32,7 +32,7 @@ public class UnitManager : MonoBehaviour {
     public GameObject Map_script;
 
     void Start() {
-        GetComponent<Map>();
+        GetComponent<MapManager>();
         targetPos = transform.position;
         targetPosX = transform.position.x;
         targetPosY = transform.position.y;

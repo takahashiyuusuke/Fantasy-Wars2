@@ -71,6 +71,7 @@ MonoBehaviour:
   hp: 0
   movementRange: 2
   attackRange: 1
+  recoveryCount: 3
   moveType: 0
   isMoving: 0
   aRMY: 0
