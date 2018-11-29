@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public int mapId = 0;  //マップID
-    public Map mapManager;
+    public MapManager mapManager;
 
     // マップ上のユニット配置リスト
     static UnitInfo[,] mapUnitData;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
         mapManager.LoadData(mapId);
 
         // ユニットの配置リストの初期化
-        mapUnitData = new UnitInfo[Map.GetFieldData().height, Map.GetFieldData().width];
+        mapUnitData = new UnitInfo[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
     }
 
     //
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     public static void MoveMapUnitData(Vector3 oldPos, Vector3 newPos) {
         mapUnitData[-(int)newPos.y, (int)newPos.x] = mapUnitData[-(int)oldPos.y, (int)oldPos.x];
         mapUnitData[-(int)oldPos.y, (int)newPos.x] = null;
+        Debug.Log("位置変更終了");
     }
     //
 }

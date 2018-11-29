@@ -86,7 +86,6 @@ public class CursorManager : MonoBehaviour {
             case Enum.TURN.BATTLE:
                 turnBattle();
                 break;
-
             case Enum.TURN.RESULT:
                 turnResult();
                 break;
@@ -151,7 +150,7 @@ public class CursorManager : MonoBehaviour {
             {
                 // アニメーションを元に戻す
                 //focusUnit.moveController.NotFocuse();
-                //focusUnit = null;
+                focusUnit = null;
 
                 // ターンとUI切り替え
                 Debug.Log("TURN.SELECT");
@@ -170,6 +169,9 @@ public class CursorManager : MonoBehaviour {
             activeUI.SetActive(true);
     }
 
+    private void turnBattleStanby() {
+        // 攻撃範囲内
+    }
     /// <summary>
     /// ユニット同士の戦闘
     /// </summary>
@@ -294,6 +296,9 @@ public class CursorManager : MonoBehaviour {
         activeUI.SetActive(false);
         cursorObj.SetActive(true);
     }
+    public void OnRecoveryBtn() {
+
+    }
 
     /// <summary>
     /// カーソルの描画処理
@@ -305,8 +310,8 @@ public class CursorManager : MonoBehaviour {
                                 MultipleRound(mouseScreenPos.y, 1), 0);
 
         // マップ内なら新しいカーソル座標を取得する
-        if (0 <= _cursorPos.x && _cursorPos.x < Map.GetFieldData().width &&
-            0 <= -_cursorPos.y && -_cursorPos.y < Map.GetFieldData().height)
+        if (0 <= _cursorPos.x && _cursorPos.x < MapManager.GetFieldData().width &&
+            0 <= -_cursorPos.y && -_cursorPos.y < MapManager.GetFieldData().height)
             cursorPos = _cursorPos;
 
         // カーソル座標が更新されてないなら更新する
@@ -316,7 +321,7 @@ public class CursorManager : MonoBehaviour {
             cursorObj.transform.position = cursorPos;
 
             // セル情報の更新
-            uIcellInfo.SetData(Map.GetFieldData().cells[-(int)cursorPos.y, (int)cursorPos.x]);
+            uIcellInfo.SetData(MapManager.GetFieldData().cells[-(int)cursorPos.y, (int)cursorPos.x]);
 
             // 移動マーカの更新
             if (showMarker) AddMarker();
@@ -337,14 +342,14 @@ public class CursorManager : MonoBehaviour {
         focusUnit = GameManager.GetMapUnit(cursorPos);
 
         // アクティブリストの生成と検証
-        activeAreaList = new Struct.NodeMove[Map.GetFieldData().height, Map.GetFieldData().width];
+        activeAreaList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
 
         // 移動エリアの検証
         routeManager.CheckMoveArea(ref cursorManager);
 
         // エリアパネルの表示
-        for (int y = 0; y < Map.GetFieldData().height; y++)
-            for (int x = 0; x < Map.GetFieldData().width; x++)
+        for (int y = 0; y < MapManager.GetFieldData().height; y++)
+            for (int x = 0; x < MapManager.GetFieldData().width; x++)
                 if (activeAreaList[y, x].aREA == Enum.AREA.MOVE || activeAreaList[y, x].aREA == Enum.AREA.UNIT)
                 {
                     // 移動エリアの表示
@@ -355,8 +360,8 @@ public class CursorManager : MonoBehaviour {
                 }
 
         // 攻撃エリアの表示
-        for (int ay = 0; ay < Map.GetFieldData().height; ay++)
-            for (int ax = 0; ax < Map.GetFieldData().width; ax++)
+        for (int ay = 0; ay < MapManager.GetFieldData().height; ay++)
+            for (int ax = 0; ax < MapManager.GetFieldData().width; ax++)
                 if (activeAreaList[ay, ax].aREA == Enum.AREA.ATTACK)
                     Instantiate(areaRed, new Vector3(ax, -ay, 0), Quaternion.identity).transform.parent = activeArea.transform;
 
@@ -373,12 +378,12 @@ public class CursorManager : MonoBehaviour {
     /// </summary>
     private void AddAttackArea() {
         // アクティブリストの生成と検証
-        attackAreaList = new Struct.NodeMove[Map.GetFieldData().height, Map.GetFieldData().width];
+        attackAreaList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
 
         // 攻撃エリアの検証と表示
         routeManager.CheckAttackArea(ref attackAreaList, focusUnit.moveController.getPos(), ref focusUnit);
-        for (int ay = 0; ay < Map.GetFieldData().height; ay++)
-            for (int ax = 0; ax < Map.GetFieldData().width; ax++)
+        for (int ay = 0; ay < MapManager.GetFieldData().height; ay++)
+            for (int ax = 0; ax < MapManager.GetFieldData().width; ax++)
                 if (attackAreaList[ay, ax].aREA == Enum.AREA.ATTACK)
                     Instantiate(areaRed, new Vector3(ax, -ay, 0), Quaternion.identity).transform.parent = attackArea.transform;
     }

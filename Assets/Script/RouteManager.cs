@@ -20,7 +20,7 @@ public class RouteManager {
 
         // 開始地点から終了地点までたどり着けるか
         bool isEnd = false;
-        Struct.NodeMove[,] nodeList = new Struct.NodeMove[Map.GetFieldData().height, Map.GetFieldData().width];
+        Struct.NodeMove[,] nodeList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
         nodeList[-(int)cursorManager.focusUnit.moveController.getPos().y, (int)cursorManager.focusUnit.moveController.getPos().x].aREA = Enum.AREA.UNIT;
 
         // スタート地点からエンドまで再帰的に移動コストをチェックする
@@ -42,9 +42,9 @@ public class RouteManager {
     private void CheckRootAreaRecursive(ref Struct.NodeMove[,] nodeList, ref Struct.NodeMove[,] activeAreaList, Vector3 checkPos, ref Vector3 endPos, int previousCost, ref bool isEnd) {
         // 配列の外（マップ外）なら何もしない
         if (-(int)checkPos.y < 0 ||
-            Map.GetFieldData().height <= -checkPos.y ||
+            MapManager.GetFieldData().height <= -checkPos.y ||
             checkPos.x < 0 ||
-            Map.GetFieldData().width <= checkPos.x)
+            MapManager.GetFieldData().width <= checkPos.x)
             return;
 
         // アクティブエリアでなければ何もしない
@@ -55,12 +55,12 @@ public class RouteManager {
         // 省コストで上書きできない場合は終了
         if (nodeList[-(int)checkPos.y, (int)checkPos.x].cost != 0 &&
             nodeList[-(int)checkPos.y, (int)checkPos.x].cost <=
-            previousCost + Map.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost)
+            previousCost + MapManager.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost)
             return;
 
         // 移動前のコストと今回のコストを合計して設定する（開始地点を除く）
         if (nodeList[-(int)checkPos.y, (int)checkPos.x].aREA != Enum.AREA.UNIT)
-            nodeList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + Map.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
+            nodeList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + MapManager.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
 
         // ゴールまで辿り着ける事を確認した
         if (checkPos == endPos) isEnd = true;
@@ -131,9 +131,9 @@ public class RouteManager {
     private int CheckNodeCost(ref Struct.NodeMove[,] nodeList, ref Struct.NodeMove[,] activeAreaList, Vector3 checkPos) {
         // 配列の外（マップ外）なら何もしない
         if (-(int)checkPos.y < 0 ||
-            Map.GetFieldData().height <= -checkPos.y ||
+            MapManager.GetFieldData().height <= -checkPos.y ||
             checkPos.x < 0 ||
-            Map.GetFieldData().width <= checkPos.x)
+            MapManager.GetFieldData().width <= checkPos.x)
             return -1;
 
         // アクティブエリアでなければ-1を返す
@@ -151,7 +151,7 @@ public class RouteManager {
     /// <param name="cursorManager">Cursor manager.</param>
     public void CheckMoveArea(ref CursorManager cursorManager) {
         // スタート地点からエンドまで再帰的に移動コストをチェックする
-        cursorManager.activeAreaList = new Struct.NodeMove[Map.GetFieldData().height, Map.GetFieldData().width];
+        cursorManager.activeAreaList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
         cursorManager.activeAreaList[-(int)cursorManager.focusUnit.moveController.getPos().y, (int)cursorManager.focusUnit.moveController.getPos().x].aREA = Enum.AREA.UNIT;
         CheckMoveAreaRecursive(ref cursorManager, cursorManager.focusUnit.moveController.getPos(), 0);
     }
@@ -165,13 +165,13 @@ public class RouteManager {
     private void CheckMoveAreaRecursive(ref CursorManager cursorManager, Vector3 checkPos, int previousCost) {
         // 配列の外（マップ外）なら何もしない
         if (-(int)checkPos.y < 0 ||
-            Map.GetFieldData().height <= -checkPos.y ||
+            MapManager.GetFieldData().height <= -checkPos.y ||
             checkPos.x < 0 ||
-            Map.GetFieldData().width <= checkPos.x)
+            MapManager.GetFieldData().width <= checkPos.x)
             return;
 
         // キャラが移動できないマスなら何もしない
-        if (!isMoveing(Map.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].category, cursorManager.focusUnit.moveType))
+        if (!isMoveing(MapManager.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].category, cursorManager.focusUnit.moveType))
             return;
 
         // 移動先にユニットがいた場合のすり抜けチェック
@@ -198,13 +198,13 @@ public class RouteManager {
         // 省コストで上書きできない場合は終了
         if (cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost != 0 &&
             cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost <=
-            previousCost + Map.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost)
+            previousCost + MapManager.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost)
             return;
 
         // 移動前のコストと今回のコストを合計して設定する（開始地点を除く）
         if (cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA != Enum.AREA.UNIT)
         {
-            cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + Map.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
+            cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + MapManager.GetFieldData().cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
             cursorManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA = Enum.AREA.MOVE;
         }
 
@@ -248,9 +248,9 @@ public class RouteManager {
 
         // 配列の外（マップ外）なら何もしない
         if (-(int)checkPos.y < 0 ||
-            Map.GetFieldData().height <= -checkPos.y ||
+            MapManager.GetFieldData().height <= -checkPos.y ||
             checkPos.x < 0 ||
-            Map.GetFieldData().width <= checkPos.x)
+            MapManager.GetFieldData().width <= checkPos.x)
             return;
 
         if (activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA == Enum.AREA.NONE)

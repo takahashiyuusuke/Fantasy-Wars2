@@ -16,6 +16,8 @@ public class UnitInfo : MonoBehaviour {
     public int hp;
     public int movementRange; // 移動範囲
     public int attackRange; // 攻撃範囲
+    public int recoveryCount; // 回復回数
+
     public Enum.MOVE_TYPE moveType; // 移動タイプ
     [HideInInspector]
     public bool isMoving; // 移動中かどうか
