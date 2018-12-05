@@ -48,6 +48,12 @@ public class MapManager : MonoBehaviour {
                     case 2:
                         field.cells[y, x] = new Struct.CellInfo("壁", 1, 1, 5, 1, 0);
                         break;
+					case 3:
+						field.cells[y, x] = new Struct.CellInfo("沼", 0, 2, -5, 0, 0);
+						break;
+					case 4:
+						field.cells[y, x] = new Struct.CellInfo("熱い床", 0, 2, -15, 0, 0);
+						break;
                 }
             }
         }
