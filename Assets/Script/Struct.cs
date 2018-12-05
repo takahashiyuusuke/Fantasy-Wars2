@@ -30,23 +30,29 @@ public class Struct {
         public int avoidanceBonus; // 回避ボーナス
         public int defenseBonus; // 防御ボーナス
         public int magicalDefenseBonus; // 魔防御ボーナス
+        public int hpBonus; //回復ボーナス
+        public int hpOnus;//ダメージ
 
         /// <summary>
         /// コンストラクター
         /// </summary>
-        /// <param name="name">Name.</param>
-        /// <param name="category">Category.</param>
-        /// <param name="moveCost">Move cost.</param>
-        /// <param name="avoidanceBonus">Avoidance bonus.</param>
-        /// <param name="defenseBonus">Defense bonus.</param>
-        /// <param name="magicalDefenseBonus">Magical defense bonus.</param>
-        public CellInfo(string name, int category, int moveCost, int avoidanceBonus, int defenseBonus, int magicalDefenseBonus) {
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="moveCost"></param>
+        /// <param name="avoidanceBonus"></param>
+        /// <param name="defenseBonus"></param>
+        /// <param name="magicalDefenseBonus"></param>
+        /// <param name="hpBonus"></param>
+        /// <param name="hpOnus"></param>
+        public CellInfo(string name, int category, int moveCost, int avoidanceBonus, int defenseBonus, int magicalDefenseBonus, int hpBonus, int hpOnus) {
             this.name = name;
             this.category = category;
             this.moveCost = moveCost;
             this.avoidanceBonus = avoidanceBonus;
             this.defenseBonus = defenseBonus;
             this.magicalDefenseBonus = magicalDefenseBonus;
+            this.hpBonus = hpBonus;
+            this.hpOnus = hpOnus;
         }
     }
     public struct NodeMove {
