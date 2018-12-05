@@ -11,7 +11,7 @@ public class CursorManager : MonoBehaviour {
     private Vector3 _cursorPos, cursorPos;
 
     // アクティブUI
-    public GameObject activeUI;
+    //public GameObject activeUI;
     // スタンバイUI
     public GameObject standbyUI;
 
@@ -49,7 +49,7 @@ public class CursorManager : MonoBehaviour {
 
     void Start() {
         // UIの非表示
-        activeUI.SetActive(false);
+        //activeUI.SetActive(false);
         standbyUI.SetActive(false);
 
         // カーソルの生成
@@ -170,8 +170,8 @@ public class CursorManager : MonoBehaviour {
     /// </summary>
     private void turnMove() {
         // 移動が終わったらUIを切り替える
-        if (!focusUnit.moveController.movingFlg)
-            activeUI.SetActive(true);
+        //if (!focusUnit.moveController.movingFlg)
+          //  activeUI.SetActive(true);
     }
 
     private void turnBattleStanby() {
@@ -239,7 +239,7 @@ public class CursorManager : MonoBehaviour {
         Debug.Log("TURN.BATTLE");
         turn = Enum.TURN.BATTLE;
         activeArea.SetActive(false);
-        activeUI.SetActive(false);
+        //activeUI.SetActive(false);
         rootArea.SetActive(false);
         standbyUI.SetActive(true);
         cursorObj.SetActive(true);
@@ -262,7 +262,7 @@ public class CursorManager : MonoBehaviour {
         // ターンとUIの切り替え
         Debug.Log("TURN.SELECT");
         turn = Enum.TURN.SELECT;
-        activeUI.SetActive(false);
+        //activeUI.SetActive(false);
         cursorObj.SetActive(true);
     }
 
@@ -298,7 +298,7 @@ public class CursorManager : MonoBehaviour {
         // ターンとUIの切り替え
         Debug.Log("TURN.SELECT");
         turn = Enum.TURN.SELECT;
-        activeUI.SetActive(false);
+        //activeUI.SetActive(false);
         cursorObj.SetActive(true);
     }
 
@@ -336,7 +336,7 @@ public class CursorManager : MonoBehaviour {
             cursorPos = _cursorPos;
 
         // カーソル座標が更新されてないなら更新する
-        if (cursorObj.transform.position != cursorPos && !activeUI.activeSelf)
+        if (cursorObj.transform.position != cursorPos)
         {
             // カーソルの座標を更新
             cursorObj.transform.position = cursorPos;
