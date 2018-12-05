@@ -26,7 +26,7 @@ public class UIUnitInfo : MonoBehaviour {
         gageImageColor = gageImage.GetComponent<Image>();
 
         // ゲーム開始時は非表示
-        selectUnitInfo.SetActive(false);
+        //selectUnitInfo.SetActive(false);
     }
 
     public void ShowUnitInfo(UnitInfo unitInfo) {
@@ -49,6 +49,6 @@ public class UIUnitInfo : MonoBehaviour {
     }
 
     public void CloseUnitInfo() {
-        selectUnitInfo.SetActive(false);
+      //  selectUnitInfo.SetActive(false);
     }
 }
