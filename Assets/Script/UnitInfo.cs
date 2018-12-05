@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitInfo : MonoBehaviour {
-
-
     /// <summary>
     /// 基本パラメータ
     /// </summary>
@@ -13,6 +11,7 @@ public class UnitInfo : MonoBehaviour {
     public string name;
     //public Enum.CLASS_TYPE classType;
     public int level;
+    public int maxHp;
     public int hp;
     public int movementRange; // 移動範囲
     public int attackRange; // 攻撃範囲
@@ -20,7 +19,7 @@ public class UnitInfo : MonoBehaviour {
 
     public Enum.MOVE_TYPE moveType; // 移動タイプ
     [HideInInspector]
-    public bool isMoving; // 移動中かどうか
+    public bool isMoving; // 行動済みかどうか
     public Enum.ARMY aRMY; // 勢力
 
     [Header("成長パラメータ")]

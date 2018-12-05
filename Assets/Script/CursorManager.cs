@@ -43,6 +43,10 @@ public class CursorManager : MonoBehaviour {
     // 行動ターン
     Enum.TURN turn = Enum.TURN.START;
 
+    // 回復ボタン切り替え用
+    Button btn;
+
+
     void Start() {
         // UIの非表示
         activeUI.SetActive(false);
@@ -62,6 +66,7 @@ public class CursorManager : MonoBehaviour {
         // インスタンスの初期化
         routeManager = new RouteManager();
         cursorManager = GetComponent<CursorManager>();
+        btn = GetComponent<Button>();
     }
 
     public void Update() {
@@ -296,8 +301,24 @@ public class CursorManager : MonoBehaviour {
         activeUI.SetActive(false);
         cursorObj.SetActive(true);
     }
-    public void OnRecoveryBtn() {
 
+    // 回復ボタン処理
+    public void OnRecoveryBtn(){
+        // 回復可能回数が0より大きいか
+        if (0 < focusUnit.recoveryCount || focusUnit.hp < focusUnit.maxHp) {
+            focusUnit.hp += 10;
+            focusUnit.recoveryCount--;
+            Debug.Log("回復");
+
+            //hpがmaxHpを超えるなら最大値で上書き
+            if (focusUnit.hp > focusUnit.maxHp){
+                focusUnit.hp = focusUnit.maxHp;
+            }
+            if (0 >= focusUnit.recoveryCount) {
+                btn.interactable = false;
+
+            }
+        }
     }
 
     /// <summary>
