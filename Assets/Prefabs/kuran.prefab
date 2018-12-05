@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114155929038525102}
   - component: {fileID: 114148017954430564}
   m_Layer: 0
-  m_Name: unit1
+  m_Name: kuran
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,9 +66,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  name: 
-  level: 0
-  hp: 0
+  name: kuran
+  level: 10
+  maxHp: 20
+  hp: 20
   movementRange: 2
   attackRange: 1
   recoveryCount: 3
