@@ -43,6 +43,10 @@ public class CursorManager : MonoBehaviour {
     // 行動ターン
     Enum.TURN turn = Enum.TURN.START;
 
+    //ボタン
+    Button AttuckBtn;
+    Button RecoveryBtn;
+    Button EndBtn;
 
     void Start() {
         // UIの非表示
@@ -63,7 +67,17 @@ public class CursorManager : MonoBehaviour {
         // インスタンスの初期化
         routeManager = new RouteManager();
         cursorManager = GetComponent<CursorManager>();
-        //btn = GetComponent<Button>();
+
+
+        AttuckBtn   = GameObject.Find("CanvasUI/ActiveUI/AttackButton").GetComponent<Button>();
+        RecoveryBtn = GameObject.Find("CanvasUI/ActiveUI/RecoveryButton").GetComponent<Button>();
+        EndBtn      = GameObject.Find("CanvasUI/ActiveUI/EndButton").GetComponent<Button>();
+
+
+        //各ボタンの無効化
+        AttuckBtn.interactable = false;
+        RecoveryBtn.interactable = false;
+        EndBtn.interactable = false;
     }
 
     public void Update() {
@@ -166,6 +180,17 @@ public class CursorManager : MonoBehaviour {
     /// ユニットの移動
     /// </summary>
     private void turnMove() {
+        if (turn == Enum.TURN.MOVE){
+            AttuckBtn.interactable = true;
+        }
+        EndBtn.interactable = true;
+
+        if (0 < focusUnit.recoveryCount) {
+            RecoveryBtn.interactable = true;
+        } else {
+            RecoveryBtn.interactable = false;
+        }
+
         // 移動が終わったらUIを切り替える
         //if (!focusUnit.moveController.movingFlg)
           //  activeUI.SetActive(true);
@@ -300,24 +325,26 @@ public class CursorManager : MonoBehaviour {
     }
 
     // 回復ボタン処理
-    public void OnRecoveryBtn(){
+    public void OnRecoveryBtn() {
 
-        Button btn;
-        btn = GetComponent<Button>();
 
-        // 回復可能回数が0より大きいか
-        if (0 < focusUnit.recoveryCount && focusUnit.hp < focusUnit.maxHp) {
-            focusUnit.hp += 10;
-            focusUnit.recoveryCount--;
-            Debug.Log("回復");
+        // ユニット管理リストの更新
+       // GameManager.MoveMapUnitData(oldFocusUnitPos, focusUnit.moveController.getPos());
+        GameManager.GetMapUnit(oldFocusUnitPos).hp += 10;
+        focusUnit.hp += 10;
+        focusUnit.recoveryCount--;
 
-            //hpがmaxHpを超えるなら最大値で上書き
-            if (focusUnit.hp > focusUnit.maxHp){
-                focusUnit.hp = focusUnit.maxHp;
-            }
+        uIUnitInfo.ShowUnitInfo(GameManager.GetMapUnit(oldFocusUnitPos));
 
+        //回復した時にhpがmaxHpを超えるなら最大値で上書き
+        if (focusUnit.hp > focusUnit.vitality)
+        {
+            focusUnit.hp = focusUnit.vitality;
+         
         }
-        else { btn.interactable = false; }
+
+        Debug.Log("回復");
+        
     }
 
     /// <summary>
