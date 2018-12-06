@@ -31,7 +31,7 @@ public class Struct {
         public int defenseBonus; // 防御ボーナス
         public int magicalDefenseBonus; // 魔防御ボーナス
         public int hpBonus; //回復ボーナス
-        public int hpOnus;//ダメージ
+        public int hpOnus; //ダメージ
 
         /// <summary>
         /// コンストラクター

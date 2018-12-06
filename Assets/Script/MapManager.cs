@@ -12,38 +12,36 @@ public class MapManager : MonoBehaviour {
     public void LoadData(int mapId) {
         Struct.FieldBase fieldBase = new Struct.FieldBase();
         MapDatas mapDatas= new MapDatas();
-        switch (mapId)
-        {
+        switch (mapId) {
             case 10:
                 fieldBase = mapDatas.GetData10();
                 break;
 
             case 9:
-
                 fieldBase = mapDatas.GetData9();
                 break;
+
             case 8:
                 fieldBase = mapDatas.GetData8();
                 break;
 
             case 7:
-
                 fieldBase = mapDatas.GetData7();
                 break;
+
             case 6:
                 fieldBase = mapDatas.GetData6();
                 break;
 
             case 5:
-
                 fieldBase = mapDatas.GetData5();
                 break;
+
             case 4:
                 fieldBase = mapDatas.GetData4();
                 break;
 
             case 3:
-
                 fieldBase = mapDatas.GetData3();
                 break;
 
@@ -52,7 +50,6 @@ public class MapManager : MonoBehaviour {
                 break;
 
             case 1:
-                
                 fieldBase = mapDatas.GetData1();
                 break;
 
@@ -75,7 +72,8 @@ public class MapManager : MonoBehaviour {
             {
                 switch (fieldBase.cells[y, x])
                 {
-                    // name, category, moveCost, avoidanceBonus, defenseBonus, recoveryBonus; 
+                    // name, category, moveCost, avoidanceBonus, defenseBonus, magicalDefenseBonus, hpBonus,      hpOnus; 
+                    // 名前, 種類,     コスト,   回避率,         防御ボーナス, 魔防ボーナス,        回復値,       地形ダメージ
                     case 0:
                     default:
                         field.cells[y, x] = new Struct.CellInfo("平地", 0, 1, 0, 0, 0, 0, 0);
@@ -89,12 +87,18 @@ public class MapManager : MonoBehaviour {
                     case 3:
                         field.cells[y, x] = new Struct.CellInfo("城門", 0, 1, 20, 2, 0, 5, 0);
                         break;
-                        //case 3:
-                        //	field.cells[y, x] = new Struct.CellInfo("沼", 0, 2, -5, 0, 0);
-                        //	break;
-                        //case 4:
-                        //	field.cells[y, x] = new Struct.CellInfo("熱い床", 0, 2, -15, 0, 0);
-                        //	break;
+                    case 4:
+                        field.cells[y, x] = new Struct.CellInfo("沼", 0, 2, -5, 0, 0, 0, 0);
+                        break;
+                    case 5:
+                        field.cells[y, x] = new Struct.CellInfo("熱い床", 0, 2, -15, 0, 0, 0, 5);
+                        break;
+                    case 6:
+                        field.cells[y, x] = new Struct.CellInfo("川", 0, 2, -15, 0, 0, 0, 5);
+                        break;
+                    case 7:
+                        field.cells[y, x] = new Struct.CellInfo("水晶", 1, 2, -15, 0, 0, 0, 5);
+                        break;
                 }
             }
         }
