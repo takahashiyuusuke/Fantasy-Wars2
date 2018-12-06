@@ -94,11 +94,59 @@ public class MapManager : MonoBehaviour {
                         field.cells[y, x] = new Struct.CellInfo("熱い床", 0, 2, -15, 0, 0, 0, 5);
                         break;
                     case 6:
-                        field.cells[y, x] = new Struct.CellInfo("川", 0, 2, -15, 0, 0, 0, 5);
+                        field.cells[y, x] = new Struct.CellInfo("川", 1, 2, -15, 0, 0, 0, 5);
                         break;
                     case 7:
                         field.cells[y, x] = new Struct.CellInfo("水晶", 1, 2, -15, 0, 0, 0, 5);
                         break;
+				    case 8:
+					    field.cells[y, x] = new Struct.CellInfo("森", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 9:
+					    field.cells[y, x] = new Struct.CellInfo("村", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 10:
+					    field.cells[y, x] = new Struct.CellInfo("城", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 11:
+					    field.cells[y, x] = new Struct.CellInfo("木", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 12:
+					    field.cells[y, x] = new Struct.CellInfo("山", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 13:
+					    field.cells[y, x] = new Struct.CellInfo("切り株",0, 2, 10, 0, 0, 0, 0);
+					    break;
+				    case 14:
+					    field.cells[y, x] = new Struct.CellInfo("岩", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 15:
+					    field.cells[y, x] = new Struct.CellInfo("穴", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 16:
+					    field.cells[y, x] = new Struct.CellInfo("看板", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 17:
+					    field.cells[y, x] = new Struct.CellInfo("池", 1, 2, -15, 0, 0, 0, 5);
+					    break;
+				    case 18:
+					    field.cells[y, x] = new Struct.CellInfo("苔", 0, 2, -5, 0, 0, 0, 0);
+					    break;
+				    case 19:
+					    field.cells[y, x] = new Struct.CellInfo("枯れ木", 0, 2, 10, 0, 0, 0, 0);
+					    break;
+				    case 20:
+					    field.cells[y, x] = new Struct.CellInfo("石像", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 21:
+					    field.cells[y, x] = new Struct.CellInfo("溶岩", 1, 1, 5, 1, 0, 0, 0);
+					    break;
+				    case 22:
+					    field.cells[y, x] = new Struct.CellInfo("橋", 0, 1, 0, 0, 0, 0, 0);
+					    break;
+				    case 23:
+					    field.cells[y, x] = new Struct.CellInfo("出入口", 0, 1, 0, 0, 0, 0, 0);
+				    	break;
                 }
             }
         }
