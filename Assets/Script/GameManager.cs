@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     // 配置リスト上でユニット情報を移動する
     public static void MoveMapUnitData(Vector3 oldPos, Vector3 newPos) {
         mapUnitData[-(int)newPos.y, (int)newPos.x] = mapUnitData[-(int)oldPos.y, (int)oldPos.x];
-        mapUnitData[-(int)oldPos.y, (int)newPos.x] = null;
+        mapUnitData[-(int)oldPos.y, (int)oldPos.x] = null;
         Debug.Log("位置変更終了");
     }
     //
