@@ -180,12 +180,14 @@ public class CursorManager : MonoBehaviour {
     /// ユニットの移動
     /// </summary>
     private void turnMove() {
+        //各ボタンを有効化
         if (turn == Enum.TURN.MOVE){
             AttuckBtn.interactable = true;
         }
         EndBtn.interactable = true;
 
-        if (0 < focusUnit.recoveryCount) {
+        //回復ボタンの有効化
+        if (0 < focusUnit.recoveryCount　&& focusUnit.vitality > focusUnit.hp) {
             RecoveryBtn.interactable = true;
         } else {
             RecoveryBtn.interactable = false;
@@ -326,8 +328,6 @@ public class CursorManager : MonoBehaviour {
 
     // 回復ボタン処理
     public void OnRecoveryBtn() {
-
-
         // ユニット管理リストの更新
        // GameManager.MoveMapUnitData(oldFocusUnitPos, focusUnit.moveController.getPos());
         GameManager.GetMapUnit(oldFocusUnitPos).hp += 10;
