@@ -147,6 +147,12 @@ public class MapManager : MonoBehaviour {
 				    case 23:
 					    field.cells[y, x] = new Struct.CellInfo("出入口", 0, 1, 0, 0, 0, 0, 0);
 				    	break;
+				    case 24:
+					    field.cells[y, x] = new Struct.CellInfo("林", 0, 2, 10, 0, 0, 0, 0);
+					    break;
+				    case 25:
+					    field.cells[y, x] = new Struct.CellInfo("倒木", 1, 1, 5, 1, 0, 0, 0);
+					    break;
                 }
             }
         }
