@@ -11,7 +11,6 @@ public class UnitInfo : MonoBehaviour {
     public string name;
     //public Enum.CLASS_TYPE classType;
     public int level;
-    public int maxHp;
     public int hp;
     public int movementRange; // 移動範囲
     public int attackRange; // 攻撃範囲
