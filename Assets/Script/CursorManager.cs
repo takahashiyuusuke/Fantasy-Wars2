@@ -43,7 +43,7 @@ public class CursorManager : MonoBehaviour {
     // 行動ターン
     Enum.TURN turn = Enum.TURN.START;
 
-    //ボタン
+    // ボタン
     Button AttuckBtn;
     Button RecoveryBtn;
     Button EndBtn;
@@ -330,8 +330,8 @@ public class CursorManager : MonoBehaviour {
     public void OnRecoveryBtn() {
         // ユニット管理リストの更新
        // GameManager.MoveMapUnitData(oldFocusUnitPos, focusUnit.moveController.getPos());
-        GameManager.GetMapUnit(oldFocusUnitPos).hp += 10;
-        focusUnit.hp += 10;
+        GameManager.GetMapUnit(oldFocusUnitPos).hp += 30;
+        //focusUnit.hp += 10;
         focusUnit.recoveryCount--;
 
         uIUnitInfo.ShowUnitInfo(GameManager.GetMapUnit(oldFocusUnitPos));
@@ -340,7 +340,6 @@ public class CursorManager : MonoBehaviour {
         if (focusUnit.hp > focusUnit.vitality)
         {
             focusUnit.hp = focusUnit.vitality;
-         
         }
 
         Debug.Log("回復");
