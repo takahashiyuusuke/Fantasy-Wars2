@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+namespace Main { 
 
 public class GameManager : MonoBehaviour {
 
@@ -13,7 +16,7 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         // マップデータ読み込み
         mapManager.LoadData(mapId);
-
+        
         // ユニットの配置リストの初期化
         mapUnitData = new UnitInfo[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
     }
@@ -38,4 +41,5 @@ public class GameManager : MonoBehaviour {
         Debug.Log("位置変更終了");
     }
     //
+}
 }
