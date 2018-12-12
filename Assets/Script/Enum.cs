@@ -9,7 +9,6 @@ public class Enum {
 
     public enum AREA { NONE, UNIT, MOVE, ATTACK }
 
-
     public enum MOVE { NONE, UP, DOWN, LEFT, RIGHT }
 
     //プレイヤーの行動
@@ -22,6 +21,17 @@ public class Enum {
         RESULT,
         END
     };
+
+    // 敵キャラクターの行動
+    public enum ENEMY_TURN {
+        START,
+        SELECT,
+        FOCUS,
+        MOVE,
+        BATTLE,
+        RESULT,
+        END
+    }
 
     //勢力
     public enum ARMY {
