@@ -9,9 +9,11 @@ public class CursorManager : MonoBehaviour {
     public GameObject cursorObj; // カーソルObj
     private Vector2 mouseScreenPos;
     private Vector3 _cursorPos, cursorPos;
+    private bool cursorActive = false;
 
     // アクティブUI
     //public GameObject activeUI;
+
     // スタンバイUI
     public GameObject standbyUI;
 
@@ -128,7 +130,7 @@ public class CursorManager : MonoBehaviour {
         CursorUpdate(false);
 
         // クリック処理
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) & cursorActive)
             if (GameManager.GetMapUnit(cursorPos) != null && activeAreaList == null)
                 if (!GameManager.GetMapUnit(cursorPos).isMoving)
                     AddActiveArea(); // 未行動のユニットであればフォーカスする
@@ -141,7 +143,7 @@ public class CursorManager : MonoBehaviour {
         // カーソルの更新
         CursorUpdate(true);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) & cursorActive)
             // アクティブエリア（移動可能マス）を選択されたら移動する
             if (activeAreaList[-(int)cursorPos.y, (int)cursorPos.x].aREA == Enum.AREA.MOVE)
             {
@@ -183,6 +185,10 @@ public class CursorManager : MonoBehaviour {
         //各ボタンを有効化
         if (turn == Enum.TURN.MOVE){
             AttuckBtn.interactable = true;
+        } else {
+            AttuckBtn.interactable = false;
+            //EndBtn.interactable = false;
+            RecoveryBtn.interactable = false;
         }
         EndBtn.interactable = true;
 
@@ -195,7 +201,7 @@ public class CursorManager : MonoBehaviour {
 
         // 移動が終わったらUIを切り替える
         //if (!focusUnit.moveController.movingFlg)
-          //  activeUI.SetActive(true);
+                //activeUI.SetActive(true);
     }
 
     private void turnBattleStanby() {
@@ -313,6 +319,9 @@ public class CursorManager : MonoBehaviour {
         // if (focusUnit) focusUnit.moveController.NotFocuse();
 
         // ユニット管理リストの更新
+        Debug.Log(oldFocusUnitPos);
+
+        Debug.Log(focusUnit.moveController.getPos());
         GameManager.MoveMapUnitData(oldFocusUnitPos, focusUnit.moveController.getPos());
 
         RemoveActiveArea();
@@ -324,6 +333,11 @@ public class CursorManager : MonoBehaviour {
         turn = Enum.TURN.SELECT;
         //activeUI.SetActive(false);
         cursorObj.SetActive(true);
+
+        //ボタンを無効化
+        EndBtn.interactable = false;
+        RecoveryBtn.interactable = false;
+        AttuckBtn.interactable = false;
     }
 
     // 回復ボタン処理
@@ -337,8 +351,7 @@ public class CursorManager : MonoBehaviour {
         uIUnitInfo.ShowUnitInfo(GameManager.GetMapUnit(oldFocusUnitPos));
 
         //回復した時にhpがmaxHpを超えるなら最大値で上書き
-        if (focusUnit.hp > focusUnit.vitality)
-        {
+        if (focusUnit.hp > focusUnit.vitality) {
             focusUnit.hp = focusUnit.vitality;
         }
 
@@ -358,7 +371,14 @@ public class CursorManager : MonoBehaviour {
         // マップ内なら新しいカーソル座標を取得する
         if (0 <= _cursorPos.x && _cursorPos.x < MapManager.GetFieldData().width &&
             0 <= -_cursorPos.y && -_cursorPos.y < MapManager.GetFieldData().height)
+        {
+            cursorActive = true;
             cursorPos = _cursorPos;
+        }
+        else
+        {
+            cursorActive = false;
+        }
 
         // カーソル座標が更新されてないなら更新する
         if (cursorObj.transform.position != cursorPos)
