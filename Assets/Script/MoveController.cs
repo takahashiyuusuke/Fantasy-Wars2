@@ -19,10 +19,10 @@ public class MoveController : MonoBehaviour {
     void Start() {
         pos = transform.position;
 
-        // GameManagerにユニット情報を登録
+        // Main.GameManagerにユニット情報を登録
         UnitInfo unitInfo = GetComponent<UnitInfo>();
         unitInfo.moveController = GetComponent<MoveController>();
-        GameManager.AddMapUnitData(pos, unitInfo);
+        Main.GameManager.AddMapUnitData(pos, unitInfo);
     }
 
     // Update is called once per frame
