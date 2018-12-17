@@ -57,14 +57,14 @@ public class Struct {
     }
     public struct NodeMove {
         public int cost;
-        public Enums.AREA aREA;
+        public Enum.AREA aREA;
     }
 
     public struct NodeRoot {
-        public Enums.MOVE move;
+        public Enum.MOVE move;
         public int cost;
 
-        public NodeRoot(Enums.MOVE move, int cost) {
+        public NodeRoot(Enum.MOVE move, int cost) {
             this.move = move;
             this.cost = cost;
         }
