@@ -21,10 +21,10 @@ public class RouteManager {
         // 開始地点から終了地点までたどり着けるか
         bool isEnd = false;
         Struct.NodeMove[,] nodeList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
-        nodeList[-(int)cursorManager.focusUnit.moveController.getPos().y, (int)cursorManager.focusUnit.moveController.getPos().x].aREA = Enums.AREA.UNIT;
+        nodeList[-(int)cursorManager.focusUnit.GetComponent<MoveController>().getPos().y, (int)cursorManager.focusUnit.GetComponent<MoveController>().getPos().x].aREA = Enums.AREA.UNIT;
 
         // スタート地点からエンドまで再帰的に移動コストをチェックする
-        CheckRootAreaRecursive(ref nodeList, ref cursorManager.activeAreaList, cursorManager.focusUnit.moveController.getPos(), ref endPos, 0, ref isEnd);
+        CheckRootAreaRecursive(ref nodeList, ref cursorManager.activeAreaList, cursorManager.focusUnit.GetComponent<MoveController>().getPos(), ref endPos, 0, ref isEnd);
 
         // ゴールできる場合は最短ルートをチェックする
         if (isEnd) cursorManager.moveRoot = CheckShootRootRecursive(ref cursorManager, ref nodeList, endPos);
@@ -81,7 +81,7 @@ public class RouteManager {
     /// <param name="checkPos">Check position.</param>
     private List<Vector3> CheckShootRootRecursive(ref CursorManager cursorManager, ref Struct.NodeMove[,] nodeList, Vector3 checkPos) {
         // 目的地からスタート位置（ユニット）まで辿り着いたら移動ルートを返す
-        if (checkPos == cursorManager.focusUnit.moveController.getPos()) return cursorManager.moveRoot;
+        if (checkPos == cursorManager.focusUnit.GetComponent<MoveController>().getPos()) return cursorManager.moveRoot;
 
         // 上下左右のコストをチェクし昇順に並び替える
         List<Struct.NodeRoot> list = new List<Struct.NodeRoot>();
@@ -152,8 +152,10 @@ public class RouteManager {
     public void CheckMoveArea(ref CursorManager cursorManager) {
         // スタート地点からエンドまで再帰的に移動コストをチェックする
         cursorManager.activeAreaList = new Struct.NodeMove[MapManager.GetFieldData().height, MapManager.GetFieldData().width];
-        cursorManager.activeAreaList[-(int)cursorManager.focusUnit.moveController.getPos().y, (int)cursorManager.focusUnit.moveController.getPos().x].aREA = Enums.AREA.UNIT;
-        CheckMoveAreaRecursive(ref cursorManager, cursorManager.focusUnit.moveController.getPos(), 0);
+        Debug.Log(cursorManager.focusUnit.GetComponent<MoveController>());
+        cursorManager.activeAreaList[-(int)cursorManager.focusUnit.GetComponent<MoveController>().getPos().y, (int)cursorManager.focusUnit.GetComponent<MoveController>().getPos().x].aREA = Enums.AREA.UNIT;
+
+        CheckMoveAreaRecursive(ref cursorManager, cursorManager.focusUnit.GetComponent<MoveController>().getPos(), 0);
     }
 
     /// <summary>
@@ -175,9 +177,9 @@ public class RouteManager {
             return;
 
         // 移動先にユニットがいた場合のすり抜けチェック
-        if (Main.GameManager.GetMapUnit(checkPos))
+        if (Main.GameManager.GetMapUnitInfo(checkPos))
         {
-            switch (Main.GameManager.GetMapUnit(checkPos).aRMY)
+            switch (Main.GameManager.GetMapUnitInfo(checkPos).aRMY)
             {
                 case Enums.ARMY.ALLY:
                     if (cursorManager.focusUnit.aRMY == Enums.ARMY.ENEMY)
