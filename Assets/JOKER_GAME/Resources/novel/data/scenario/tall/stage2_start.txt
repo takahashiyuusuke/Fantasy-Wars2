@@ -1,0 +1,77 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="chara" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+;エルナの表情登録
+[chara_face name="Erna" face="angry" storage=syujinnko ]
+[chara_face name="Erna" face="komaru" storage=syujinnko ]
+[chara_face name="Erna" face="warau" storage=syujinnko ]
+
+;エリーザの表情登録
+[chara_face name="Elisa" face="angry" storage=chara_a ]
+[chara_face name="Elisa" face="komaru" storage=chara_k ]
+
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+こんにちは[p]
+
+[show name=Elisa]
+#エリーザ
+た、大変です！[r]
+魔物が門の前まで[r]
+接近しています！[p]
+
+#エルナ
+兵士のほとんどが[r]
+遠征に行った。[r]
+私たちで[r]
+何とかするしかない･･･[p]
+
+#エリーザ
+エルナ様は安全な場所へ･･･[p]
+
+#エルナ
+いいえ、私も戦います。[p]
+
+[chara_mod name="Elisa"face="angry"]
+#エリーザ
+エルナ様危険です！[r]
+お怪我をされてしまうかも[r]
+しれません！[p]
+
+#エルナ
+私も戦えます。[r]
+それに民を守るのが、[l][r]
+私の使命なのですから。[p]
+
+[chara_mod name="Elisa"face="komaru"]
+#エリーザ
+分かりました･･･しかし、[r]
+危険と判断した場合は[r]
+どうかお逃げください･･･[p]
+
+#エルナ
+わかったわ。[p]
+
+#エルナ
+(実践は初めて･･･[l][r]
+でも、やるしかない！)[r]
+
