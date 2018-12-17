@@ -5,12 +5,13 @@ using System;
 
 public class MoveController : MonoBehaviour {
 
-    const float MOVE_SPEED = 8F;
-    const float NEXT_MOVE_ERROR = 0.1F;
+    //ゲームの設定値
+    const float MOVE_SPEED = 8F; //移動速度
+    const float NEXT_MOVE_ERROR = 0.1F; // 移動の誤差補完値
 
     // 移動ルート管理用の2次元配列
-    private List<Vector3> moveRoot = new List<Vector3>();
-    private Vector3 pos, movePos, nextPos;  //
+    private List<Vector3> moveRoot = new List<Vector3>(); // 自動行動用、移動ルート
+    private Vector3 pos, movePos, nextPos, nextAttackPos; // 各移動状態管理用変数
     private bool moveFlg = false;
     public bool movingFlg = false;
 
@@ -18,11 +19,15 @@ public class MoveController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         pos = transform.position;
+        //animator
 
         // Main.GameManagerにユニット情報を登録
-        UnitInfo unitInfo = GetComponent<UnitInfo>();
-        unitInfo.moveController = GetComponent<MoveController>();
-        Main.GameManager.AddMapUnitData(pos, unitInfo);
+        GameObject unitInfo = GetComponent<GameObject>();
+
+        // 一時的にコメントアウト↓↓
+        //unitInfo.moveController = GetComponent<MoveController>();
+
+        Main.GameManager.AddMapUnitData(pos, gameObject);
     }
 
     // Update is called once per frame
