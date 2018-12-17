@@ -6,26 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Battole03.unity
-    guid: 6497f7aa643c6fe48bce4eac9627e449
-  - enabled: 1
     path: Assets/Scenes 1/TitleScene.unity
     guid: eff89ea58c95d6d459ff93f488d64a8b
   - enabled: 1
     path: Assets/Scenes 1/home_menu.unity
     guid: 7d9a12637a109ab45a0fd791fcdda811
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes 1/StageSelectScene.unity
+    guid: b7f71c58e5da176438a99cad0003a227
   - enabled: 1
     path: Assets/Scenes 1/Character_syousai.unity
     guid: ec42e556ad450a94ea1db823d4d75042
   - enabled: 1
     path: Assets/Scenes 1/Status.unity
     guid: a4176a7e8bd6c7341b15debe734f5f23
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes 1/Character_power_up.unity
+    guid: 0b8543f7dbc147c46b01c4b685058a5c
   - enabled: 1
     path: Assets/Scenes 1/Power_up.unity
     guid: 63dfbe31bd2a96f4bb402f79d092a628
