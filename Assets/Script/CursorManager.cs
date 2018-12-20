@@ -6,7 +6,7 @@ using System;
 
 public class CursorManager : MonoBehaviour {
     // カーソル描画関連
-    public GameObject cursorObj; // カーソルObj
+    public GameObject cursorObj;    // カーソルObj
     private Vector2 mouseScreenPos;
     private Vector3 _cursorPos, cursorPos;
     private bool cursorActive = false;
@@ -344,6 +344,7 @@ public class CursorManager : MonoBehaviour {
         EndBtn.interactable = false;
         RecoveryBtn.interactable = false;
         AttuckBtn.interactable = false;
+
     }
 
     // 回復ボタン処理
@@ -362,6 +363,7 @@ public class CursorManager : MonoBehaviour {
             focusUnit.hp = focusUnit.vitality;
         }
         Debug.Log("回復");
+        Debug.Log(oldFocusUnitPos);
     }
 
     /// <summary>
@@ -432,10 +434,11 @@ public class CursorManager : MonoBehaviour {
 
         // 攻撃エリアの表示
         for (int ay = 0; ay < MapManager.GetFieldData().height; ay++)
-            for (int ax = 0; ax < MapManager.GetFieldData().width; ax++)
+            for (int ax = 0; ax < MapManager.GetFieldData().width; ax++) {
                 if (activeAreaList[ay, ax].aREA == Enums.AREA.ATTACK)
                     Instantiate(areaRed, new Vector3(ax, -ay, 0), Quaternion.identity).transform.parent = activeArea.transform;
 
+            }
         // ターンとUIの切り替え
         Debug.Log("TURN.FOCUS");
         turn = Enums.TURN.FOCUS;

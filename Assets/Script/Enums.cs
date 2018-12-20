@@ -22,7 +22,7 @@ public class Enums {
         END
     };
 
-    public enum Phose {
+    public enum PHASE {
         START, // プレイヤーのターン開始時
         SELECT, // Unit選択中
         FOCUS, // Unit選択時
@@ -34,16 +34,17 @@ public class Enums {
     }
 
 
+
     // 敵キャラクターの行動
-    //public enum ENEMY_TURN {
-    //    START,
-    //    SELECT,
-    //    FOCUS,
-    //    MOVE,
-    //    BATTLE,
-    //    RESULT,
-    //    END
-    //}
+    public enum ENEMY_TURN {
+        START,
+        SELECT,
+        FOCUS,
+        MOVE,
+        BATTLE,
+        RESULT,
+        END
+    }
 
     //勢力
     public enum ARMY {

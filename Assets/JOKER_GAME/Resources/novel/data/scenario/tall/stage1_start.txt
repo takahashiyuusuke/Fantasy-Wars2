@@ -75,3 +75,8 @@
 (実践は初めて･･･[l][r]
 でも、やるしかない！)[r]
 
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]
