@@ -1,0 +1,96 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+[chara_new name="Thief" storage="si-fu" jname="盗賊" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="Thief" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+地図によれば[r]
+この辺りに村が[r]
+･･･！あっ、あれは！[p]
+
+[show name=Erna]
+#エルナ
+エリーザ、どうしたのですか？[p]
+
+#エリーザ
+村が･･･村が[r]
+魔物に襲われています！[p]
+
+#エルナ
+そんな･･･[l]
+手遅れだったのですか･･･[p]
+
+#エリーザ
+･･･！[l][r]
+いいえ、手遅れではありません。[r]
+現在何者かが交戦中です！[p]
+
+#エリーザ
+ですが、少し押され気味です、[r]
+いつまでもつか･･･[p]
+
+#エルナ
+すぐに向かいましょう、[r]
+私たちも加勢します！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+
+[show name=Thief]
+#盗賊
+ちぃっ･･･偶然立ち寄った[r]
+村で魔物の襲撃にあうとは、[r]
+ついてないねぇ･･･[p]
+
+#盗賊
+おまけに村人達の避難に[r]
+遅れて魔物に囲まれて[r]
+しまったしよう･･･[p]
+
+[show name=Elisa]
+#エリーザ
+我々は王国軍です！加勢します！[r]
+共に魔物を倒しましょう！[p]
+
+[show name=Bowman]
+#盗賊
+っと、軍が来たか[r]
+まだ運に見放されて[r]
+なかったかわけか。[p]
+
+[show name=Erna]
+#エルナ
+住人たちや施設の状況は[r]
+わからない、	何事もなければ[r]
+いいのですが･･･[p]
+
+#エルナ
+それよりも目の前の敵を殲滅し、[r]
+村を守らなくては･･･！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="Thief"]
+[hidemessage]
+[touch_screen touch="true"]

@@ -1,0 +1,85 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+これで全て片付いたかしら。[p]
+
+[show name=Elisa]
+#エリーザ
+ええ、この辺りの魔物は[r]
+これで全てかと思われます。[p]
+
+#エルナ
+魔物たちの統率された動き、[r]
+まだ何かありそうですね。[p]
+
+#エリーザ
+はい、これだけまとまった動き、[r]
+これで終わりとはとても[r]
+思えません。[p]
+
+#エルナ
+この近くに村があります、[r]
+そこへ向い調査しましょう。[p]
+
+#エリーザ
+かしこまりました。[r]
+では城に戻り準備を･･･[p]
+
+#エルナ
+いいえ、このまま[r]
+村へと向かいます。[p]
+
+#エリーザ
+エルナ様!?今の戦力では[r]
+苦戦を強いられることが[r]
+あります。準備をしてから･･･[p]
+
+#エルナ
+今の状況で魔物と[r]
+まともに戦える戦力は[r]
+貴方と私以外にはいません。[p]
+
+#エルナ
+それに、今準備に時間を[r]
+割いていたらその間に[r]
+事態が悪化する可能性が[r]
+あります。[p]
+
+#エリーザ
+しかし･･･[p]
+
+#エルナ
+今は準備をする時間すら惜しい。[r]
+急いで村へ向かいます。[r]
+いいですね？[p]
+
+#エリーザ
+･･･かしこまりました。[p]
+
+#エルナ
+では、すぐに向かいましょう。[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]

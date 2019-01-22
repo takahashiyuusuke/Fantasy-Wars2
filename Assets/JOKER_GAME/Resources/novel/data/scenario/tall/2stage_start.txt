@@ -1,0 +1,88 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="chara" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+うわぁ･･･[l][r]
+思っっていたより[r]
+数が多いわね。[p]
+
+[show name=Elisa]
+#エリーザ
+そうはいっても･･･[r]
+この数を相手に[r]
+するしかありません。[p]
+
+#エルナ
+･･･[l]
+仕方ないわね･･･[p]
+
+#エリーザ
+エルナ様･･･[l]
+何度も言いますが[r]
+危険と判断したら[r]
+逃げてください。[p]
+
+#エリーザ
+貴方様が倒れてしまったら[r]
+元も子もありません･･･[p]
+
+#エルナ
+･･･わかったわ。[r]
+ですがあなたも危険と判断したら[r]
+すぐに逃げると約束しなさい。[p]
+
+[chara_mod name="Elisa"face="angry"]
+#エリーザ
+エルナ様･･･[r]
+わ、私は･･･[p]
+
+#エルナ
+これはこの国を[r]
+治める物からの[r]
+命令と心得ること。[p]
+
+#エルナ
+貴方には、まだこれからも[r]
+手伝ってもらうことが[r]
+あるのですから。[p]
+
+[chara_mod name="Elisa"face="komaru"]
+#エリーザ
+分かりました･･･[p]
+
+[chara_mod name="Elisa"face="default"]
+#エリーザ
+親衛隊隊長、エリーザ[r]
+エルナ様に忠誠を誓います[p]
+
+#エルナ
+わかったわ。[r]
+まずはこの状況を打開[r]
+することからね。[p]
+
+#エルナ
+いくわよ！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]
