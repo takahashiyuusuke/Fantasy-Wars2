@@ -12,12 +12,12 @@ namespace Novel {
         public Touch_screenComponent() {
             //必須項目
             this.arrayVitalParam = new List<string> {
-    "touch"
-    };
+                "touch"
+            };
         }
 
         public override void start() {
-            string flg = this.param["touch"];
+            //string flg = this.param["touch"];
                  
         }
     }
