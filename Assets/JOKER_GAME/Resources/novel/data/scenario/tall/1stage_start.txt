@@ -11,18 +11,8 @@
 
 @tag_default tag="chara"
 [chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
-[chara_new name="Elisa" storage="chara" jname="エリーザ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
 @reset_tag_default
-
-;エルナの表情登録
-[chara_face name="Erna" face="angry" storage=syujinnko ]
-[chara_face name="Erna" face="komaru" storage=syujinnko ]
-[chara_face name="Erna" face="warau" storage=syujinnko ]
-
-;エリーザの表情登録
-[chara_face name="Elisa" face="angry" storage=chara_a ]
-[chara_face name="Elisa" face="komaru" storage=chara_k ]
-
 
 @chara_pos name="Erna" x=3 y=-4.6
 @chara_pos name="Elisa" x=1.5 y=-4.6
@@ -51,7 +41,6 @@
 #エルナ
 いいえ、私も戦います。[p]
 
-[chara_mod name="Elisa"face="angry"]
 #エリーザ
 エルナ様危険です！[r]
 お怪我をされてしまうかも[r]
@@ -62,7 +51,6 @@
 それに民を守るのが、[l][r]
 私の使命なのですから。[p]
 
-[chara_mod name="Elisa"face="komaru"]
 #エリーザ
 分かりました･･･しかし、[r]
 危険と判断した場合は[r]
