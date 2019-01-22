@@ -13,17 +13,21 @@ public class MoveController : MonoBehaviour {
     private List<Vector3> moveRoot = new List<Vector3>(); // 自動行動用、移動ルート
     private Vector3 pos, movePos, nextPos, nextAttackPos; // 各移動状態管理用変数
     private bool moveFlg = false;
-    public bool movedFlg = false;
+    public bool movingFlg = false;
 
 
     // Use this for initialization
     void Start() {
         pos = transform.position;
-        moveFlg = false;
         //animator
 
         // Main.GameManagerにユニット情報を登録
-        Main.GameManager.GetUnit().AddMapUnitObj(pos, gameObject);
+        GameObject unitInfo = GetComponent<GameObject>();
+
+        // 一時的にコメントアウト↓↓
+        //unitInfo.moveController = GetComponent<MoveController>();
+
+        Main.GameManager.AddMapUnitData(pos, gameObject);
     }
 
     // Update is called once per frame
@@ -36,7 +40,7 @@ public class MoveController : MonoBehaviour {
 
             //
             moveFlg = true;
-            movedFlg = true;
+            movingFlg = true;
         }
     }
     void FixedUpdate() {
@@ -60,7 +64,7 @@ public class MoveController : MonoBehaviour {
                 moveFlg = false;
 
                 if (moveRoot.Count == 0)
-                    movedFlg = false;
+                    movingFlg = false;
             }
         }
     }
@@ -94,17 +98,4 @@ public class MoveController : MonoBehaviour {
     public Vector3 getPos() {
         return transform.position;
     }
-    /// <summary>
-    /// アニメーションの再生
-    /// </summary>
-    /// <param name="move">Move.</param>
-    public void playAnim(Enums.MOVE move) {
-        //animator.SetInteger("Walk", (int)move);
-    }
-
-    /// <summary>
-    /// 全ての移動が終わったかどうか
-    /// </summary>
-    /// <returns><c>true</c>, if moved was ised, <c>false</c> otherwise.</returns>
-    public bool isMoved() { return movedFlg; }
 }
