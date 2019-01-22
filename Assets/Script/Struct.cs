@@ -55,18 +55,11 @@ public class Struct {
             this.hpOnus = hpOnus;
         }
     }
-
-    /// <summary>
-    /// アクティブエリアを管理する際のノード
-    /// </summary>
     public struct NodeMove {
         public int cost;
         public Enums.AREA aREA;
     }
 
-    /// <summary>
-    /// 移動ルートを計算する際のノード
-    /// </summary>
     public struct NodeRoot {
         public Enums.MOVE move;
         public int cost;

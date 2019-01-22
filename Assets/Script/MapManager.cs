@@ -4,18 +4,12 @@ using UnityEngine;
 using System;
 using System.IO;
 
-public class MapManager {
+public class MapManager : MonoBehaviour {
 
-    public Struct.Field field;
-
-    public MapManager(int mapId) {
-        // マップデータの取得
-        GetMapData(mapId);
-        Debug.Log(mapId);
-    }
+    static Struct.Field field;
 
     // 参照渡しで受け取ったフィールデータを更新
-    public void GetMapData(int mapId) {
+    public void LoadData(int mapId) {
         Struct.FieldBase fieldBase = new Struct.FieldBase();
         MapDatas mapDatas = new MapDatas();
         switch (mapId)
@@ -71,7 +65,6 @@ public class MapManager {
         field.width = fieldBase.width;
         field.height = fieldBase.height;
         field.cells = new Struct.CellInfo[field.height, field.width];
-
 
         // 各セルデータの追加
         for (int y = 0; y < field.height; y++)
@@ -158,5 +151,13 @@ public class MapManager {
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// 外部からの呼び出し用
+    /// </summary>
+    /// <returns>The field data.</returns>
+    public static Struct.Field GetFieldData() {
+        return field;
     }
 }
