@@ -17,7 +17,6 @@ public class BattleStandby : MonoBehaviour {
     public Text textEnemyAttackPower; // 敵Unitの攻撃力
     public Text textEnemyAvoidance;  // 敵Unitの回避率
     public Text textEnemyDeathblow;  // 敵Unitの必殺率
-                                     // Use this for initialization
 
 
 
@@ -29,7 +28,7 @@ public class BattleStandby : MonoBehaviour {
     /// <param name="avoidance">Avoidance.</param>
     /// <param name="deathblow">Deathblow.</param>
     public void SetMyUnitData(UnitInfo unitInfo, int attackPower, int avoidance, int deathblow) {
-        //imgMy.sprite = Resources.Load<Sprite>("Sprite/UnitFace/Chara" + unitInfo.id);
+        imgMy.sprite = Resources.Load<Sprite>("Sprite/UnitFace/Chara" + unitInfo.id);
         textMyName.text = unitInfo.unitName;
         textMyHP.text = unitInfo.hp.ToString();
         textMyAttackPower.text = attackPower.ToString();

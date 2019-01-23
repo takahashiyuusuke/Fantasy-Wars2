@@ -236,7 +236,7 @@ public class PhaseManager : MonoBehaviour {
         // ターンとUIの切り替え
         phase = Enums.PHASE.MOVE;
         battleStandbyUI.SetActive(false);
-        cursorObj.SetActive(false);
+        //cursorObj.SetActive(false);
         moveMarkerManager.SetActive(true);
     }
 
@@ -342,7 +342,7 @@ public class PhaseManager : MonoBehaviour {
                     // ターンとUI切り替え
                     phase = Enums.PHASE.MOVE;
                     moveMarkerManager.SetActive(false);
-                    cursorObj.SetActive(false);
+                    //cursorObj.SetActive(false);
                     activeAreaManager.activeAreaObj.SetActive(false);
                 }
             }
@@ -388,15 +388,20 @@ public class PhaseManager : MonoBehaviour {
                 textMyHP = battleStandbyUI.GetComponent<BattleStandby>().textMyHP;
                 textEnemyHP = battleStandbyUI.GetComponent<BattleStandby>().textEnemyHP;
 
-                myAttackPower = Main.GameManager.GetCommonCalc().GetAttackDamage(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
-                //myUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense;
+                myAttackPower = 12;
+                    //playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense
+                    //+ Main.GameManager.GetMap().field.cells[-(int)enemyUnitObj.transform.position.y, (int)enemyUnitObj.transform.position.x].defenseBonus;
+                
+                //Main.GameManager.GetCommonCalc().GetAttackDamage(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
+                //playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense;
 
-                myAccuracy = 10;
+                myAccuracy = 100;
                 myDeathblow = 10;
                 myAttackCount = 2;
 
-                enemyAttackPower = 9;
-                enemyAccuracy = 60;
+                enemyAttackPower = playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense
+                                + Main.GameManager.GetMap().field.cells[-(int)enemyUnitObj.transform.position.y, (int)enemyUnitObj.transform.position.x].defenseBonus;
+                enemyAccuracy = 100;
                 enemyDeathblow = 3;
                 enemyAttackCount = 1;
 
@@ -437,7 +442,7 @@ public class PhaseManager : MonoBehaviour {
 
                     // 戦闘開始
                     // ターンとUIの切り替え
-                    cursorObj.SetActive(false);
+                    //cursorObj.SetActive(false);
                     activeAreaManager.attackAreaObj.SetActive(false);
                     phase = Enums.PHASE.BATTLE;
                 }
@@ -561,7 +566,7 @@ public class PhaseManager : MonoBehaviour {
             phase = Enums.PHASE.SELECT;
 
         //activeMenuUI.SetActive(false);
-        //battleStandbyUI.SetActive(false);
+        battleStandbyUI.SetActive(false);
         cursorObj.SetActive(true);
     }
     /// <summary>
@@ -570,9 +575,10 @@ public class PhaseManager : MonoBehaviour {
     void MyEndPhase() {
         // 自軍ユニットを全て未行動に戻す
         Main.GameManager.GetUnit().UnBehaviorUnitAll(Enums.ARMY.ALLY);
-        // 敵ターンに切り替える
-        TurnChange(Enums.ARMY.ENEMY);
         phase = Enums.PHASE.START;
+        // 敵ターンに切り替える
+        //TurnChange(Enums.ARMY.ENEMY);
+        //phase = Enums.PHASE.START;
     }
 
 
