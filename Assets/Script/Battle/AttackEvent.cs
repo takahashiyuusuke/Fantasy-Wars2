@@ -78,8 +78,8 @@ public class AttackEvent : MonoBehaviour {
         clip.legacy = true;
 
         // 作成したアニメーションのアタッチ
-        //anim = myUnitObj.GetComponent<Animation>();
-        //anim.AddClip(clip, clip.name);
+        anim = myUnitObj.GetComponent<Animation>();
+        anim.AddClip(clip, clip.name);
 
         switch (myAttackState)
         {
@@ -99,7 +99,7 @@ public class AttackEvent : MonoBehaviour {
         enemyResidualHP = enemyResidualHP < 0 ? 0 : enemyResidualHP;
 
         // アニンメーションの再生
-        //anim.Play(clip.name);
+        anim.Play(clip.name);
 
         // 攻撃アニメーションの途中でダメージ処理
         StartCoroutine(DelayMethod(ATTACK_SPEED / 2, () =>
@@ -114,8 +114,8 @@ public class AttackEvent : MonoBehaviour {
                     break;
 
                 case Enums.BATTLE.MISS:
-                    GameObject missObj = Resources.Load<GameObject>("Prefabs/Miss");
-                    Instantiate(missObj, enemyUnitObj.transform.position, Quaternion.identity);
+                    // GameObject missObj = Resources.Load<GameObject>("Prefabs/Miss");
+                    // Instantiate(missObj, enemyUnitObj.transform.position, Quaternion.identity);
                     break;
             }
             // ダメージ判定の終了
