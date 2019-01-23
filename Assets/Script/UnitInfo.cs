@@ -8,7 +8,7 @@ public class UnitInfo : MonoBehaviour {
     /// </summary>
     [Header("基本パラメータ")]
     public int id;
-    public string name;
+    public string unitName;
     //public Enums.CLASS_TYPE classType;
     public int level;
     public int hp;
@@ -18,7 +18,7 @@ public class UnitInfo : MonoBehaviour {
 
     public Enums.MOVE_TYPE moveType; // 移動タイプ
     [HideInInspector]
-    public bool isMoving; // 行動済みかどうか
+    public bool moving = false; // 行動済みかどうか
     public Enums.ARMY aRMY; // 勢力
 
     [Header("成長パラメータ")]
@@ -35,4 +35,21 @@ public class UnitInfo : MonoBehaviour {
     public int physique; // 体格（自分の体格未満のUnitを救出できる）
     public int accompanyId; // 同行UnitのId
     //public Enums.STATUS status; // 状態
+
+
+    /// <summary>
+    /// 移動済みかどうかでマテリアルを切り替える
+    /// </summary>
+    /// <param name="moving">If set to <c>true</c> moving.</param>
+    public void Moving(bool moving) {
+        this.moving = moving;
+    }
+
+    /// <summary>
+    /// 外部取得用
+    /// </summary>
+    /// <returns><c>true</c>, if moving was ised, <c>false</c> otherwise.</returns>
+    public bool isMoving() {
+        return moving;
+    }
 }

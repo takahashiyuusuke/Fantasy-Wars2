@@ -11,17 +11,10 @@ public class Enums {
 
     public enum MOVE { NONE, UP, DOWN, LEFT, RIGHT }
 
-    //プレイヤーの行動
-    public enum TURN {
-        START,
-        SELECT,
-        FOCUS,
-        MOVE,
-        BATTLE,
-        RESULT,
-        END
-    };
 
+    /// <summary>
+    /// プレイヤーの行動
+    /// </summary>
     public enum PHASE {
         START, // プレイヤーのターン開始時
         SELECT, // Unit選択中
@@ -31,19 +24,6 @@ public class Enums {
         BATTLE, // Unit攻撃時
         RESULT, // Unit攻撃終了時（まだ見操作のUnitがいれば、SELECTに戻る）
         END // プレイヤーのターン終了時
-    }
-
-
-
-    // 敵キャラクターの行動
-    public enum ENEMY_TURN {
-        START,
-        SELECT,
-        FOCUS,
-        MOVE,
-        BATTLE,
-        RESULT,
-        END
     }
 
     //勢力
@@ -59,5 +39,11 @@ public class Enums {
         ATHLETE, // 
         HORSE,   //
         FLYING,  //
+    }
+
+    public enum BATTLE {
+        NORMAL,
+        DEATH_BLOW,
+        MISS
     }
 }
