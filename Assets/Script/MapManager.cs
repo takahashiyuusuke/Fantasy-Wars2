@@ -6,10 +6,14 @@ using System.IO;
 
 public class MapManager : MonoBehaviour {
 
-    static Struct.Field field;
+    public Struct.Field field;
+
+    public MapManager(int mapId) {
+        GetMapData(mapId);
+    }
 
     // 参照渡しで受け取ったフィールデータを更新
-    public void LoadData(int mapId) {
+    public void GetMapData(int mapId) {
         Struct.FieldBase fieldBase = new Struct.FieldBase();
         MapDatas mapDatas = new MapDatas();
         switch (mapId)
@@ -157,7 +161,7 @@ public class MapManager : MonoBehaviour {
     /// 外部からの呼び出し用
     /// </summary>
     /// <returns>The field data.</returns>
-    public static Struct.Field GetFieldData() {
-        return field;
-    }
+    //public static Struct.Field GetFieldData() {
+    //    return field;
+    //}
 }
