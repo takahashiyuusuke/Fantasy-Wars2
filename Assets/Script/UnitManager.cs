@@ -136,7 +136,7 @@ public class UnitManager {
                     mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army)
                 {
                     mapUnitObj[y, x].GetComponent<UnitInfo>().Moving(false);
-                    //mapUnitObj[y, x].GetComponent<EffectController>().GrayScale(false);
+                    mapUnitObj[y, x].GetComponent<EffectController>().GrayScale(false);
                 }
     }
 }

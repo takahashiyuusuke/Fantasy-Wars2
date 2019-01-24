@@ -19,7 +19,7 @@ public class EffectController : MonoBehaviour {
     /// <param name="val">If set to <c>true</c> value.</param>
     public void GrayScale(bool val) {
         if (val)
-            GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Material/SpriteGrayscale");
+            GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Material/GrayScale");
         else
         {
 #if UNITY_EDITOR
