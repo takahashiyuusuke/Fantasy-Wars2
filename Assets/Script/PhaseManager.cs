@@ -551,7 +551,7 @@ public class PhaseManager : MonoBehaviour {
             focusUnitObj.GetComponent<UnitInfo>().Moving(true); // 行動済み
         }
         // グレースケールにする
-        //focusUnitObj.GetComponent<EffectController>().GrayScale(true);
+        focusUnitObj.GetComponent<EffectController>().GrayScale(true);
 
         activeAreaManager.RemoveActiveArea();
         activeAreaManager.RemoveAttackArea();
