@@ -21,6 +21,7 @@ namespace Main {
             mapManager = new MapManager(mapId);
             unitManager = new UnitManager(mapManager.field);
             routeManager = new RouteManager(mapManager.field);
+            commonCalc = new CommonCalc();
         }
         void start() {
 
