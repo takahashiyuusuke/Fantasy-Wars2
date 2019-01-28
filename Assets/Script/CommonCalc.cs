@@ -22,6 +22,7 @@ public class CommonCalc {
                 (int)targetUnit.transform.position.x].defenseBonus;
         return (0 < damage) ? damage : 0;
     }
+
     /// <summary>
     /// 攻撃の命中率を返す
     /// </summary>
@@ -33,6 +34,7 @@ public class CommonCalc {
         int hitRate = GetHitVal(myUnit) - GetDodgeVal(targetUnit);
         return Mathf.Clamp(hitRate, 0, 100);
     }
+
     /// <summary>
     /// 攻撃の命中値を返す
     /// </summary>
@@ -45,6 +47,7 @@ public class CommonCalc {
 
         return (0 < hitVal) ? hitVal : 0;
     }
+
     /// <summary>
     /// 回避値を返す
     /// </summary>
@@ -61,4 +64,68 @@ public class CommonCalc {
 
         return (0 < dodgeVal) ? dodgeVal : 0;
     }
+
+    /// <summary>
+    /// 攻撃回数を返す
+    /// </summary>
+    /// <param name="myUnit"></param>
+    /// <param name="targetUnit"></param>
+    /// <returns></returns>
+    public int GetAttackCount(UnitInfo myUnit, UnitInfo targetUnit) {
+        // 自分のスピード - 相手のスピード >= 8 なら2回
+        return (myUnit.speed - targetUnit.speed >= 5) ? 2 : 1;
+    }
+
+    /// <summary>
+    /// 必殺率を返す
+    /// </summary>
+    /// <param name="myUnit"></param>
+    /// <param name="targetUnit"></param>
+    /// <returns></returns>
+    public int GetDeathBlowRete(UnitInfo myUnit, UnitInfo targetUnit) {
+        // 参考 必殺	=(技-4)/2+装備武器の必殺+クラス補正
+        // 参考 必殺回避	=幸運/2+装備武器の必殺回避+クラス補正
+
+        // (技 -/ 2 + 武器補正値) - (敵の幸運 / 2)
+        int deathBlowRate = (myUnit.dexterity / 2 + 1) - (targetUnit.luck / 2);
+
+        return Mathf.Clamp(deathBlowRate, 0, 100);
+    }
+
+    /// <summary>
+    /// 実効命中率による攻撃命中判定
+    /// </summary>
+    /// <returns><c>true</c>, if hit decision was gotten, <c>false</c> otherwise.</returns>
+    /// <param name="hitRate">Hit rate.</param>
+    public bool GetHitDecision(int hitRate) {
+        // 0 ~ 99の乱数を二つ生成
+        int r1 = Random.Range(0, 100);
+        int r2 = Random.Range(0, 100);
+
+        // 二つの乱数の平均値を求める(小数点切り捨て)
+        int r3 = (int)Mathf.Floor((r1 + r2) / 2);
+
+        // 平均値が命中率以下であれば命中とする
+        return (r3 < hitRate) ? true : false;
+    }
+
+    /// <summary>
+    /// 確率の成功判定
+    /// </summary>
+    /// <returns><c>true</c>, if check was randomed, <c>false</c> otherwise.</returns>
+    /// <param name="probability">Probability.</param>
+    public bool ProbabilityDecision(int probability) {
+        return UnityEngine.Random.Range(0, 100) < probability ? true : false;
+    }
+
+    /// <summary>
+    /// posAからposBまでのセル数を返す
+    /// </summary>
+    /// <param name="posA"></param>
+    /// <param name="posB"></param>
+    /// <returns></returns>
+    public int GetCellDistance(Vector3 posA, Vector3 posB) {
+        return Mathf.Abs((int)posA.x - (int)posB.x) + Mathf.Abs((int)posA.y - (int)posB.y);
+    }
+
 }

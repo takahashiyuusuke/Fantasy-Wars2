@@ -17,13 +17,14 @@ public class Enums {
     /// </summary>
     public enum PHASE {
         START, // プレイヤーのターン開始時
-        SELECT, // Unit選択中
+        STANDBY, // Unit選択中
         FOCUS, // Unit選択時
         MOVE, // Unit行動時
         BATTLE_STANDBY, // Unit攻撃選択時
         BATTLE, // Unit攻撃時
         RESULT, // Unit攻撃終了時（まだ見操作のUnitがいれば、SELECTに戻る）
-        END // プレイヤーのターン終了時
+        END, // プレイヤーのターン終了時
+        STOP // それ以外や処理待ちの際に指定
     }
 
     //勢力

@@ -99,7 +99,6 @@ public class PhaseManager : MonoBehaviour {
         recoveryBtn = GameObject.Find("CanvasUI/ActiveUI/RecoveryButton").GetComponent<Button>();
         waitingBtn = GameObject.Find("CanvasUI/ActiveUI/EndButton").GetComponent<Button>();
 
-
         battleStandbyUI.SetActive(false);
 
         //各ボタンの無効化
@@ -118,7 +117,7 @@ public class PhaseManager : MonoBehaviour {
             case Enums.PHASE.START:
                 StartPhase();
                 break;
-            case Enums.PHASE.SELECT:
+            case Enums.PHASE.STANDBY:
                 StandbyPhase();
 
                 break;
@@ -223,7 +222,7 @@ public class PhaseManager : MonoBehaviour {
 
         // ターンとUIの切り替え
         Debug.Log("TURN.SELECT");
-        phase = Enums.PHASE.SELECT;
+        phase = Enums.PHASE.STANDBY;
         //activeUI.SetActive(false);
         cursorObj.SetActive(true);
     }
@@ -267,14 +266,14 @@ public class PhaseManager : MonoBehaviour {
         if (list.Count == 0)
             phase = Enums.PHASE.END;
         else
-            phase = Enums.PHASE.SELECT;
+            phase = Enums.PHASE.STANDBY;
 
         selectUnitInfoUI.SetActive(true);
         cellInfoUI.SetActive(true);
         //playerTurnImage.gameObject.SetActive(false);
         cursorObj.SetActive(true);
         //turnImageAnim = null;
-        phase = Enums.PHASE.SELECT;
+        phase = Enums.PHASE.STANDBY;
         //}
         //}
     }
@@ -353,7 +352,7 @@ public class PhaseManager : MonoBehaviour {
                 focusUnitObj = null;
 
                 // ターンとUI切り替え
-                phase = Enums.PHASE.SELECT;
+                phase = Enums.PHASE.STANDBY;
                 moveMarkerManager.RemoveMarker();
                 activeAreaManager.RemoveActiveArea();
             }
@@ -388,22 +387,15 @@ public class PhaseManager : MonoBehaviour {
                 textMyHP = battleStandbyUI.GetComponent<BattleStandby>().textMyHP;
                 textEnemyHP = battleStandbyUI.GetComponent<BattleStandby>().textEnemyHP;
 
-                myAttackPower = 12;
-                    //playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense
-                    //+ Main.GameManager.GetMap().field.cells[-(int)enemyUnitObj.transform.position.y, (int)enemyUnitObj.transform.position.x].defenseBonus;
-                
-                //Main.GameManager.GetCommonCalc().GetAttackDamage(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
-                //playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense;
+                myAttackPower = Main.GameManager.GetCommonCalc().GetAttackDamage(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
+                myAccuracy = Main.GameManager.GetCommonCalc().GetHitRate(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
+                myDeathblow = Main.GameManager.GetCommonCalc().GetDeathBlowRete(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
+                myAttackCount = Main.GameManager.GetCommonCalc().GetAttackCount(focusUnitObj.GetComponent<UnitInfo>(), enemyUnitObj.GetComponent<UnitInfo>());
 
-                myAccuracy = 100;
-                myDeathblow = 10;
-                myAttackCount = 2;
-
-                enemyAttackPower = playerUnitObj.GetComponent<UnitInfo>().strength - enemyUnitObj.GetComponent<UnitInfo>().defense
-                                + Main.GameManager.GetMap().field.cells[-(int)enemyUnitObj.transform.position.y, (int)enemyUnitObj.transform.position.x].defenseBonus;
-                enemyAccuracy = 100;
-                enemyDeathblow = 3;
-                enemyAttackCount = 1;
+                enemyAttackPower = Main.GameManager.GetCommonCalc().GetAttackDamage(enemyUnitObj.GetComponent<UnitInfo>(), focusUnitObj.GetComponent<UnitInfo>());
+                enemyAccuracy = Main.GameManager.GetCommonCalc().GetHitRate(enemyUnitObj.GetComponent<UnitInfo>(), focusUnitObj.GetComponent<UnitInfo>());
+                enemyDeathblow = Main.GameManager.GetCommonCalc().GetDeathBlowRete(enemyUnitObj.GetComponent<UnitInfo>(), focusUnitObj.GetComponent<UnitInfo>());
+                enemyAttackCount = Main.GameManager.GetCommonCalc().GetAttackCount(enemyUnitObj.GetComponent<UnitInfo>(), focusUnitObj.GetComponent<UnitInfo>());
 
                 // 敵の向きに合わせてUnitのアニメーション変更
                 if (Mathf.Abs(focusUnitObj.transform.position.x - enemyUnitObj.transform.position.x) <= 0f)
@@ -563,7 +555,7 @@ public class PhaseManager : MonoBehaviour {
         if (list.Count == 0)
             phase = Enums.PHASE.END;
         else
-            phase = Enums.PHASE.SELECT;
+            phase = Enums.PHASE.STANDBY;
 
         //activeMenuUI.SetActive(false);
         battleStandbyUI.SetActive(false);
@@ -575,10 +567,10 @@ public class PhaseManager : MonoBehaviour {
     void MyEndPhase() {
         // 自軍ユニットを全て未行動に戻す
         Main.GameManager.GetUnit().UnBehaviorUnitAll(Enums.ARMY.ALLY);
-        phase = Enums.PHASE.START;
-        // 敵ターンに切り替える
-        //TurnChange(Enums.ARMY.ENEMY);
         //phase = Enums.PHASE.START;
+        // 敵ターンに切り替える
+        TurnChange(Enums.ARMY.ENEMY);
+        phase = Enums.PHASE.START;
     }
 
 
@@ -609,7 +601,26 @@ public class PhaseManager : MonoBehaviour {
 
 
     void EnemyStandbyPhase() {
-
+        //if (turnImageAnim == null)
+        //{
+        //    // ターン開始アニメーションの再生
+        //    turnImageAnim = enemyTurnImage.gameObject.GetComponent<Animator>();
+        //    enemyTurnImage.gameObject.SetActive(true);
+        //}
+        //else
+        //{
+        //    // アニメーションが終了したらターンを開始する
+        //    if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
+        //    {
+                // ターンとUI切り替え
+                phase = Enums.PHASE.STANDBY;
+                selectUnitInfoUI.SetActive(false);
+                cellInfoUI.SetActive(false);
+                //enemyTurnImage.gameObject.SetActive(false);
+                cursorObj.SetActive(false);
+                //turnImageAnim = null;
+            //}
+        //}
     }
     void EnemyFoucusPhase() {
 
