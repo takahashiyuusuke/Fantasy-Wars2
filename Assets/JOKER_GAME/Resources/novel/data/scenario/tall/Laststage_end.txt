@@ -1,0 +1,140 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+森の主の死を確認しました。
+
+#エルナ
+マーサさんは無事ですか？
+
+#カルア
+ああ、多少服は破れているが、体
+は傷一つ付いてなさそうだ。
+
+#マーサ
+お姉ちゃん･･･怖かったよぉ～
+うえーん！
+
+#シャーロット
+マーちゃん、よく頑張ったね。
+
+#マーサ
+うえ～ん
+
+#カルア
+(そっとしておくか)
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+
+#
+しばらくして
+
+#マーサ
+改めてまして、あたしマーサと言
+います。よろしくお願いします。
+
+#エルナ
+はい、エルナと申します。こち
+らこそよろしくお願いします。
+
+#エリーザ
+エリーザです。お見知りおきを。
+
+#カルア
+あたしはカルア、よろしくな。
+
+#エルナ
+お二人はどうされますか？無事合
+流出来ましたが．．．
+
+#シャーロット
+それなら、ねえ？マーちゃん。
+
+#マーサ
+うん、あたしたち、エルナさん
+達に付いていくことにしました。
+
+#エリーザ
+それは、なぜですか？お二人は
+もう森ですることは無いはず･･･
+
+#マーサ
+あたし、強くなりたいんです。
+あなた達、まだ冒険、するんで
+すよね？
+
+#エルナ
+はい。ですがこの先もっと険しい
+道のりになります。
+
+#エルナ
+この旅には貴方達は関係ありませ
+んし、貴方達を危険に晒したくあ
+りません。
+
+#マーサ
+それは分かってます。でも、どう
+してもあなた達の役に立ちたいん
+です！
+
+#マーサ
+それに、3人より5人の方が良いに
+決まってます。お願いします、あ
+たしたちを連れてってください！
+
+#カルア
+アイツの決意は固いぜ。戦力にも
+なるし連れて行ってやった方が良
+いんじゃないか？
+
+#エルナ
+･･･分かりました。ただし、危険
+と感じたらすぐに逃げることを
+約束してください。いいですね？
+
+#マーサ
+はい！ありがとうございます！
+あたし、頑張ります！わぁい！
+
+#シャーロット
+良かったわねぇマーちゃん。私も
+もうしばらくお付き合いさせてい
+ただきますね。
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]
