@@ -45,6 +45,7 @@ public class Enums {
     public enum BATTLE {
         NORMAL,
         DEATH_BLOW,
-        MISS
+        MISS,
+        NO_DAMAGE
     }
 }

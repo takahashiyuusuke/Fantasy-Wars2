@@ -163,13 +163,13 @@ public class RouteManager {
     /// フォーカスユニットの移動エリアの算出
     /// </summary>
     /// <param name="cursorManager">Cursor manager.</param>
-    public void CheckMoveArea(ref PhaseManager phaseManager) {
+    public void CheckMoveArea(ref Struct.NodeMove[,] activeAreaList, GameObject checkUnitObj) {
         // スタート地点からエンドまで再帰的に移動コストをチェックする
-        Vector3 pos = phaseManager.focusUnitObj.transform.position;
-        phaseManager.activeAreaManager.activeAreaList = new Struct.NodeMove[fieldHeight, fieldWidth];
-        phaseManager.activeAreaManager.activeAreaList[-(int)pos.y, (int)pos.x].aREA = Enums.AREA.UNIT;
+        Vector3 pos = checkUnitObj.transform.position;
+        activeAreaList = new Struct.NodeMove[fieldHeight, fieldWidth];
+        activeAreaList[-(int)pos.y, (int)pos.x].aREA = Enums.AREA.UNIT;
 
-        CheckMoveAreaRecursive(ref phaseManager, pos, 0);
+        CheckMoveAreaRecursive(ref activeAreaList, checkUnitObj, pos, 0);
     }
 
     /// <summary>
@@ -178,7 +178,7 @@ public class RouteManager {
     /// <param name="cursorManager">Cursor manager.</param>
     /// <param name="checkPos">Check position.</param>
     /// <param name="previousCost">Previous cost.</param>
-    private void CheckMoveAreaRecursive(ref PhaseManager phaseManager, Vector3 checkPos, int previousCost) {
+    private void CheckMoveAreaRecursive(ref Struct.NodeMove[,] activeAreaList, GameObject checkUnitObj, Vector3 checkPos, int previousCost) {
         // 配列の外（マップ外）なら何もしない
         if (-(int)checkPos.y < 0 ||
             fieldHeight <= -checkPos.y ||
@@ -187,7 +187,7 @@ public class RouteManager {
             return;
 
         // キャラが移動できないマスなら何もしない
-        if (!isMoveing(field.cells[-(int)checkPos.y, (int)checkPos.x].category, phaseManager.focusUnitObj.GetComponent<UnitInfo>().moveType))
+        if (!isMoveing(field.cells[-(int)checkPos.y, (int)checkPos.x].category, checkUnitObj.GetComponent<UnitInfo>().moveType))
             return;
 
         // 移動先にユニットがいた場合のすり抜けチェック
@@ -196,42 +196,42 @@ public class RouteManager {
             switch (Main.GameManager.GetUnit().GetMapUnitInfo(checkPos).aRMY)
             {
                 case Enums.ARMY.ALLY:
-                    if (phaseManager.focusUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
+                    if (checkUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
                         return;
                     break;
                 case Enums.ARMY.ENEMY:
-                    if (phaseManager.focusUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY ||
-                        phaseManager.focusUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.NEUTRAL)
+                    if (checkUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY ||
+                        checkUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.NEUTRAL)
                         return;
                     break;
                 case Enums.ARMY.NEUTRAL:
-                    if (phaseManager.focusUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
+                    if (checkUnitObj.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
                         return;
                     break;
             }
         }
 
         // 省コストで上書きできない場合は終了
-        if (phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost != 0 &&
-            phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost <=
+        if (activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost != 0 &&
+            activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost <=
             previousCost + field.cells[-(int)checkPos.y, (int)checkPos.x].moveCost)
             return;
 
         // 移動前のコストと今回のコストを合計して設定する（開始地点を除く）
-        if (phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA != Enums.AREA.UNIT)
+        if (activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA != Enums.AREA.UNIT)
         {
-            phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + field.cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
-            phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA = Enums.AREA.MOVE;
+            activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost = previousCost + field.cells[-(int)checkPos.y, (int)checkPos.x].moveCost;
+            activeAreaList[-(int)checkPos.y, (int)checkPos.x].aREA = Enums.AREA.MOVE;
         }
 
         // 移動コストを超えた場合は終了
-        if (phaseManager.focusUnitObj.GetComponent<UnitInfo>().movementRange <= phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost) return;
+        if (checkUnitObj.GetComponent<UnitInfo>().movementRange <= activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost) return;
 
         // 次に検証する座標を指定（上下左右）
-        CheckMoveAreaRecursive(ref phaseManager, checkPos + Vector3.up, phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
-        CheckMoveAreaRecursive(ref phaseManager, checkPos + Vector3.down, phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
-        CheckMoveAreaRecursive(ref phaseManager, checkPos + Vector3.left, phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
-        CheckMoveAreaRecursive(ref phaseManager, checkPos + Vector3.right, phaseManager.activeAreaManager.activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
+        CheckMoveAreaRecursive(ref activeAreaList, checkUnitObj, checkPos + Vector3.up, activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
+        CheckMoveAreaRecursive(ref activeAreaList, checkUnitObj, checkPos + Vector3.down, activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
+        CheckMoveAreaRecursive(ref activeAreaList, checkUnitObj, checkPos + Vector3.left, activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
+        CheckMoveAreaRecursive(ref activeAreaList, checkUnitObj, checkPos + Vector3.right, activeAreaList[-(int)checkPos.y, (int)checkPos.x].cost);
     }
 
     /// <summary>

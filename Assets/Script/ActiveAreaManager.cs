@@ -26,15 +26,15 @@ public class ActiveAreaManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// アクティブエリアの表示
+    /// アクティブエリア生成と表示
     /// </summary>
     /// <param name="phaseManager"></param>
-    public void CreateActiveArea(ref PhaseManager phaseManager) {
+    public void CreateActiveArea(GameObject checkUnitObject, bool showArea) {
         // アクティブリストの生成と検証
         activeAreaList = new Struct.NodeMove[Main.GameManager.GetMap().field.height, Main.GameManager.GetMap().field.width];
 
         // 移動エリアの検証
-        Main.GameManager.GetRoute().CheckMoveArea(ref phaseManager);
+        Main.GameManager.GetRoute().CheckMoveArea(ref activeAreaList, checkUnitObject);
 
         // エリアパネルの表示
         for (int y = 0; y < Main.GameManager.GetMap().field.height; y++)
@@ -45,7 +45,7 @@ public class ActiveAreaManager : MonoBehaviour {
                     Instantiate(areaBlue, new Vector3(x, -y, 0), Quaternion.identity).transform.parent = activeAreaObj.transform;
 
                     // 攻撃エリアの検証
-                    Main.GameManager.GetRoute().CheckAttackArea(ref activeAreaList, new Vector3(x, -y, 0), phaseManager.focusUnitObj.GetComponent<UnitInfo>().attackRange);
+                    Main.GameManager.GetRoute().CheckAttackArea(ref activeAreaList, new Vector3(x, -y, 0), checkUnitObject.GetComponent<UnitInfo>().attackRange);
                 }
 
         // 攻撃エリアの表示
@@ -54,7 +54,6 @@ public class ActiveAreaManager : MonoBehaviour {
             {
                 if (activeAreaList[ay, ax].aREA == Enums.AREA.ATTACK)
                     Instantiate(areaRed, new Vector3(ax, -ay, 0), Quaternion.identity).transform.parent = activeAreaObj.transform;
-
             }
     }
 
