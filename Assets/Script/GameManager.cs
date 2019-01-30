@@ -11,6 +11,7 @@ namespace Main {
         static MapManager mapManager;
         static UnitManager unitManager;
         static RouteManager routeManager;
+        static EnemyAIManager enemyAIManager;
         static CommonCalc commonCalc;
 
         // マップに配置しているUnitオブジェクト
@@ -21,6 +22,7 @@ namespace Main {
             mapManager = new MapManager(mapId);
             unitManager = new UnitManager(mapManager.field);
             routeManager = new RouteManager(mapManager.field);
+            enemyAIManager = new EnemyAIManager(mapManager.field);
             commonCalc = new CommonCalc();
         }
         void start() {
@@ -118,5 +120,11 @@ namespace Main {
         /// </summary>
         /// <returns></returns>
         public static CommonCalc GetCommonCalc() { return commonCalc; }
+
+        /// <summary>
+        /// 外部呼出し用
+        /// </summary>
+        /// <returns></returns>
+        public static EnemyAIManager GetEnemyAI() { return enemyAIManager; }
     }
 }
