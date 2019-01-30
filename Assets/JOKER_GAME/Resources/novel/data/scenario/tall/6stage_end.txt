@@ -1,0 +1,83 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=]
+#カルア
+やっぱ5人にもなるとパパっとい
+けるもんだなあ～。
+
+#シャーロット
+偉いわマーちゃん。ちゃんと戦え
+たわねぇ。
+
+#マーサ
+あ、あたしだってやれば出来るの
+よ。
+
+#エリーザ
+周りには魔物もいません、早めに
+入りましょう。
+
+#エルナ
+ええ、そうしましょう。
+我々は今からドラゴンのいる洞窟
+に侵入します。一度入ってしまえ
+ば倒すまで出られないでしょう。
+
+#エルナ
+もともとは私が無理言って来た場
+所です。辛い方は遠慮なく撤退し
+て構いませんが．．．
+
+#エリーザ
+･････････
+
+#カルア
+そんな野暮なことするぐらいなら
+最初から来ねえよ。
+
+#マーサ
+そ、そうです。あなた達が行くの
+なら、私も行きます！
+
+#シャーロット
+私も大丈夫ですわ。
+
+#エルナ
+･･･皆さん、ありがとうございま
+す。では、今から洞窟に侵入し
+ます。足元に気を付けて進みま
+しょう。
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

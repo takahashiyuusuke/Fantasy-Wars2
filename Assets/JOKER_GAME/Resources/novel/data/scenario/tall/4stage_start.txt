@@ -12,23 +12,139 @@
 @tag_default tag="chara"
 [chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
 [chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
-[chara_new name="Thief" storage="si-fu" jname="盗賊" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="???" storage="souryo1" jname="???" scale=1.5]
 [chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
 Bowman
 @reset_tag_default
 
 @chara_pos name="Erna" x=3 y=-4.6
 @chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="???" x=1.5 y=-4.6
+
 
 [playbgm wait=false time=1 storage="music"]
 
 [show name=Elisa]
 #エリーザ
+･･･なぜ付いてきたのですか？
 
+#カルア
+恩返しってやつでさ。
+
+#カルア
+うちの村も助かったし、しばら
+く大丈夫っていうからな。お前
+らだけじゃ、この先厳しいだろ
+うし。
+
+#エルナ
+ですが、それではあなたも危険
+な目に･･･
+
+#カルア
+それに関しては気にしなくてい
+い、あたしは昔っから危険な目
+にあうから慣れてるさ。
+
+#カルア
+それに、自分から付いてきたん
+だ、危険なのは百も承知さ。
+
+#カルア
+それともなんだ？あたしじゃあ
+足手まといだとでもいうのか？
+
+#エルナ
+いえ、そういうわけではありま
+せん！
+
+#エリーザ
+はい、カルアさんが付いてきて
+くれて頼もしいですよ！
+
+#カルア
+そこまで言われると･･･なんか
+照れるな･･･
+
+#エリーザ
+村の襲撃の時に一人で魔物に立
+ち向かっていましたし、その勇
+猛さが今の我々に必要なのです！
+
+#カルア
+や、やめてくれよ。恥ずかしい
+じゃないか･･･
+
+#???
+あのぉ～
+
+#エルナ
+人の声？
+
+#エリーザ
+いったいどこから？
+
+#???
+ここですよぉ～
+
+#カルア
+おい、あいつじゃないか？
+
+#エリーザ
+見たところ僧侶とお見受けします
+が、なぜこんなところへ？
+
+#???
+マーちゃんと薬草集めに来ていた
+んですけど、はぐれてしまって、
+探していたんですよぉ～。
+
+#カルア
+マーちゃんってのは誰なんだ？
+
+#???
+私の妹のマーサという子ですぅ。
+あのぉ～、よろしければ一緒につ
+いていっても構いませんか？
+
+#エリーザ
+そうですね、こういう時はかた
+まって行動するのが得策です。
+共に行動しましょう。
+
+#???
+わぁい、ありがとうございます
+ぅ～。私、シャーロットと言い
+ますぅ～。よろしくお願いしま
+すぅ～。
+
+#エルナ
+はい、シャーロットさん、こち
+らこそよろしくお願いします。
+
+#魔物
+grrrrrrrrrrrrr･･･[p]
+
+#エリーザ
+前方に魔物の集団を確認！
+
+#カルア
+折角だし4人の力、試そうぜ！
+
+#エリーザ
+はい、戦闘行動に入ります。
+
+#エルナ
+まずは4人全員で安全に敵をせん
+滅しましょう！
 
 [chara_remove name="Elisa"]
 [chara_remove name="Erna"]
 [chara_remove name="kalua"]
-[chara_remove name="Thief"]
+[chara_remove name="Charlotte"]
+[chara_remove name="???"]
 [hidemessage]
 [touch_screen touch="true"]

@@ -1,0 +1,113 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=kalua]
+#カルア
+そういえば、マーちゃんってのは
+どういうやつなんだ？
+
+#シャーロット
+私の妹ですよ。見習いで魔導士や
+ってますぅ～。
+
+#カルア
+へぇ～、なら一人である程度大丈
+夫なんじゃないか？
+
+#シャーロット
+でもぉ･･･あの子、魔法詠唱する
+ときによく舌を噛む癖が
+あってぇ･･･
+
+#エリーザ
+そ、それは･･･またなんとも･･･
+
+#シャーロット
+ええ、ですので心配なんです
+よぉ･･･
+
+#???
+誰か！！いやっ、助けてぇ！！
+
+#エルナ
+今の声は、まさか！
+
+#シャーロット
+マーちゃんの声です！
+
+#エリーザ
+急いで声がした方へ向かいま
+しょう！
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+
+#魔物
+grrrrrrrrrrrrr!!![p]
+
+#マーサ
+いや！離して！気持ち悪い！
+
+#シャーロット
+マーちゃん！
+
+#マーサ
+お姉ちゃん！？助けてぇ！
+
+#カルア
+げぇっ、あのバケモン、いつも
+のよりでかいぞ。
+
+#エリーザ
+恐らくこの森の主でしょう。
+
+#カルア
+早くしないとアイツ喰われちまう
+ぞ。
+
+#エルナ
+すぐに戦闘行動に入ります。各
+自、臨機応変かつ迅速にあの森
+の主と魔物の群れせん滅してく
+ださい！
+
+#シャーロット
+マーちゃん！今すぐに助けるから
+ね！もう少しだけ我慢してちょう
+だい！
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]
