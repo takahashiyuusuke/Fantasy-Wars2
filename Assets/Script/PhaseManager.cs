@@ -15,6 +15,10 @@ public class PhaseManager : MonoBehaviour {
     public GameObject selectUnitInfoUI;
     public GameObject cellInfoUI;
     public GameObject cursorObj;
+    public Image playerTurnImage, enemyTurnImage;
+
+    Animator turnImageAnim;
+
     // 各ボタン
     Button attackBtn;
     Button recoveryBtn;
@@ -246,31 +250,37 @@ public class PhaseManager : MonoBehaviour {
     /// </summary>
     void MyStartPhase() {
 
-        //if (turnImageAnim == null)
-        //{
-        //    turnImageAnim = playerTurnImage.gameObject.GetComponent<Animator>();
-        //    playerTurnImage.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        // アニメーションが終了したらターンを開始する
-        //if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
-        //{
-        // ターンとUIの切り替え
-        List<GameObject> list = Main.GameManager.GetUnit().GetUnBehaviorUnits(Enums.ARMY.ALLY);
-        if (list.Count == 0)
-            phase = Enums.PHASE.END;
-        else
-            phase = Enums.PHASE.STANDBY;
+        if (turnImageAnim == null)
+        {
+            // ターン開始アニメーションの再生
+            turnImageAnim = playerTurnImage.gameObject.GetComponent<Animator>();
+            playerTurnImage.gameObject.SetActive(true);
 
-        selectUnitInfoUI.SetActive(true);
-        cellInfoUI.SetActive(true);
-        //playerTurnImage.gameObject.SetActive(false);
-        cursorObj.SetActive(true);
-        //turnImageAnim = null;
-        phase = Enums.PHASE.STANDBY;
-        //}
-        //}
+            // ランダムな未行動ユニット1体の座標にカーソルを合わせる
+            focusUnitObj = Main.GameManager.GetUnit().GetUnBehaviorRandomUnit(Enums.ARMY.ALLY);
+            cursorPos = focusUnitObj.transform.position;
+            cursorObj.transform.position = cursorPos;
+        }
+        else
+        {
+            // アニメーションが終了したらターンを開始する
+            if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
+            {
+                // ターンとUIの切り替え
+                List<GameObject> list = Main.GameManager.GetUnit().GetUnBehaviorUnits(Enums.ARMY.ALLY);
+                if (list.Count == 0)
+                    phase = Enums.PHASE.END;
+                else
+                    phase = Enums.PHASE.STANDBY;
+
+                selectUnitInfoUI.SetActive(true);
+                cellInfoUI.SetActive(true);
+                playerTurnImage.gameObject.SetActive(false);
+                activeAreaManager.activeAreaObj.SetActive(true);
+                cursorObj.SetActive(true);
+                turnImageAnim = null;
+            }
+        }
     }
     void MyStandbyPhase() {
 
@@ -555,6 +565,11 @@ public class PhaseManager : MonoBehaviour {
         //activeMenuUI.SetActive(false);
         battleStandbyUI.SetActive(false);
         cursorObj.SetActive(true);
+
+        // 各ボタンの無効化
+        attackBtn.interactable = false;
+        recoveryBtn.interactable = false;
+        waitingBtn.interactable = false;
     }
     /// <summary>
     /// ターン終了時
@@ -569,7 +584,26 @@ public class PhaseManager : MonoBehaviour {
     }
 
     void EnemyStartPhase() {
-        phase = Enums.PHASE.STANDBY;
+        if (turnImageAnim == null)
+        {
+            // ターン開始アニメーションの再生
+            turnImageAnim = enemyTurnImage.gameObject.GetComponent<Animator>();
+            enemyTurnImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            // アニメーションが終了したらターンを開始する
+            if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
+            {
+                // ターンとUI切り替え
+                phase = Enums.PHASE.STANDBY;
+                //selectUnitInfoUI.SetActive(false);
+                //cellInfoUI.SetActive(false);
+                enemyTurnImage.gameObject.SetActive(false);
+                //cursorObj.SetActive(false);
+                turnImageAnim = null;
+            }
+        }
     }
 
     void EnemyStandbyPhase() {
