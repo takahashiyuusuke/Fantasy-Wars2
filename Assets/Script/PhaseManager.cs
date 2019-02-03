@@ -23,6 +23,7 @@ public class PhaseManager : MonoBehaviour {
     Button attackBtn;
     Button recoveryBtn;
     Button waitingBtn;
+    Button turnEndBtn;
 
     // マネージャースクリプト
     public BattleManager battleManager;
@@ -102,6 +103,7 @@ public class PhaseManager : MonoBehaviour {
         attackBtn = GameObject.Find("CanvasUI/ActiveUI/AttackButton").GetComponent<Button>();
         recoveryBtn = GameObject.Find("CanvasUI/ActiveUI/RecoveryButton").GetComponent<Button>();
         waitingBtn = GameObject.Find("CanvasUI/ActiveUI/EndButton").GetComponent<Button>();
+        turnEndBtn = GameObject.Find("CanvasUI/ActiveUI/TurnEndButton").GetComponent<Button>();
 
         battleStandbyUI.SetActive(false);
 
@@ -112,9 +114,11 @@ public class PhaseManager : MonoBehaviour {
 
         // カーソル更新時に呼び出す処理の登録
         CursorController.AddCallBack((Vector3 newPos) => { cursorPos = newPos; });
+
+        Main.GameManager.GetUnit().CheckEnemyUnits();
+        Main.GameManager.GetUnit().CheckPlayerUnits();
     }
 
-    // Update is called once per frame
     void Update() {
         Debug.Log(phase);
         switch (phase)
@@ -196,12 +200,16 @@ public class PhaseManager : MonoBehaviour {
     // 回復ボタン処理
     public void OnRecoveryBtn() {
         focusUnitObj.GetComponent<UnitInfo>().hp += 30; // 行動済み
-
     }
 
     // 待機ボタン処理
     public void OnWaitingBtn() {
         MyResultPhase();
+    }
+
+    // ターン終了ボタン処理
+    public void OnTurnEndBtn() {
+        MyEndPhase();
     }
 
     /// <summary>
@@ -249,6 +257,11 @@ public class PhaseManager : MonoBehaviour {
     /// ターン開始時
     /// </summary>
     void MyStartPhase() {
+        // ターン終了ボタンの有効化
+        turnEndBtn.interactable = true;
+
+        // 自軍のターンBGM再生↓
+
 
         if (turnImageAnim == null)
         {
@@ -283,7 +296,7 @@ public class PhaseManager : MonoBehaviour {
         }
     }
     void MyStandbyPhase() {
-
+        turnEndBtn.interactable = true;
         // カーソルが更新されたら
         if (cursorPos != oldCursorPos)
         {
@@ -363,15 +376,17 @@ public class PhaseManager : MonoBehaviour {
             }
     }
     void MyMovePhase() {
+        // 
         // 移動が終わったらUIを切り替える
         if (focusUnitObj.GetComponent<MoveController>().IsMoved())
         {
-            // ボタンの有効化
+            // ボタンの有効化と無効化
             attackBtn.interactable = true;
             recoveryBtn.interactable = true;
             waitingBtn.interactable = true;
             activeAreaManager.attackAreaObj.SetActive(true);
             activeMenuUI.SetActive(true);
+            turnEndBtn.interactable = false;
         }
     }
     void MyBattleStandbyPhase() {
@@ -570,6 +585,9 @@ public class PhaseManager : MonoBehaviour {
         attackBtn.interactable = false;
         recoveryBtn.interactable = false;
         waitingBtn.interactable = false;
+
+        // 敵キャラ数チェック
+        Main.GameManager.GetUnit().CheckEnemyUnits();
     }
     /// <summary>
     /// ターン終了時
@@ -584,6 +602,12 @@ public class PhaseManager : MonoBehaviour {
     }
 
     void EnemyStartPhase() {
+        // ターン終了ボタンの無効化
+        turnEndBtn.interactable = false;
+
+        // 敵のターンBGMへ変更↓
+
+
         if (turnImageAnim == null)
         {
             // ターン開始アニメーションの再生
@@ -869,6 +893,9 @@ public class PhaseManager : MonoBehaviour {
         if (list.Count == 0) phase = Enums.PHASE.END;
         else
             phase = Enums.PHASE.STANDBY;
+
+        Main.GameManager.GetUnit().CheckEnemyUnits();
+        Main.GameManager.GetUnit().CheckPlayerUnits();
     }
     void EnemyEndPhase() {
         // 自軍ユニットを全て未行動に戻す
@@ -877,6 +904,14 @@ public class PhaseManager : MonoBehaviour {
         TurnChange(Enums.ARMY.ALLY);
         phase = Enums.PHASE.START;
     }
+
+    /// <summary>
+    /// 敵キャラ数をチェックする
+    /// </summary>
+    void EnemyCheck() {
+        Main.GameManager.GetUnit().CheckEnemyUnits();
+    }
+
     /// <summary>
     /// 行動エリアの初期化と削除
     /// </summary>

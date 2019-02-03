@@ -6,6 +6,8 @@ public class UnitManager {
     // ルートの算出に必要なフィールドデータ
     int fieldWidth, fieldHeight;
 
+    bool ClearFlg = false;
+
     GameObject[,] mapUnitObj;
 
     /// <summary>
@@ -150,5 +152,38 @@ public class UnitManager {
                     mapUnitObj[y, x].GetComponent<UnitInfo>().Moving(false);
                     mapUnitObj[y, x].GetComponent<EffectController>().GrayScale(false);
                 }
+    }
+
+    // 味方ユニットの数を調べる
+    public void CheckPlayerUnits() {
+        int PlayerCount = 0;
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY)
+                {
+                    PlayerCount++;
+                }
+        if (PlayerCount == 0)
+        {
+            //Instantiate();
+            Debug.Log("ゲームオーバー");
+            return;
+        }
+    }
+
+    // 敵ユニットの数を調べる
+    public void CheckEnemyUnits() {
+        int EnemyCount = 0;
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY) {
+                    EnemyCount++;
+                }
+        if(EnemyCount == 0)
+        {
+            //Instantiate();
+            Debug.Log("ステージクリア");
+        }
+        Debug.Log(EnemyCount);
     }
 }
