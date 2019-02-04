@@ -29,8 +29,8 @@ public class SelectUnitInfo : MonoBehaviour {
     // Use this for initialization
     void Start() {
         // ゲージイメージのコンポーネント取得
-        //gageImageRect = gageImage.GetComponent<RectTransform>();
-        //gageImageColor = gageImage.GetComponent<Image>();
+        gageImageRect = gageImage.GetComponent<RectTransform>();
+        gageImageColor = gageImage.GetComponent<Image>();
 
         // ゲーム開始時は非表示
         //selectUnitInfo.SetActive(false);
@@ -45,15 +45,16 @@ public class SelectUnitInfo : MonoBehaviour {
         lifeText.text = string.Format("HP: {0}/{1}", unitInfo.hp, unitInfo.vitality);
         lifeRate = (float)unitInfo.hp / (float)unitInfo.vitality;
 
-        //gageImageRect.sizeDelta = new Vector2(
-        //    lifeRate * (float)gageImageBk.sizeDelta.x,
-        //                                  gageImageBk.sizeDelta.y);
-        //if (lifeRate <= 0.2)
-        //    gageImageColor.color = lifeRed;
-        //else if (lifeRate <= 0.6)
-        //    gageImageColor.color = lifeYellow;
-        //else if (lifeRate <= 1)
-        //    gageImageColor.color = lifeGreen;
+
+        gageImageRect.sizeDelta = new Vector2(
+            lifeRate * (float)gageImageBk.sizeDelta.x,
+                                          gageImageBk.sizeDelta.y);
+        if (lifeRate <= 0.2)
+            gageImageColor.color = lifeRed;
+        else if (lifeRate <= 0.6)
+            gageImageColor.color = lifeYellow;
+        else if (lifeRate <= 1)
+            gageImageColor.color = lifeGreen;
     }
 
     public void CloseUnitInfo() {
