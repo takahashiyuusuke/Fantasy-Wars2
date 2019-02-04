@@ -28,38 +28,48 @@ Bowman
 
 [show name=Elisa]
 #エリーザ
-はあ、はあ、魔物たちの死[r]
+はあ、はあ、[l][r]
+･･･魔物たちの死[r]
 を確認しました･･･[p]
 
+[show name=kalua]
 #カルア
 はあ、はあ、一味ちがうな、[r]
 こりゃあ。[p]
 
+[show name=Martha]
 #マーサ
 ううぅ、強いよぉ～。[p]
 
+[show name=Erna]
 #エルナ
 一度休息を取って態勢を整えた[r]
 いですね･･･[p]
 
+[show name=Elisa]
 #エリーザ
 はい、皆さんの消耗が激しいで[r]
 す。どこか休める場所があれば[r]
 いいのですが･･･[p]
 
+[show name=Charlotte]
 #シャーロット
 あらぁ？少し遠いところですが、[r]
 あそこに水場が見えますわ。[p]
 
+[show name=kalua]
 #カルア
 まじで！？早く行こうぜ！[p]
 
+[show name=Martha]
 #マーサ
 あたしも休みたいなぁ･･･[p]
 
+[show name=Elisa]
 #エリーザ
 エルナ様･･･[p]
 
+[show name=Erna]
 #エルナ
 少し心配ですがあの水場へ向か[r]
 い、一度休憩しましょう。[p]

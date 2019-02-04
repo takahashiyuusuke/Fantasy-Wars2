@@ -26,16 +26,19 @@ Bowman
 
 [playbgm wait=false time=1 storage="music"]
 
-[show name=]
+[show name=kalua]
 #カルア
 これで全部か！[p]
 
+[show name=Elisa]
 #エリーザ
 はい、もう来ないようです。[p]
 
+[show name=Martha]
 #マーサ
 うえ、喉痛いよぉ。[p]
 
+[show name=Erna]
 #エルナ
 マーサさん、あともう少しだけ耐[r]
 えてください。お願いします。[p]
@@ -43,6 +46,7 @@ Bowman
 #マーサ
 うう、頑張るよ．．．[p]
 
+[show name=Charlotte]
 #シャーロット
 いざとなったら私が治療しまか[r]
 ら、安心してくださいねぇ～。[p]
@@ -50,6 +54,7 @@ Bowman
 #エルナ
 エリーザ、ドラゴンはどこに。[p]
 
+[show name=Elisa]
 #エリーザ
 はい、あの奥から咆哮が聞こえて[r]
 きたので、恐らくそこかと。[p]

@@ -26,23 +26,27 @@ Bowman
 
 [playbgm wait=false time=1 storage="music"]
 
-[show name=]
+[show name=kalua]
 #カルア
 やっぱ5人にもなるとパパっとい[r]
 けるもんだなあ～。[p]
 
+[show name=Charlotte]
 #シャーロット
 偉いわマーちゃん。ちゃんと戦え[r]
 たわねぇ。[p]
 
+[show name=Martha]
 #マーサ
 あ、あたしだってやれば出来るの[r]
 よ。[p]
 
+[show name=Elisa]
 #エリーザ
 周りには魔物もいません、早めに[r]
 入りましょう。[p]
 
+[show name=Erna]
 #エルナ
 ええ、そうしましょう。[r]
 我々は今からドラゴンのいる洞窟[r]
@@ -57,17 +61,21 @@ Bowman
 #エリーザ
 ･････････[p]
 
+[show name=kalua]
 #カルア
 そんな野暮なことするぐらいなら[r]
 最初から来ねえよ。[p]
 
+[show name=Martha]
 #マーサ
 そ、そうです。あなた達が行くの[r]
 なら、私も行きます！[p]
 
+[show name=Charlotte]
 #シャーロット
 私も大丈夫ですわ。[p]
 
+[show name=Erna]
 #エルナ
 ･･･皆さん、ありがとうございま[r]
 す。では、今から洞窟に侵入し[r]
