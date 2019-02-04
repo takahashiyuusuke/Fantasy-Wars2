@@ -48,4 +48,33 @@ public class Enums {
         MISS,
         NO_DAMAGE
     }
+
+    // クラスタイプ
+    public enum CLASS_TYPE {
+        THIEF,
+        ROGUE,
+        ASSASSIN,
+        ARMOR_KNIGHT,
+        GENERAL,
+        SWORDSMAN,
+        SWORD_MASTER,
+        SPEARMEN,
+        LANCER,
+        WARRIOR,
+        BERSERKER,
+        ARCHER,
+        SNIPER,
+        WIZARD,
+        ARC_WIZARD,
+        SHERMAN,
+        NECROMANCER,
+        CLERIC,
+        PRIEST,
+        SISTER,
+        VALKYRIA,
+        DANCER,
+        BANDIT,
+        CITIZEN
+
+    }
 }

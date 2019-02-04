@@ -77,4 +77,35 @@ public class Struct {
         }
     }
 
+    /// <summary>
+    /// ユニット詳細画面のレーダーチャート表示用
+    /// </summary>
+    public struct NodeStatus {
+        public string label; // ラベル
+        public int val; // ステータスの値
+        public int jobValMax; // Job毎のステータスの最大値
+
+        public NodeStatus(string label, int val, int JobValMax) {
+            this.label = label;
+            this.val = val;
+            this.jobValMax = JobValMax;
+        }
+    }
+
+
+    /// <summary>
+    /// ユニットのクラスデータ
+    /// </summary>
+    public struct UnitClassData {
+        public string className; // クラス名
+        public int vitality; // 体力
+        public int attack; // 攻撃
+        public int technical; // 技
+        public int speed; // 速さ
+        public int defense; // 防御
+        public int resist; // 魔防
+        public int luck; // 幸運
+        public int move; // 移動
+    }
+
 }

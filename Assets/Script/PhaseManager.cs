@@ -16,6 +16,8 @@ public class PhaseManager : MonoBehaviour {
     public GameObject cellInfoUI;
     public GameObject cursorObj;
     public Image playerTurnImage, enemyTurnImage;
+    public ExpGaugeController expGaugeController;
+
 
     Animator turnImageAnim;
 
@@ -543,8 +545,14 @@ public class PhaseManager : MonoBehaviour {
                     enemyUnitObj.GetComponent<MoveController>().PlayAnim(Enums.MOVE.DOWN);
 
                 isBattle = false;
+
                 // ターンとUIの切り替え
                 phase = Enums.PHASE.RESULT; // 攻撃終了
+            }
+            else
+            {
+                // ターンとUIの切り替え
+                phase = Enums.PHASE.RESULT;
             }
         }
     }
@@ -850,13 +858,13 @@ public class PhaseManager : MonoBehaviour {
             if (playerUnitObj)
             {
                 // 経験値処理が終わるまでフェーズを停止
-                //phase = Enums.PHASE.STOP;
+                phase = Enums.PHASE.STOP;
 
-                //// Exp取得処理の開始
-                //expGaugeController.GaugeUpdate(3000, playerUnitObj.GetComponent<UnitInfo>(), () =>
-                //{
+                // Exp取得処理の開始
+                expGaugeController.GaugeUpdate(3000, playerUnitObj.GetComponent<UnitInfo>(), () =>
+                {
                     phase = Enums.PHASE.RESULT;
-                //});
+                });
             }
             else
             {
