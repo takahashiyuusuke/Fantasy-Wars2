@@ -29,34 +29,68 @@ Bowman
 
 [show name=kalua]
 #カルア
-プハーッ！生き返るぜぇ！
+プハーッ！生き返るぜぇ！[p]
 
+[show name=Martha]
 #マーサ
-うーん、おいしいよぉ。
+うーん、おいしいよぉ。[p]
 
+[show name=Charlotte]
 #シャーロット
-よかったわねマーちゃん。私も
-ひとくち貰おうかしら。
+よかったわねマーちゃん。私も[r]
+ひとくち貰おうかしら。[p]
 
+[show name=Erna]
 #エルナ
-･･･さて―――
+･･･さて―――[p]
 
 #???
-ｸﾞｫｫｫｫｫ!!!
+ｸﾞｫｫｫｫｫ!!![p]
 
+[show name=kalua]
 #カルア
-な、なんだぁこの音は！？
+な、なんだぁこの音は！？[p]
 
+[show name=Elisa]
 #エリーザ
-この咆哮･･･間違いない、
-ドラゴンです！
+この咆哮･･･間違いない、[r]
+ドラゴンです！[p]
 
 #魔物
-Grrrrrrrrrrrrr･･･[p]
+Grraaaaaaaaaa!!![p]
 
+[show name=Charlotte]
+#シャーロット
+あらあらぁ、すごい数ですわぁ。[p]
 
+[show name=Martha]
+#マーサ
+ちょ、ちょっと！数が多すぎる[r]
+んじゃないの！？[p]
 
-エルナ様、私はここにおります。
+[show name=kalua]
+#カルア
+ちぃっ！ここで一気に潰そうって[r]
+か！[p]
+
+[show name=Erna]
+#エルナ
+皆さん、うろたえてはいけませ[r]
+ん！ここで攻めてきたというこ[r]
+とは、これが最後の襲撃のはず[r]
+です！[p]
+
+#エルナ
+何とか襲撃を凌いで、ドラゴン[r]
+を倒しに行きましょう！[p]
+
+[show name=Elisa]
+#エリーザ
+そうです！いくら数が増えても[r]
+敵はいつもと同じです！恐れず[r]
+に立ち向かい、勝利を掴みま[r]
+しょう！[p]
+
 [chara_remove name="Elisa"]
 [chara_remove name="Erna"]
 [chara_remove name="kalua"]
