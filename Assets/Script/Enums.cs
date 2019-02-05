@@ -52,29 +52,14 @@ public class Enums {
     // クラスタイプ
     public enum CLASS_TYPE {
         THIEF,
-        ROGUE,
-        ASSASSIN,
-        ARMOR_KNIGHT,
-        GENERAL,
         SWORDSMAN,
-        SWORD_MASTER,
         SPEARMEN,
-        LANCER,
-        WARRIOR,
-        BERSERKER,
-        ARCHER,
-        SNIPER,
         WIZARD,
-        ARC_WIZARD,
-        SHERMAN,
-        NECROMANCER,
-        CLERIC,
-        PRIEST,
         SISTER,
-        VALKYRIA,
-        DANCER,
-        BANDIT,
-        CITIZEN
-
+		PORUMU,
+		BOAR,
+		SUKE,
+		LIZARDMAN,
+		DRAGON
     }
 }
