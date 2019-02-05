@@ -10,7 +10,7 @@ public class CommonCalc {
     // 攻撃する側の攻撃力計算
     public int GetAttackPoint(UnitInfo myUnit) {
         // 攻撃力＝筋力
-        return myUnit.strength;
+        return myUnit.strengtht;
     }
 
     public int GetAttackDamage(UnitInfo myUnit, UnitInfo targetUnit) {
@@ -43,7 +43,7 @@ public class CommonCalc {
     public int GetHitVal(UnitInfo unitInfo) {
         // 参考　=(技×3+幸運)/2+(装備武器の命中+非特効補正)+装備武器のレベル補正+3すくみ補正+クラス補正
         // =(技×3+幸運)/2+装備武器のレベル補正
-        int hitVal = (unitInfo.dexterity * 3 + unitInfo.luck) + 1; // 仮設定
+        int hitVal = (unitInfo.technical * 3 + unitInfo.luck) + 1; // 仮設定
 
         return (0 < hitVal) ? hitVal : 0;
     }
@@ -87,7 +87,7 @@ public class CommonCalc {
         // 参考 必殺回避	=幸運/2+装備武器の必殺回避+クラス補正
 
         // (技 -/ 2 + 武器補正値) - (敵の幸運 / 2)
-        int deathBlowRate = (myUnit.dexterity / 2 + 1) - (targetUnit.luck / 2);
+        int deathBlowRate = (myUnit.technical / 2 + 1) - (targetUnit.luck / 2);
 
         return Mathf.Clamp(deathBlowRate, 0, 100);
     }
@@ -126,6 +126,20 @@ public class CommonCalc {
     /// <returns></returns>
     public int GetCellDistance(Vector3 posA, Vector3 posB) {
         return Mathf.Abs((int)posA.x - (int)posB.x) + Mathf.Abs((int)posA.y - (int)posB.y);
+    }
+
+    /// <summary>
+    /// レベル毎の最大経験値
+    /// </summary>
+    /// <returns>The exp max.</returns>
+    /// <param name="level">Level.</param>
+    public int GetExpMax(int level) {
+        // Lv1 = 1200exp (敵3体)
+        // Lv2 = 1400exp
+        // Lv10 = 3000exp
+        // Lv20 = 5000exp
+        // Lv 40(MAX) = 9000exp (敵23体)
+        return 1000 + (200 * level);
     }
 
 }
