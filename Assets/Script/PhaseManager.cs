@@ -31,7 +31,9 @@ public class PhaseManager : MonoBehaviour {
     public BattleManager battleManager;
     public ActiveAreaManager activeAreaManager;
     public MoveMarkerManager moveMarkerManager;
+    public AudioManager audioManager;
     PhaseManager phaseManager;
+    
 
     [HideInInspector]
     public Vector3 cursorPos, oldCursorPos;
@@ -262,8 +264,11 @@ public class PhaseManager : MonoBehaviour {
         // ターン終了ボタンの有効化
         turnEndBtn.interactable = true;
 
-        // 自軍のターンBGM再生↓
+        // ターン切り替えSE↓
 
+
+        // 自軍のターンBGM再生↓
+        audioManager.PlayerBGM();
 
         if (turnImageAnim == null)
         {
@@ -318,6 +323,9 @@ public class PhaseManager : MonoBehaviour {
         // クリック処理
         if (Input.GetMouseButtonDown(0))
         {
+            // クリック時SE↓
+
+
             // 未行動の自軍ユニットであればフォーカスし、アクティブエリアを表示する
             if (Main.GameManager.GetUnit().GetMapUnitInfo(cursorPos) != null && activeAreaManager.activeAreaList == null)
                 if (Main.GameManager.GetUnit().GetMapUnitInfo(cursorPos).aRMY == Enums.ARMY.ALLY)
@@ -614,6 +622,9 @@ public class PhaseManager : MonoBehaviour {
     void EnemyStartPhase() {
         // ターン終了ボタンの無効化
         turnEndBtn.interactable = false;
+
+        // ターン切り替えSE↓
+
 
         // 敵のターンBGMへ変更↓
 
