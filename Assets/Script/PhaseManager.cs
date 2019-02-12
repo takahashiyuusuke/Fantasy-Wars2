@@ -31,6 +31,7 @@ public class PhaseManager : MonoBehaviour {
     public BattleManager battleManager;
     public ActiveAreaManager activeAreaManager;
     public MoveMarkerManager moveMarkerManager;
+    public AudioManager audioManager;
     PhaseManager phaseManager;
 
     [HideInInspector]
@@ -263,13 +264,14 @@ public class PhaseManager : MonoBehaviour {
         turnEndBtn.interactable = true;
 
         // 自軍のターンBGM再生↓
-
-
+        audioManager.ChangePlayerBGM();
+        //audioManager.TurnChengeSE();
         if (turnImageAnim == null)
         {
             // ターン開始アニメーションの再生
             turnImageAnim = playerTurnImage.gameObject.GetComponent<Animator>();
             playerTurnImage.gameObject.SetActive(true);
+            
 
             // ランダムな未行動ユニット1体の座標にカーソルを合わせる
             focusUnitObj = Main.GameManager.GetUnit().GetUnBehaviorRandomUnit(Enums.ARMY.ALLY);
@@ -318,6 +320,9 @@ public class PhaseManager : MonoBehaviour {
         // クリック処理
         if (Input.GetMouseButtonDown(0))
         {
+            // SE再生
+            audioManager.ClickSE();
+
             // 未行動の自軍ユニットであればフォーカスし、アクティブエリアを表示する
             if (Main.GameManager.GetUnit().GetMapUnitInfo(cursorPos) != null && activeAreaManager.activeAreaList == null)
                 if (Main.GameManager.GetUnit().GetMapUnitInfo(cursorPos).aRMY == Enums.ARMY.ALLY)
@@ -615,8 +620,9 @@ public class PhaseManager : MonoBehaviour {
         // ターン終了ボタンの無効化
         turnEndBtn.interactable = false;
 
+        audioManager.TurnChengeSE();
         // 敵のターンBGMへ変更↓
-
+        audioManager.ChangeEnemyBGM();
 
         if (turnImageAnim == null)
         {
