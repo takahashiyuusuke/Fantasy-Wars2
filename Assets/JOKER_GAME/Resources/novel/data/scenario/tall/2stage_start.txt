@@ -10,8 +10,8 @@
 ;---------------キャラ定義
 
 @tag_default tag="chara"
-[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
-[chara_new name="Elisa" storage="chara" jname="エリーザ" scale=1.5]
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
 @reset_tag_default
 
 @chara_pos name="Erna" x=3 y=-4.6

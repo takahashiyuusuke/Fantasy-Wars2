@@ -10,8 +10,8 @@
 ;---------------キャラ定義
 
 @tag_default tag="chara"
-[chara_new name="Erna" storage="syujinnko" jname="エルナ" scale=1.5]
-[chara_new name="Elisa" storage="" jname="エリーザ" scale=1.5]
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
 [chara_new name="Thief" storage="si-fu" jname="盗賊" scale=1.5]
 Bowman
 @reset_tag_default
