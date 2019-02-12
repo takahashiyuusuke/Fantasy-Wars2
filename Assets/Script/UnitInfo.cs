@@ -73,7 +73,7 @@ public class UnitInfo : MonoBehaviour {
                 return SWORDSMAN_MAX_STATUS;
             case Enums.CLASS_TYPE.WIZARD:
                 return WIZARD_MAX_STATUS;
-            case Enums.CLASS_TYPE.ARCHER:
+            case Enums.CLASS_TYPE.SISTER:
                 return ARCHER_MAX_STATUS;
             default:
                 return SWORDSMAN_MAX_STATUS;
