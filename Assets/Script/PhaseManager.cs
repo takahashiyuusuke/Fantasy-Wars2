@@ -535,23 +535,25 @@ public class PhaseManager : MonoBehaviour {
             battleManager.StartEvent();
             isBattle = true;
         }
-        else
+        else if(!battleManager.isBattle())
         {
-            // 全てのイベントが終了したらフェーズを変える
-            if (!battleManager.isBattle())
+            // 攻撃終了処理
+            isBattle = false;
+
+            // プレイヤーUnitが生存していれば経験値取得処理を行う
+            if (focusUnitObj)
             {
-                // 敵の向きを元に戻す
-                if (enemyUnitObj)
-                    enemyUnitObj.GetComponent<MoveController>().PlayAnim(Enums.MOVE.DOWN);
+                // 経験値処理が終わるまでフェーズを停止
+                phase = Enums.PHASE.STOP;
 
-                isBattle = false;
-
-                // ターンとUIの切り替え
-                phase = Enums.PHASE.RESULT; // 攻撃終了
+                // Exp取得処理の開始
+                expGaugeController.GaugeUpdate(1000, focusUnitObj.GetComponent<UnitInfo>(), () =>
+                {
+                    phase = Enums.PHASE.RESULT;
+                });
             }
             else
             {
-                // ターンとUIの切り替え
                 phase = Enums.PHASE.RESULT;
             }
         }

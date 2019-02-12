@@ -41,15 +41,6 @@ public class UnitInfo : MonoBehaviour {
     public string className;
 
 
-    public enum CLASS_TYPE {
-        THIEF,
-        ROGUE,
-        ASSASSIN,
-
-    }
-
-
-
     void Start() {
         hpMax = vitality;
         hp = hpMax;
