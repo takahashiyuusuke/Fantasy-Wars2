@@ -268,7 +268,7 @@ public class PhaseManager : MonoBehaviour {
 
 
         // 自軍のターンBGM再生↓
-        audioManager.PlayerBGM();
+        audioManager.PlayerTurnBGM();
 
         if (turnImageAnim == null)
         {
