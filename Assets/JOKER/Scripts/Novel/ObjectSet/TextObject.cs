@@ -25,7 +25,14 @@ namespace Novel{
 			this.param = param;
 
 			GameObject g = Resources.Load(GameSetting.PATH_PREFAB + "Text") as GameObject;
-			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0.5f,-3.2f),Quaternion.identity); 
+			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0.5f,-3.2f),Quaternion.identity);
+
+            // TODO 独自
+            GameObject jokerObj = GameObject.Find("JokerObject");
+            this.rootObject.transform.parent = jokerObj.transform;
+            // TODO
+
+            Debug.Log("ffffffffffffffffffffffffff:" + this.rootObject.name);
 
 			GameObject canvas = GameObject.Find ("Canvas") as GameObject;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Phaseの管理
@@ -18,6 +19,8 @@ public class PhaseManager : MonoBehaviour {
     public Image playerTurnImage, enemyTurnImage;
     public ExpGaugeController expGaugeController;
 
+    public GameObject aaaa;
+    public GameObject bbbb;
 
     Animator turnImageAnim;
 
@@ -33,7 +36,9 @@ public class PhaseManager : MonoBehaviour {
     public MoveMarkerManager moveMarkerManager;
     public AudioManager audioManager;
     PhaseManager phaseManager;
-    
+
+
+    public UnitManager unitManager;
 
     [HideInInspector]
     public Vector3 cursorPos, oldCursorPos;
@@ -89,6 +94,8 @@ public class PhaseManager : MonoBehaviour {
     EndPhase; // プレイヤーのターン終了時
 
 
+    bool Sceneflg = false;
+
     // Use this for initialization
     void Start() {
         // インスタンスの初期化
@@ -119,40 +126,47 @@ public class PhaseManager : MonoBehaviour {
         // カーソル更新時に呼び出す処理の登録
         CursorController.AddCallBack((Vector3 newPos) => { cursorPos = newPos; });
 
-        Main.GameManager.GetUnit().CheckEnemyUnits();
-        Main.GameManager.GetUnit().CheckPlayerUnits();
+        EnemyCheck();
+        PlayerCheck();
+        //Main.GameManager.GetUnit().CheckEnemyUnits();
+        //Main.GameManager.GetUnit().CheckPlayerUnits();
+
+
+        // シーンをロード
+        //SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
     }
 
     void Update() {
         Debug.Log(phase);
-        switch (phase)
-        {
-            case Enums.PHASE.START:
-                StartPhase();
-                break;
-            case Enums.PHASE.STANDBY:
-                StandbyPhase();
-                break;
-            case Enums.PHASE.FOCUS:
-                FoucusPhase();
-                break;
-            case Enums.PHASE.MOVE:
-                MovePhase();
-                break;
-            case Enums.PHASE.BATTLE_STANDBY:
-                BattleStandbyPhase();
-                break;
-            case Enums.PHASE.BATTLE:
-                BattlePhase();
-                break;
-            case Enums.PHASE.RESULT:
-                ResultPhase();
-                break;
-            case Enums.PHASE.END:
-                EndPhase();
+        PlayerCheck();
+            switch (phase)
+            {
+                case Enums.PHASE.START:
+                    StartPhase();
+                    break;
+                case Enums.PHASE.STANDBY:
+                    StandbyPhase();
+                    break;
+                case Enums.PHASE.FOCUS:
+                    FoucusPhase();
+                    break;
+                case Enums.PHASE.MOVE:
+                    MovePhase();
+                    break;
+                case Enums.PHASE.BATTLE_STANDBY:
+                    BattleStandbyPhase();
+                    break;
+                case Enums.PHASE.BATTLE:
+                    BattlePhase();
+                    break;
+                case Enums.PHASE.RESULT:
+                    ResultPhase();
+                    break;
+                case Enums.PHASE.END:
+                    EndPhase();
 
-                break;
-        }
+                    break;
+            }
     }
     /// <summary>
     /// 外部変更用
@@ -324,6 +338,9 @@ public class PhaseManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             // クリック時SE↓
+
+            // シーン削除
+            //SceneManager.UnloadScene("conversation");
 
 
             // 未行動の自軍ユニットであればフォーカスし、アクティブエリアを表示する
@@ -605,7 +622,8 @@ public class PhaseManager : MonoBehaviour {
         waitingBtn.interactable = false;
 
         // 敵キャラ数チェック
-        Main.GameManager.GetUnit().CheckEnemyUnits();
+        EnemyCheck();
+        //Main.GameManager.GetUnit().CheckEnemyUnits();
     }
     /// <summary>
     /// ターン終了時
@@ -915,8 +933,11 @@ public class PhaseManager : MonoBehaviour {
         else
             phase = Enums.PHASE.STANDBY;
 
-        Main.GameManager.GetUnit().CheckEnemyUnits();
-        Main.GameManager.GetUnit().CheckPlayerUnits();
+        EnemyCheck();
+        PlayerCheck();
+
+        //Main.GameManager.GetUnit().CheckEnemyUnits();
+        //Main.GameManager.GetUnit().CheckPlayerUnits();
     }
     void EnemyEndPhase() {
         // 自軍ユニットを全て未行動に戻す
@@ -931,6 +952,31 @@ public class PhaseManager : MonoBehaviour {
     /// </summary>
     void EnemyCheck() {
         Main.GameManager.GetUnit().CheckEnemyUnits();
+        Debug.Log("敵数:" + unitManager.EnemyCount);
+        if (unitManager.EnemyCount == 1)
+        {
+            aaaa.SetActive(true);
+        }
+        //bbbb.SetActive(true);
+    }
+
+    void PlayerCheck() {
+        Main.GameManager.GetUnit().CheckPlayerUnits();
+        Debug.Log("味方数:" + unitManager.EnemyCount);
+        if (unitManager.PlayerCount == 1)
+        {
+            bbbb.SetActive(true);
+        }
+    }
+
+
+
+    /// <summary>
+    /// 会話シーンを削除
+    /// </summary>
+    void UnLodeScene() {
+        SceneManager.UnloadScene("conversation");
+        Sceneflg = true;
     }
 
     /// <summary>
@@ -947,4 +993,5 @@ public class PhaseManager : MonoBehaviour {
     //private void RemoveMarker() {
     //    foreach (Transform r in rootArea.transform) Destroy(r.gameObject);
     //}
+
 }
