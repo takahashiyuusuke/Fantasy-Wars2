@@ -133,7 +133,7 @@ public class PhaseManager : MonoBehaviour {
 
 
         // シーンをロード
-        //SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
+        SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
     }
 
     void Update() {
@@ -951,22 +951,22 @@ public class PhaseManager : MonoBehaviour {
     /// 敵キャラ数をチェックする
     /// </summary>
     void EnemyCheck() {
-        Main.GameManager.GetUnit().CheckEnemyUnits();
-        Debug.Log("敵数:" + unitManager.EnemyCount);
-        if (unitManager.EnemyCount == 1)
-        {
-            aaaa.SetActive(true);
-        }
-        //bbbb.SetActive(true);
+        //Main.GameManager.GetUnit().CheckEnemyUnits();
+        ////Debug.Log("敵数:" + unitManager.EnemyCount);
+        //if (unitManager.EnemyCount == 1)
+        //{
+        //    aaaa.SetActive(true);
+        //}
+        ////bbbb.SetActive(true);
     }
 
     void PlayerCheck() {
-        Main.GameManager.GetUnit().CheckPlayerUnits();
-        Debug.Log("味方数:" + unitManager.EnemyCount);
-        if (unitManager.PlayerCount == 1)
-        {
-            bbbb.SetActive(true);
-        }
+        //Main.GameManager.GetUnit().CheckPlayerUnits();
+        ////Debug.Log("味方数:" + unitManager.EnemyCount);
+        //if (unitManager.PlayerCount == 1)
+        //{
+        //    bbbb.SetActive(true);
+        //}
     }
 
 
