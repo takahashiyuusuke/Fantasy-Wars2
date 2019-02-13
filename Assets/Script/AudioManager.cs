@@ -3,52 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
+
     // BGM
-    public AudioClip BGM;
-    public AudioClip BGM1;
+    public AudioClip bgmClip1, bgmClip2;
 
     // SE
-    public AudioClip turnChengeSE;
-    public AudioClip clickSE;
+    public AudioClip seClip1, seClip2;
 
-    private AudioSource BGMSource;
-    private AudioSource SESource;
+    private AudioSource[] audioSource;
+    //private AudioSource SESource;
+
 
     // Use this for initialization
     void Start () {
-        // audioSourceの振り分け
-        AudioSource[] audioSources = GetComponents<AudioSource>();
-        BGMSource = audioSources[0];
-        SESource = audioSources[1];
+        audioSource = gameObject.GetComponents<AudioSource>();
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 		
 	}
 
+    // プレイヤーターンBGM
     public void PlayerTurnBGM() {
-        BGMSource.clip = BGM1;
-        BGMSource.Play();
+        audioSource[0].clip = bgmClip1;
+        audioSource[0].Play();
     }
 
+    // 敵ターンBGM
     public void EnemyTurnBGM() {
-        BGMSource.clip = BGM1;
-        BGMSource.Play();
+        audioSource[0].clip = bgmClip2;
+        audioSource[0].Play();
     }
 
-
-    // ここから下がSEの処理
-
-    // ターン切り替えSE
+    // ターン切り替え時のSE
     public void TurnChengeSE() {
-        SESource.clip = turnChengeSE;
-        SESource.Play();
+        audioSource[1].GetComponent<AudioSource>().PlayOneShot(seClip1);
     }
 
-    // クリックしたときのSE
+    // キャラクタータッチ時のSE
     public void ClickSE() {
-        SESource.clip = turnChengeSE;
-        SESource.Play();
+        audioSource[1].GetComponent<AudioSource>().PlayOneShot(seClip2);
     }
 }
