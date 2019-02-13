@@ -6,7 +6,9 @@ public class UnitManager {
     // ルートの算出に必要なフィールドデータ
     int fieldWidth, fieldHeight;
 
-    bool ClearFlg = false;
+    public int ClearFlg = 0;
+    public int EnemyCount = 10;
+    public int PlayerCount = 10;
 
     GameObject[,] mapUnitObj;
 
@@ -156,7 +158,6 @@ public class UnitManager {
 
     // 味方ユニットの数を調べる
     public void CheckPlayerUnits() {
-        int PlayerCount = 0;
         for (int y = 0; y < fieldHeight; y++)
             for (int x = 0; x < fieldWidth; x++)
                 if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY)
@@ -165,15 +166,13 @@ public class UnitManager {
                 }
         if (PlayerCount == 0)
         {
-            //Instantiate();
+            //gameOver.SetActive(true);
             Debug.Log("ゲームオーバー");
-            return;
         }
     }
 
     // 敵ユニットの数を調べる
     public void CheckEnemyUnits() {
-        int EnemyCount = 0;
         for (int y = 0; y < fieldHeight; y++)
             for (int x = 0; x < fieldWidth; x++)
                 if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY) {
@@ -181,9 +180,8 @@ public class UnitManager {
                 }
         if(EnemyCount == 0)
         {
-            //Instantiate();
+            //gameClear.SetActive(true);
             Debug.Log("ステージクリア");
         }
-        Debug.Log(EnemyCount);
     }
 }

@@ -38,8 +38,6 @@ public class AudioManager : MonoBehaviour {
     }
 
 
-
-
     // ここから下がSEの処理
 
     // ターン切り替えSE

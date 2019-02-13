@@ -37,6 +37,7 @@ namespace Novel
 
 			this.rootObject = (GameObject)Instantiate (g, new Vector3 (x, y, z), Quaternion.identity); 
 			this.rootObject.name = this.name;
+            Debug.Log("dddddddddd:" + this.rootObject.name);
 
 			this.image = g;
 

@@ -35,7 +35,6 @@ namespace Novel{
 			GameObject g = Resources.Load(GameSetting.PATH_PREFAB + "Clickable") as GameObject;
 			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0f,-3.2f),Quaternion.identity); 
 			this.rootObject.name = this.name;
-
 			this.image = g;
 
 			this.spriteRenderImage = this.image.GetComponent<SpriteRenderer> ();

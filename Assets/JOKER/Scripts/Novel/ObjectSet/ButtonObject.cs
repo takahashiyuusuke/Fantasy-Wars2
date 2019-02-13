@@ -31,12 +31,17 @@ namespace Novel{
 			GameObject g = Resources.Load(GameSetting.PATH_PREFAB + "Button") as GameObject;
 			GameObject canvas = GameObject.Find ("Canvas") as GameObject;
 
-			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0.5f,-3.2f),Quaternion.identity); 
-			this.rootObject.name = param ["name"];
+            this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0.5f,-3.2f),Quaternion.identity);
+
+            this.rootObject.name = param ["name"];
 			this.rootObject.transform.parent = canvas.transform;
 
+            // TODO 独自
+            GameObject jokerObj = GameObject.Find("JokerObject");
+            this.rootObject.transform.parent = jokerObj.transform;
+            // TODO
 
-			this.targetText = this.rootObject.GetComponentInChildren<Text> ();
+            this.targetText = this.rootObject.GetComponentInChildren<Text> ();
 			this.targetButton = this.rootObject.GetComponentInChildren<Button> ();
 
 			this.targetText.alignment = TextEnum.textAnchor (this.param ["anchor"]);

@@ -1736,15 +1736,15 @@ title=バックログ表示
 			foreach (string item in arrLog)
 
 			{
-				var logcontent = GameObject.Instantiate(g) as GameObject;
-				logcontent.GetComponentInChildren<Text> ().text = item;
-				logcontent.transform.parent = content.transform;
-			
-			}
+                var logcontent = GameObject.Instantiate(g) as GameObject;
+                logcontent.GetComponentInChildren<Text>().text = item;
+                logcontent.transform.parent = content.transform;
+
+            }
 
 
-			//nextorder しない。
-		}
+            //nextorder しない。
+        }
 	}
 
 

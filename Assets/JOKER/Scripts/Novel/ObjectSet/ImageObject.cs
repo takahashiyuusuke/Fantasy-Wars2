@@ -35,9 +35,17 @@ namespace Novel{
 			this.param = param;
 		 
 			GameObject g = Resources.Load(GameSetting.PATH_PREFAB + "Image") as GameObject;
-			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0f,-3.2f),Quaternion.identity); 
+			this.rootObject = (GameObject)Instantiate(g,new Vector3(0,0f,-3.2f),Quaternion.identity);
 
-			this.rootObject.name = this.name;
+
+            // TODO 独自
+            GameObject jokerObj = GameObject.Find("JokerObject");
+            this.rootObject.transform.parent = jokerObj.transform;
+            // TODO
+
+
+            Debug.Log("cccccc" + this.rootObject.name);
+			//this.rootObject.name = this.name;
 
 			//サイズを指定できる
 
