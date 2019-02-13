@@ -10,6 +10,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PhaseManager : MonoBehaviour {
 
+    public int abc = 0;
+
+
     // UI
     public GameObject activeMenuUI;
     public GameObject battleStandbyUI;
@@ -133,12 +136,11 @@ public class PhaseManager : MonoBehaviour {
 
 
         // シーンをロード
-        SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
     }
 
     void Update() {
         Debug.Log(phase);
-        PlayerCheck();
             switch (phase)
             {
                 case Enums.PHASE.START:
@@ -278,17 +280,15 @@ public class PhaseManager : MonoBehaviour {
         // ターン終了ボタンの有効化
         turnEndBtn.interactable = true;
 
-        // ターン切り替えSE↓
-
-
-        // 自軍のターンBGM再生↓
-        audioManager.PlayerTurnBGM();
-
         if (turnImageAnim == null)
         {
             // ターン開始アニメーションの再生
             turnImageAnim = playerTurnImage.gameObject.GetComponent<Animator>();
             playerTurnImage.gameObject.SetActive(true);
+
+
+            // ターン切り替えSE↓
+            audioManager.TurnChengeSE();
 
             // ランダムな未行動ユニット1体の座標にカーソルを合わせる
             focusUnitObj = Main.GameManager.GetUnit().GetUnBehaviorRandomUnit(Enums.ARMY.ALLY);
@@ -300,6 +300,9 @@ public class PhaseManager : MonoBehaviour {
             // アニメーションが終了したらターンを開始する
             if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
             {
+                // 自軍のターンBGM再生
+                audioManager.PlayerTurnBGM();
+
                 // ターンとUIの切り替え
                 List<GameObject> list = Main.GameManager.GetUnit().GetUnBehaviorUnits(Enums.ARMY.ALLY);
                 if (list.Count == 0)
@@ -337,8 +340,7 @@ public class PhaseManager : MonoBehaviour {
         // クリック処理
         if (Input.GetMouseButtonDown(0))
         {
-            // クリック時SE↓
-
+            
             // シーン削除
             //SceneManager.UnloadScene("conversation");
 
@@ -351,6 +353,9 @@ public class PhaseManager : MonoBehaviour {
                         // フォーカスユニットの取得
                         focusUnitObj = Main.GameManager.GetUnit().GetMapUnitObj(cursorPos);
                         activeAreaManager.CreateActiveArea(focusUnitObj, true);
+
+                        // クリック時SE↓
+                        audioManager.ClickSE();
 
                         // ターンとUIの切り替え
                         phase = Enums.PHASE.FOCUS;
@@ -641,14 +646,17 @@ public class PhaseManager : MonoBehaviour {
         // ターン終了ボタンの無効化
         turnEndBtn.interactable = false;
 
-        // ターン切り替えSE↓
+        
 
 
-        // 敵のターンBGMへ変更↓
+        
 
 
         if (turnImageAnim == null)
         {
+            // ターン切り替えSE↓
+            audioManager.TurnChengeSE();
+
             // ターン開始アニメーションの再生
             turnImageAnim = enemyTurnImage.gameObject.GetComponent<Animator>();
             enemyTurnImage.gameObject.SetActive(true);
@@ -658,6 +666,9 @@ public class PhaseManager : MonoBehaviour {
             // アニメーションが終了したらターンを開始する
             if (!(turnImageAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f))
             {
+                // 敵のターンBGMへ変更↓
+                audioManager.EnemyTurnBGM();
+
                 // ターンとUI切り替え
                 phase = Enums.PHASE.STANDBY;
                 //selectUnitInfoUI.SetActive(false);
