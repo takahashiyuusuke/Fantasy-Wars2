@@ -208,7 +208,7 @@ public class UnitManager : MonoBehaviour {
             //
             //phaseManager.GameClear();
             ClearObj();
-            //clear.SetActive(true);
+            clear.SetActive(true);
         }
         CheckFlg = true;
     }
