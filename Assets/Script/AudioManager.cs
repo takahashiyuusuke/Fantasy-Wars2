@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip bgmClip1, bgmClip2;
 
     // SE
-    public AudioClip seClip1, seClip2;
+    public AudioClip seClip1, seClip2, attackSE;
 
     private AudioSource[] audioSource;
     //private AudioSource SESource;
@@ -44,5 +44,10 @@ public class AudioManager : MonoBehaviour {
     // キャラクタータッチ時のSE
     public void ClickSE() {
         audioSource[1].GetComponent<AudioSource>().PlayOneShot(seClip2);
+    }
+
+    // 攻撃時のSE
+    public void AttackSE() {
+        audioSource[1].GetComponent<AudioSource>().PlayOneShot(attackSE);
     }
 }
