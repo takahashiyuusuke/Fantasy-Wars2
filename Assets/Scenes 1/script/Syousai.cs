@@ -20,7 +20,7 @@ public class Syousai : MonoBehaviour {
 
 	}
 
-	public void BattoleStart(){
+	public void Statuscheck(){
 		SceneManager.LoadScene ("Status");
 	}
 }

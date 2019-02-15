@@ -1,0 +1,118 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Martha]
+#マーサ
+ところでエルナさん。[p]
+
+[show name=Erna]
+#エルナ
+はい、何でしょう。[p]
+
+#マーサ
+これはどこへ向かっているんです[r]
+か？この先には洞窟しかありませ[r]
+んよ．．．？[p]
+
+#エルナ
+ええ、我々は洞窟へ向かってます[r]
+よ？[p]
+
+#マーサ
+ええ！？なんでですか！怖いじゃ[r]
+ないですか！[p]
+
+[show name=kalua]
+#カルア
+洞窟の中にいるドラゴン倒すため[r]
+に冒険しているからな、当り前だ[r]
+ろう？[p]
+
+[show name=Elisa]
+#エリーザ
+はい。まだ幼いマーサさんには辛[r]
+いとは思います。難しいのであれ[r]
+ば今からでも帰られた方がよろし[r]
+いかと。[p]
+
+[show name=Martha]
+#マーサ
+（ムッ）[l][r]
+大丈夫です。これくらい平気です[r]
+から。[p]
+
+[show name=Charlotte]
+#シャーロット
+マーちゃん無理しちゃだめよ。こ[r]
+の子、前にモンスター見ただけ怖[r]
+くて下の方が――[p]
+
+[show name=Martha]
+#マーサ
+わあああ！その話はしないでぇ！[p]
+
+#魔物
+grrrrrrrrrrrrr･･･[p]
+
+[show name=Elisa]
+#エリーザ
+･･･前方に洞窟の入り口並びに魔[r]
+物の群れを確認。[p]
+
+[show name=kalua]
+#カルア
+あの数、防衛用だな。[p]
+
+[show name=Charlotte]
+#シャーロット
+そうそう、ちょうどあんな感じの[r]
+モンスターだったのですよぉ～♪[p]
+
+[show name=Martha]
+#マーサ
+･･･グスンッ[p]
+
+[show name=Erna]
+#エルナ
+なんだか調子が崩れますが、とに[r]
+かく敵を倒して洞窟に突入しまし[r]
+ょう。戦闘開始です！[p]
+
+[show name=Martha]
+#マーサ
+･･･あ、あの頃とは、違うんだか[r]
+ら！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

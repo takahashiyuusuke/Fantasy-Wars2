@@ -1,0 +1,230 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=kalua]
+#カルア
+プハーッ！生き返るぜぇ！[p]
+
+[show name=Martha]
+#マーサ
+うーん、おいしいよぉ。[p]
+
+[show name=Charlotte]
+#シャーロット
+よかったわねマーちゃん。私も[r]
+ひとくち貰おうかしら。[p]
+
+[show name=Elisa]
+#エリーザ
+エルナ様は飲まれないの
+ですか？
+
+[show name=Erna]
+#エルナ
+ええ、私が一息ついてしまう
+と崩れてしまう気がするので
+大丈夫ですよ。
+
+#エルナ
+それよりエリーザ、貴方は良い
+のですか？
+
+#エリーザ
+はい、伊達に鍛えてませんか
+ら、このくらいなら平気です。
+
+#エルナ
+そうですか･･･
+
+#エリーザ
+どうされましたか、何か問題
+でも。
+
+#エルナ
+いえ。
+
+#エルナ
+フフッ、貴方はいつも頼もし
+いです。
+
+#エリーザ
+えっ！？あ、いや、お褒めに
+あずかり光栄です。
+
+#エルナ
+･･･貴方という人は昔からそう
+でしたね、エリーザ。
+
+#エリーザ
+エルナ様？
+
+#エルナ
+私情を一切挟まず、ただ黙々と任
+務を遂行する。それは並大抵のこ
+とではありません。
+
+#エリーザ
+それは、私の家の教えでもあり、
+なによりエルナ様や陛下のことを
+お慕いしているからでありまして
+
+#エルナ
+ええ、それはとても素晴らしいこ
+とだと思います。
+
+#エルナ
+ですがそれは頼もしい反面、寂し
+くもあった。
+
+#エリーザ
+･･･
+
+#エルナ
+エリーザ、私はね、貴方とお話が
+したいのです。
+
+#エリーザ
+お話、ですか。
+
+#エルナ
+私はこの立場にいる関係上、友達が
+いませんでした。皆、王家という身
+分に畏まって私から離れていくんで
+す。
+
+#エリーザ
+しかし、この旅に限っては――
+
+#エルナ
+はい、この旅では違いました。
+先ほどまで他人だった皆が、私
+の側で、共に戦い、
+
+#エルナ
+私とお話をしてくれました。
+
+#エルナ
+でも、貴方だけは仕事のまま。
+
+#エリーザ
+それは･･･
+
+#エルナ
+ねえ、エリーザ、もしドラゴンを
+倒せたのなら、二人だけお茶しま
+せんか？
+
+#エリーザ
+しかし、それでは責務が･･･
+
+#エルナ
+その時ぐらいなにもかも忘れて、
+どこにでもいる二人の女性として、
+おしゃれな喫茶でお話しましょう？
+
+#エリーザ
+それは、命令ですか？
+
+#エルナ
+いいえ、一人の女性としてのお願い。
+
+#エリーザ
+･･･分かりました。ちゃんと生きて
+帰ったら、ですよ？
+
+#エルナ
+ええ、約束です。
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+
+#
+しばらくして―――
+
+[show name=Erna]
+#エルナ
+･･･さて―――[p]
+
+#???
+ｸﾞｫｫｫｫｫ!!![p]
+
+[show name=kalua]
+#カルア
+な、なんだぁこの音は！？[p]
+
+[show name=Elisa]
+#エリーザ
+この咆哮･･･間違いない、[r]
+ドラゴンです！[p]
+
+#魔物
+Grraaaaaaaaaa!!![p]
+
+[show name=Charlotte]
+#シャーロット
+あらあらぁ、すごい数ですわぁ。[p]
+
+[show name=Martha]
+#マーサ
+ちょ、ちょっと！数が多すぎる[r]
+んじゃないの！？[p]
+
+[show name=kalua]
+#カルア
+ちぃっ！ここで一気に潰そうって[r]
+か！[p]
+
+[show name=Erna]
+#エルナ
+皆さん、うろたえてはいけませ[r]
+ん！ここで攻めてきたというこ[r]
+とは、これが最後の襲撃のはず[r]
+です！[p]
+
+#エルナ
+何とか襲撃を凌いで、ドラゴン[r]
+を倒しに行きましょう！[p]
+
+[show name=Elisa]
+#エリーザ
+そうです！いくら数が増えても[r]
+敵はいつもと同じです！恐れず[r]
+に立ち向かい、勝利を掴みま[r]
+しょう！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

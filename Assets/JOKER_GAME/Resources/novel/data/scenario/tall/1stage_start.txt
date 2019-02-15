@@ -1,0 +1,70 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+ぜ、全滅･･････[p]
+
+[show name=Elisa]
+#エリーザ
+た、大変です！[r]
+魔物が門の前まで[r]
+接近しています！[p]
+
+#エルナ
+兵士のほとんどが[r]
+遠征に行った。[r]
+私たちで[r]
+何とかするしかない･･･[p]
+
+#エリーザ
+エルナ様は安全な場所へ･･･[p]
+
+#エルナ
+いいえ、私も戦います。[p]
+
+#エリーザ
+エルナ様危険です！[r]
+お怪我をされてしまうかも[r]
+しれません！[p]
+
+#エルナ
+私も戦えます。[r]
+それに民を守るのが、[l][r]
+私の使命なのですから。[p]
+
+#エリーザ
+分かりました･･･しかし、[r]
+危険と判断した場合は[r]
+どうかお逃げください･･･[p]
+
+#エルナ
+わかったわ。[p]
+
+#エルナ
+(実践は初めて･･･[l][r]
+でも、やるしかない！)[r]
+
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]

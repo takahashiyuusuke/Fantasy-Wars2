@@ -1,0 +1,162 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="???" storage="souryo1" jname="???" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="???" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+･･･なぜ付いてきたのですか？[p]
+
+[show name=kalua]
+#カルア
+恩返しってやつでさ。[p]
+
+#カルア
+うちの村も助かったし、しばら[r]
+く大丈夫っていうからな。お前[r]
+らだけじゃ、この先厳しいだろ[r]
+うし。[p]
+[show name=Erna]
+#エルナ
+ですが、それではあなたも危険[r]
+な目に･･･[p]
+
+[show name=kalua]
+#カルア
+それに関しては気にしなくてい[r]
+い、あたしは昔っから危険な目[r]
+にあうから慣れてるさ。[p]
+
+#カルア
+それに、自分から付いてきたん[r]
+だ、危険なのは百も承知さ。[p]
+
+#カルア
+それともなんだ？あたしじゃあ[r]
+足手まといだとでもいうのか？[p]
+
+[show name=Erna]
+#エルナ
+いえ、そういうわけではありま[r]
+せん！[p]
+
+#エリーザ
+はい、カルアさんが付いてきて[r]
+くれて頼もしいですよ！[p]
+
+[show name=kalua]
+#カルア
+そこまで言われると･･･なんか[r]
+照れるな･･･[p]
+
+#エリーザ
+村の襲撃の時に一人で魔物に立[r]
+ち向かっていましたし、その勇[r]
+猛さが今の我々に必要なのです！[p]
+
+#カルア
+や、やめてくれよ。恥ずかしい[r]
+じゃないか･･･[p]
+
+[show name=???]
+#???
+あのぉ～[p]
+
+#エルナ
+人の声？[p]
+
+[show name=Elisa]
+#エリーザ
+いったいどこから？[p]
+
+#???
+ここですよぉ～[p]
+
+[show name=kalua]
+#カルア
+おい、あいつじゃないか？[p]
+
+[show name=Elisa]
+#エリーザ
+見たところ僧侶とお見受けします[r]
+が、なぜこんなところへ？[p]
+
+#???
+マーちゃんと薬草集めに来ていた[r]
+んですけど、はぐれてしまって、[r]
+探していたんですよぉ～。[p]
+
+#カルア
+マーちゃんってのは誰なんだ？[p]
+
+#???
+私の妹のマーサという子ですぅ。[r]
+あのぉ～、よろしければ一緒につ[r]
+いていっても構いませんか？[p]
+
+[show name=Elisa]
+#エリーザ
+そうですね、こういう時はかた[r]
+まって行動するのが得策です。[r]
+共に行動しましょう。[p]
+
+#???
+わぁい、ありがとうございます[r]
+ぅ～。私、シャーロットと言い[r]
+ますぅ～。よろしくお願いしま[r]
+すぅ～。[p]
+
+#エルナ
+はい、シャーロットさん、こち[r]
+らこそよろしくお願いします。[p]
+
+#魔物
+grrrrrrrrrrrrr･･･[p]
+
+[show name=Elisa]
+#エリーザ
+前方に魔物の集団を確認！[p]
+
+[show name=kalua]
+#カルア
+折角だし4人の力、試そうぜ！[p]
+
+#エリーザ
+はい、戦闘行動に入ります。[p]
+
+[show name=Erna]
+#エルナ
+まずは4人全員で安全に敵をせん[r]
+滅しましょう！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="???"]
+[hidemessage]
+[touch_screen touch="true"]

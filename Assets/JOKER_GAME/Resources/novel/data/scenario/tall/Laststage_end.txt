@@ -1,0 +1,236 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+#ドラゴン
+ｸﾞｷﾞｬｧｧｧｧｧｧ･･･[p]
+
+[show name=kalua]
+#カルア
+こ、こんどこそ･･･[p]
+
+[show name=Martha]
+#マーサ
+おわった･･･？[p
+
+[show name=Charlotte]
+#シャーロット
+･･･終わったのですか？[p]
+
+[show name=Elisa]
+#エリーザ
+･･･みたいですね。[p]
+
+[show name=Erna]
+#エルナ
+はあ、終わった、のですね･･･[p]
+
+#エルナ
+父上、終わりましたよ･･･どこか[r]
+で見ていますか？[p]
+
+#エリーザ
+ええ、きっと見ていますよ･･･[p]
+
+#エルナ
+･･･戻りましょうか。[p]
+
+#エリーザ
+はい、帰りましょう、皆もきっ[r]
+と待っていることでしょう。[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+
+[bg_new name="" storage=""]
+
+#
+―――かくして、王の敵であるドラ[r]
+ゴンは、その娘エルナの率いる一[r]
+行により討ち滅ぼされ、世界には[r]
+一時の平穏が訪れた･･･[p]
+
+#
+ドラゴンを討ち滅ぼした一行はや[r]
+がて、各々の住む村、国に戻り、[r]
+それぞれに平和を謳歌していた。[p]
+
+#
+ただ一人で村を守り抜いた盗賊、[r]
+カルアは――[p]
+
+[show name=kalua]
+#カルア
+そこで！あたしがすかさずこの[r]
+ナイフで敵を切り裂き、難を逃[r]
+れたってわけさ！[p]
+
+#村人
+へぇ、カルアもやるようになっ[r]
+たなぁ。[p]
+
+#カルア
+へへ、だろ？[p]
+
+――武勇伝を針小棒大に吹き込み、[r]
+自らの株を上げていたようだ･･･[p]
+
+[chara_remove name="kalua"]
+
+#
+臆病ながらも小さな勇気を奮い立[r]
+たせ、勇敢に魔物に立ち向かい、[r]
+またそれを支えたマーサとシャー[r]
+ロットの姉妹は――[p]
+
+[show name=Martha]
+#マーサ
+うう･･･お姉ちゃん、助けてぇ！[p]
+
+[show name=Charlotte]
+#シャーロット
+あらあら、また捕まったのね･･･[p]
+
+#シャーロット
+･･･なんで今日に限って魔導書忘[r]
+れたのかしらねえ。[p]
+
+――マーサが一人前になれる時はも[r]
+う少し先のようだ。その時まで、[r]
+シャーロットのお世話はまだまだ[r]
+終わらないようだ･･･[p]
+
+[show name=Martha]
+#マーサ
+うわ――――ん！！[p]
+
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+
+#
+そして、主の為、亡き父の為、[r]
+国民の為、様々な思いの中、[r]
+始まりから終わりまで戦い続けた[r]
+エリーザ、エルナの二人は――[p]
+
+[show name=Erna]
+#エルナ
+――以上がドラゴン討伐に関する報[r]
+告となります。[p]
+
+#エルナ
+残念ながら、先の遠征で国王ヘル[r]
+フリートは亡くなり、王国軍も半[r]
+ば壊滅状態となってしまいまし[r]
+た。[p]
+
+#エルナ
+しかし、政務は国王の娘である[r]
+私、エルナが引き継ぎ、王国軍を[r]
+ドラゴン討伐の功績のあるエリー[r]
+ザ殿に委任することで、[p]
+
+#エルナ
+早急なる国の再建を誓います！[p]
+
+#エルナ
+どうか、どうか亡き父のために[r]
+も、協力をお願いします！[p]
+
+#
+パチ･･･パチ･･･[p]
+
+#
+パチパチパチパチパチパチパチ[r]
+パチ！[p]
+
+#観衆
+わー！わー！[r]
+王女様ー！[p]
+
+[chara_remove name="Erna"]
+
+[show name=Erna]
+#エルナ
+ふう。[p]
+
+[show name=Elisa]
+#エリーザ
+エルナ様、とても素晴らしい演説[r]
+でした。[p]
+
+エルナ
+ありがとう、貴方がそう言うのな[r]
+らば、きっとそうなんでしょう。[p]
+
+エルナ
+･･･ところでエリーザ、このあと予[r]
+定空いてるかしら？[p]
+
+#エリーザ
+え？ええ、大丈夫ですが。[p]
+
+#エルナ
+そうですか、では、喫茶店に行き[r]
+ませんか？[p]
+
+#エリーザ
+それは、なぜですか？[p]
+
+#エルナ
+ふふ、あのときの約束、忘れた[r]
+とは言わせませんからね？[p]
+
+#エリーザ
+･･･はあ、一回だけですよ？[p]
+
+#エルナ
+いいえ、これからも、ずっと[r]
+付き合ってもらいますからね。[p]
+
+#
+――やがて一時の平穏は過ぎ去り、[r]
+数多く困難が再び訪れることだろ[r]
+う。[p]
+
+#
+しかし、彼女達ならきっと乗り越[r]
+えられると信じて．．．[p]
+
+#
+―Thank you for playing―[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

@@ -1,0 +1,70 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+うわぁ、思っっていたより[r]
+数が多いですね。[p]
+
+[show name=Elisa]
+#エリーザ
+そうは言いますけど倒して[r]
+いくしかありませんよ。[p]
+
+#エルナ
+･･･そうですよね[p]
+
+#エリーザ
+何度も言いますけど、危なくなっ[r]
+たら逃げてくださいね。[p]
+
+#エリーザ
+貴方様が倒れてしまっては[r]
+元も子もありません･･･[p]
+
+#エルナ
+･･･わかりました。[r]
+ですがあなたも危険を感じたら[r]
+すぐに逃げると約束しなさい。[p]
+
+#エリーザ
+エルナ様･･･[p]
+
+#エルナ
+これはこの国を治める物からの[r]
+命令と心得ること。[p]
+
+#エルナ
+貴方には、これからも手伝って[r]
+もらうことがあるのですから。[p]
+
+#エリーザ
+分かりました･･･善処します。[p]
+
+#エルナ
+準備はいいかしら？[r]
+いくわよ！[p]
+
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]

@@ -1,0 +1,72 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=kalua]
+#カルア
+これで全部か！[p]
+
+[show name=Elisa]
+#エリーザ
+はい、もう来ないようです。[p]
+
+[show name=Martha]
+#マーサ
+うえ、喉痛いよぉ。[p]
+
+[show name=Erna]
+#エルナ
+マーサさん、あともう少しだけ耐[r]
+えてください。お願いします。[p]
+
+#マーサ
+うう、頑張るよ．．．[p]
+
+[show name=Charlotte]
+#シャーロット
+いざとなったら私が治療しまか[r]
+ら、安心してくださいねぇ～。[p]
+
+#エルナ
+エリーザ、ドラゴンはどこに。[p]
+
+[show name=Elisa]
+#エリーザ
+はい、あの奥から咆哮が聞こえて[r]
+きたので、恐らくそこかと。[p]
+
+#エルナ
+分かりました。奥へ急ぎましょ[r]
+う。[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

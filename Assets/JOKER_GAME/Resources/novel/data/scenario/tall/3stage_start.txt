@@ -1,0 +1,68 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Thief" storage="si-fu" jname="盗賊" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="Thief" x=3 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+地図によればこの辺りに村が･･･[r]
+･･･！あっ、あれは！[p]
+
+[show name=Erna]
+#エルナ
+どうしたんですかいった―[p]
+
+#エリーザ
+村が魔物に襲われています！[p]
+
+#エリーザ
+いいえ、手遅れではありません。[r]
+現在、何者かが交戦中です。[p]
+
+#エルナ
+！！、すぐに向かいましょう！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="Thief"]
+
+#エリーザ
+我々は王国の者です！[r]
+援護します！[p]
+
+[show name=Thief]
+#盗賊
+早く手伝ってくれ！もう限界だ！[p]
+
+#エルナ
+まずは全ての魔物のせん滅、住人[r]
+の安否確認はそのあとです！[p]
+
+#エルナ
+速やかに戦闘を終わらせましょう！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="Thief"]
+[hidemessage]
+[touch_screen touch="true"]

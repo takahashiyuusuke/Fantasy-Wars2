@@ -1,194 +1,218 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class UnitManager : MonoBehaviour {
+    // ルートの算出に必要なフィールドデータ
+    int fieldWidth, fieldHeight;
 
-    //キャラクターの移動範囲
-    [SerializeField]
-    int MovePoint;
+    public bool CheckFlg = false;
+    [HideInInspector]
+    public int EnemyCount = 0;
+    [HideInInspector]
+    public int PlayerCount = 0;
 
-    Vector3 MoveX = new Vector3(133, 0, 0); // 横1マス移動する
-    Vector3 MoveY = new Vector3(0, 133, 0); // 縦1マス移動する
+    public GameObject clear;
+    public GameObject Over;
 
-    float speed = 10;
-    //目的地の座標
-    Vector3 targetPos;
-    float targetPosX;
-    float targetPosY;
+    GameObject[,] mapUnitObj;
 
-    //タッチされたマスの座標
-    public static Vector3  movePos;
-    Vector3 PosAAA;
-    Vector3 prevPos;
+    public PhaseManager phaseManager;
 
-    //移動用リスト
-    List<int> movelist = new List<int>();
-    //移動計算結果のデータ格納用
-    List<List<int>> MoveCell;
-
-
-    public GameObject Map_script;
-
-    void Start() {
-        GetComponent<MapManager>();
-        targetPos = transform.position;
-        targetPosX = transform.position.x;
-        targetPosY = transform.position.y;
-
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(1);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-        movelist.Add(2);
-    }
-
-    // Update is called once per frame
     void Update() {
-        //SetPos();
-        // 移動中かどうかの判定
-        if (transform.position == targetPos) {
-            // Listの要素があるかどうか
-            if(movelist.Count == 0) {
-                Debug.Log("ないよぉ！Listの要素ないよぉ！");
-            }
-            SetTargetPosition2();
-        }
-        PlayerMove();
+
     }
 
-    // キーによる移動処理
-    //void SetTargetPosition1() {
-    //    prevPos = targetPos;
+    /// <summary>
+    /// コンストラクター
+    /// </summary>
+    /// <param name="field">Field.</param>
+    public UnitManager(Struct.Field field) {
+        this.fieldWidth = field.width;
+        this.fieldHeight = field.height;
 
-    //    // 上移動
-    //    if (Input.GetKeyDown("up")){
-    //        if (transform.position.y < 640){
-    //            targetPos = transform.position + MoveY;
-    //            return;
-    //        }
-    //    }
-    //    // 下移動 
-    //    if (Input.GetKeyDown("down")){
-    //        if (transform.position.y > 80)
-    //        {
-    //            targetPos = transform.position - MoveY;
-    //            return;
-    //        }
-    //    }
+        // ユニットの配置リストの初期化
+        mapUnitObj = new GameObject[fieldHeight, fieldWidth];
+    }
 
-    //    //左移動
-    //    if (Input.GetKeyDown("left")){
-    //        if (transform.position.x > 80)
-    //        {
-    //            targetPos = transform.position - MoveX;
-    //            return;
-    //        }
-    //    }
+    /// <summary>
+    /// 配置リスト上の特定の座標のユニットオブジェクトを返す
+    /// </summary>
+    /// <returns>The map unit object.</returns>
+    /// <param name="pos">Position.</param>
+    public GameObject GetMapUnitObj(Vector3 pos) {
+        return mapUnitObj[-(int)pos.y, (int)pos.x];
+    }
 
-    //    //右移動
-    //    if (Input.GetKeyDown("right")){
-    //        if (transform.position.x < 400)
-    //        {
-    //            targetPos = transform.position + MoveX;
-    //            return;
-    //        }
-    //    }
+    /// <summary>
+    /// 配置リスト上の特定の座標のユニット情報を返す
+    /// </summary>
+    /// <returns>The map unit info.</returns>
+    /// <param name="pos">Position.</param>
+    public UnitInfo GetMapUnitInfo(Vector3 pos) {
+        return mapUnitObj[-(int)pos.y, (int)pos.x] != null ? mapUnitObj[-(int)pos.y, (int)pos.x].GetComponent<UnitInfo>() : null;
+    }
+
+    /// <summary>
+    /// ユニットの配置リストを返す
+    /// </summary>
+    /// <returns>The map unit object.</returns>
+    public GameObject[,] GetMapUnitObj() {
+        return mapUnitObj;
+    }
+
+    /// <summary>
+    /// 配置リストにユニット情報を登録する
+    /// </summary>
+    /// <param name="pos">Position.</param>
+    /// <param name="gameObject">Game object.</param>
+    public void AddMapUnitObj(Vector3 pos, GameObject gameObject) {
+        mapUnitObj[-(int)pos.y, (int)pos.x] = gameObject;
+    }
+
+    /// <summary>
+    /// 配置リスト上でユニット情報を移動する
+    /// </summary>
+    /// <param name="oldPos">Old position.</param>
+    /// <param name="newPos">New position.</param>
+    public void MoveMapUnitObj(Vector3 oldPos, Vector3 newPos) {
+        mapUnitObj[-(int)newPos.y, (int)newPos.x] = mapUnitObj[-(int)oldPos.y, (int)oldPos.x];
+        if (oldPos != newPos) mapUnitObj[-(int)oldPos.y, (int)oldPos.x] = null;
+    }
+
+    /// <summary>
+    /// 配置リスト上のユニット情報を削除する
+    /// </summary>
+    /// <param name="pos">Position.</param>
+    public void RemoveMapUnitObj(Vector3 pos) {
+        mapUnitObj[-(int)pos.y, (int)pos.x] = null;
+    }
+
+    /// <summary>
+    /// 指定された軍のユニットリストを返す
+    /// </summary>
+    /// <returns>The get.</returns>
+    /// <param name="army">Army.</param>
+    public List<GameObject> GetUnitList(Enums.ARMY army) {
+        List<GameObject> units = new List<GameObject>();
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army)
+                    units.Add(mapUnitObj[y, x]);
+        return units;
+    }
+
+    /// <summary>
+    /// 指定された軍の未行動ユニットがいるかどうかチェックし、ランダムの1体を返す
+    /// </summary>
+    /// <returns>The un behavior unit.</returns>
+    /// <param name="army">Army.</param>
+    public GameObject GetUnBehaviorRandomUnit(Enums.ARMY army) {
+        List<GameObject> units = new List<GameObject>();
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null &&
+                    mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army &&
+                    !mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().isMoving())
+                    units.Add(mapUnitObj[y, x]);
+        return (units.Count != 0) ? units[Random.Range(0, units.Count - 1)] : null;
+    }
+
+    /// <summary>
+    /// 指定された軍の未行動ユニットがいるかどうかのチェック
+    /// </summary>
+    /// <returns>The get.</returns>
+    /// <param name="army">Army.</param>
+    public List<GameObject> GetUnBehaviorUnits(Enums.ARMY army) {
+        List<GameObject> units = new List<GameObject>();
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null &&
+                    mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army &&
+                    !mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().isMoving())
+                    units.Add(mapUnitObj[y, x]);
+        return units;
+    }
+
+    /// <summary>
+    /// 指定された軍の未行動ユニットがいるかどうかのチェック
+    /// </summary>
+    /// <returns>The get.</returns>
+    /// <param name="army">Army.</param>
+    //public static GameObject GetRandomUnBehaviorUnit(Enums.ARMY army)
+    //{
+    //    List<GameObject> unit = new List<GameObject>();
+    //    for (int y = 0; y < MapManager.GetFieldData().height; y++)
+    //        for (int x = 0; x < MapManager.GetFieldData().width; x++)
+    //            if (mapUnitObj[y, x] != null &&
+    //                mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army &&
+    //                !mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().isMoving())
+    //                units.Add(mapUnitObj[y, x]);
+    //    return unit;
     //}
 
-    void SetTargetPosition2() {         // リストによる移動処理
-        prevPos = targetPos;
+    /// <summary>
+    /// 指定された軍のユニットを全て未行動にする
+    /// </summary>
+    /// <returns>The get.</returns>
+    /// <param name="army">Army.</param>
+    public void UnBehaviorUnitAll(Enums.ARMY army) {
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null &&
+                    mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == army)
+                {
+                    mapUnitObj[y, x].GetComponent<UnitInfo>().Moving(false);
+                    mapUnitObj[y, x].GetComponent<EffectController>().GrayScale(false);
+                }
+    }
 
-        switch (movelist[0])
+    // 味方ユニットの数を調べる
+    public void CheckPlayerUnits() {
+        PlayerCount = 0;
+        for (int y = 0; y < fieldHeight; y++)
+            for (int x = 0; x < fieldWidth; x++)
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY)
+                {
+                    PlayerCount++;
+                }
+        Debug.Log("自キャラ数:" + PlayerCount);
+        if (PlayerCount == 0)
         {
-            //上移動
-            case 1:
-                if (transform.position.y < 1280 && MovePoint > 0)
-                {
-                    targetPos = transform.position + MoveY;
-                    //return;
-                }
-                Debug.Log("up");
-                movelist.RemoveAt(0);
-                break;
-            //下移動
-            case 2:
-                if (transform.position.y > 80 && MovePoint > 0)
-                {
-                    targetPos = transform.position - MoveY;
-                    //return;
-                }
-                Debug.Log("Down");
-                movelist.RemoveAt(0);
-                break;
-
-            //左移動
-            case 3:
-                if (transform.position.x > 80 && MovePoint > 0)
-                {
-                    targetPos = transform.position - MoveX;
-                    //return;
-                }
-                Debug.Log("Left");
-                movelist.RemoveAt(0);
-                break;
-
-            //右移動
-            case 4:
-                if (transform.position.x < 800 && MovePoint > 0)
-                {
-                    targetPos = transform.position + MoveX;
-                    //return;
-                }
-                Debug.Log("right");
-                movelist.RemoveAt(0);
-                break;
+            //Over.SetActive(true);
+            Debug.Log("ゲームオーバー");
         }
     }
 
-    void PlayerMove() {
-        // 現在地から目標地点までの間を一定速度で移動
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed);
-
-        //transform.position = Vector3.MoveTowards(transform.position, movePos, speed);
-    }
-
-    public void SetPos() {
-        //タッチされたマスの座標を受け取る
-        //movePos = Map.pos;
-        
-        // 受け取った座標と現在の座標を引き算で比較
-        PosAAA = transform.position - movePos;
-
-        if (transform.position.y <= PosAAA.y) {
-            movelist.Add(2);
-        }
-
-        if (transform.position.y >= PosAAA.y) {
-            movelist.Add(1);
-        }
-        if (transform.position.x <= PosAAA.x)
+    // 敵ユニットの数を調べる
+    public void CheckEnemyUnits() {
+        EnemyCount = 0;
+        for (int y = 0; y < fieldHeight; y++)
         {
-            movelist.Add(3);
+            for (int x = 0; x < fieldWidth; x++) { 
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
+                {
+                    EnemyCount++;
+                    Debug.Log("敵キャラ数C:" + PlayerCount);
+                }
+            }
         }
-        if (transform.position.x >= PosAAA.x)
+
+        Debug.Log("敵キャラ数A:" + EnemyCount);
+
+        int a = EnemyCount;
+
+        if (EnemyCount == 0 && CheckFlg == true)
         {
-            movelist.Add(4);
+            Debug.Log("ステージクリア");
+            //
+            //phaseManager.GameClear();
+            ClearObj();
+            clear.SetActive(true);
         }
-
+        CheckFlg = true;
     }
-
-    // 移動可能なマスを検索
+    public void ClearObj() {
+        //clear.SetActive(true);
+    }
 }

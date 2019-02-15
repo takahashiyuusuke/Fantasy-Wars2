@@ -1,0 +1,110 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=kalua]
+#カルア
+やっぱ洞窟ともなると空気がち[r]
+がうな。[p]
+
+[show name=Elisa]
+#エリーザ
+はい、これまでのようにうまくは[r]
+いかないと思われます。[p]
+
+[show name=Erna]
+#エルナ
+先を急ぐより、慎重に進みましょ[r]
+う。[p]
+
+[show name=Martha]
+#マーサ
+･････････[p]
+
+[show name=kalua]
+#カルア
+マーサは大丈夫か？洞窟入ってか[r]
+らすっと静かだぞ。[p]
+
+#マーサ
+だ、大丈夫です。これくらい、平[r]
+気に決まってます。[p]
+
+[show name=Charlotte]
+#シャーロット
+もしもの時は私が見てますからぁ[r]
+大丈夫ですよぉ～。[p]
+
+##魔物
+grrrrrrrrrrrrr･･･[p]
+
+[show name=Martha]
+#マーサ
+ひゃあっ！？[p]
+
+[show name=kalua]
+#カルア
+ほぅら早速お出ましだ。[p]
+
+[show name=Elisa]
+#エリーザ
+･･･！この魔物達、先ほどまでの[r]
+よりも強いと思われます。いつも[r]
+以上に注意して対処しましょう。[p]
+
+[show name=Charlotte]
+#シャーロット
+マーちゃん大丈夫？戦える？[p]
+
+[show name=Martha]
+#マーサ
+大丈夫だってば！あたしだって[r]
+立派に戦えるんだから！[p]
+
+[show name=kalua]
+#カルア
+そうだ、その意気だ！[r]
+その調子で頼むぞ！[p]
+
+[show name=Erna]
+#エルナ
+エリーザの言った通りこの魔物[r]
+は前回戦ったのより強力です。[r]
+各自、気を引き締めて対応して[r]
+ください！[p]
+
+#エルナ
+戦闘開始です！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

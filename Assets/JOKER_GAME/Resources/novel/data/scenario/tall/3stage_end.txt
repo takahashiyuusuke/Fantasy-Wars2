@@ -1,0 +1,165 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Thief" storage="si-fu" jname="盗賊" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Thief" x=3 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+これで全てだと思います。[p]
+
+[show name=Erna]
+#エルナ
+そうですか、村の被害状況は？[p]
+
+[show name=Thief]
+#盗賊
+それなら心配ないぜ。村の人間[r]
+は早めに避難させたし、奴らが[r]
+人ばっか狙ってきたおかげで建[r]
+物はみんな無事だ。[p]
+
+[show name=Erna]
+#エルナ
+そうですか、それはよかった。[p]
+
+[show name=Thief]
+#盗賊
+そっちこそ、助けに来てくれて[r]
+ありがとな。その、ええと･･･[p]
+
+[show name=Erna]
+#エルナ
+ああ、申し遅れました。私は、[r]
+エルナと申します。[p]
+
+#エリーザ
+エリーザと言います。以後お見[r]
+知りおきを。[p]
+
+[show name=Thief]
+#盗賊
+エルナにエリーザね。あたしは[r]
+カルアだ、よろしくな。[p]
+[show name=Erna]
+#エルナ
+はい、よろしくお願いします。[p]
+
+#エルナ
+ところで、今回の魔物の襲撃に[r]
+ついて何か知っていることがあ[r]
+れば教えてほしいのです。[p]
+
+[show name=kalua]
+#カルア
+ああ、知っているとも。今回の[r]
+襲撃の元凶はドラゴンさ。[p]
+
+#エリーザ
+ドラゴン･･･[p]
+
+#カルア
+ああ、アイツは賢かった。他の[r]
+魔物に命令してまるで兵隊のよ[r]
+うに動かしてたんだ。[p]
+
+[show name=Erna]
+[show name=Elisa]
+#エリーザ　エルナ
+兵隊のように･･･[p]
+
+[show name=kalua]
+#カルア
+ど、どうしたんだよ。そんな怖[r]
+い顔して。[p]
+
+#エリーザ
+･･･失礼。そのドラゴンの住処、[r]
+分かりますか？[p]
+
+[show name=kalua]
+#カルア
+お、おう。ソイツはいつも洞窟を[r]
+住処にしていて、誰も寄り付かな[r]
+かったんだ･･･[p]
+
+[show name=Erna]
+#エルナ
+そうですか。貴重な情報を、あり[r]
+がとうございます。[p]
+
+#エルナ
+エリーザ、すぐに洞窟へ向かいま[r]
+す。支度を―[p]
+
+[show name=kalua]
+#カルア
+待ってくれよ！その洞窟までの間[r]
+には森もあるし、何よりソイツの[r]
+ねぐらにより強い魔物がいるに決[r]
+まっている！[p]
+
+#エリーザ
+お気遣いありがとうございます。[r]
+ですが、我々はここで止まるわけ[r]
+にはいかないのです。[p]
+
+#エリーザ
+エルナ様は、あの魔物達に、[r]
+父親を･･･[p]
+
+[show name=Erna]
+#エルナ
+･････････[p]
+
+[show name=kalua]
+#カルア
+そうだったんだな。ごめんな、[r]
+辛い事言わせちまって。[p]
+
+#エリーザ
+いえ、いいんです。むしろ気を[r]
+遣わせてしまって申し訳ありま[r]
+せん。[p]
+
+#エリーザ
+では、我々はこれで。[p]
+
+[show name=kalua]
+#カルア
+･･･おーい、待ってくれ！[p]
+
+[show name=Erna]
+#エルナ
+あの、まだ何か―[p]
+
+[show name=kalua]
+#カルア
+あたしも連れてってくれ！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Thief"]
+[hidemessage]
+[touch_screen touch="true"]

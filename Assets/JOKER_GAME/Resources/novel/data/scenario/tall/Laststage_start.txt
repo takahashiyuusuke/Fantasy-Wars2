@@ -1,0 +1,110 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=kalua]
+#カルア
+なんだぁ、ここは･･･[p]
+
+[show name=Martha]
+#マーサ
+すごい、洞窟にこんな場所があっ[r]
+たなんて･･･[p]
+
+[show name=Charlotte]
+#シャーロット
+暑いですわぁ。[p]
+
+[show name=Erna]
+#エルナ
+ドラゴンは！？[p]
+
+[show name=Elisa]
+#エリーザ
+あそこです･･･え！？[p]
+
+#ドラゴン
+ｸﾞｵｫ･･･ｸﾞｶﾞｧｧｧｧｧｧ!!![p]
+
+[show name=kalua]
+#カルア
+あれは･･･[p]
+
+[show name=Martha]
+#マーサ
+うそ、炎を身に纏って･･･[p]
+
+[show name=Charlotte]
+#シャーロット
+あ、暑いですわぁ。[p]
+
+[show name=Elisa]
+#エリーザ
+暑くて近寄れない･･･！[p]
+
+[show name=Erna]
+#エルナ
+これが･･･[p]
+
+#エルナ
+これが、最後･･･！[p]
+
+#エルナ
+皆さん！これが本当に最後です！[p]
+
+#エルナ
+力を振り絞って、なんとしてでも[r]
+勝ちましょう！[p]
+
+[show name=kalua]
+#カルア
+おうよ！[p]
+
+[show name=Martha]
+#マーサ
+やってやるわよ！[p]
+
+[show name=Charlotte]
+#シャーロット
+頑張るわぁ。[p]
+
+[show name=Elisa]
+#エリーザ
+･･･頑張りましょう。エルナ様！[p]
+
+[show name=Erna]
+#エルナ
+目標、ドラゴン！こんどこそ！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]

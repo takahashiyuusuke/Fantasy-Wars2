@@ -1,0 +1,78 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Erna]
+#エルナ
+何とかしのぎ切ることが[r]
+できたのかしら･･･[p]
+
+#エルナ
+･･･！　エリーザは？[r]
+エリーザ！無事なら返事をして！[p]
+
+[show name=Elisa]
+#エリーザ
+エルナ様、私はここにおります。[p]
+
+#エルナ
+よかった･･･[p]
+
+#エリーザ
+エルナ様のおかげですよ。[p]
+
+#エルナ
+･･･え？[p]
+
+#エリーザ
+エルナ様が勇猛果敢にモンスター[r]
+と立ち向かったおかげで私、集中[r]
+して戦うことが出来たんですもの。[p]
+
+#エルナ
+そんな、私なんてまだまだ･･･[p]
+
+#エリーザ
+ええ、ですから共に強くなりま[r]
+しょう。そうすることがきっと、[r]
+父上への手向けにもなるでしょう。[p]
+
+#エルナ
+･･･そうね。[r]
+共に頑張りましょう！[p]
+
+#魔物
+grrrrrrrrrrrrr･･･[p]
+
+#エルナ
+･･･まだ外に生き残りがいる様[r]
+ですね。[p]
+
+#エリーザ
+そうですね、このままの勢いで[r]
+押し切りましょう！[p]
+
+#エルナ
+ええ！[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[hidemessage]
+[touch_screen touch="true"]

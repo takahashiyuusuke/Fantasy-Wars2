@@ -1,0 +1,87 @@
+@call file=tall/libs/utils
+
+;メッセージ表示
+[showmessage]
+[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-52" y=-120 val="" color="#DDFF00" fontsize=20 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name" ] 
+
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="Erna" storage="kennsiL" jname="エルナ" scale=1.5]
+[chara_new name="Elisa" storage="yariheiL" jname="エリーザ" scale=1.5]
+[chara_new name="Charlotte" storage="souryo1" jname="シャーロット" scale=1.5]
+[chara_new name="Martha" storage="majyutu- (1)" jname="マーサ" scale=1.5]
+[chara_new name="kalua" storage="si-fu" jname="カルア" scale=1.5]
+Bowman
+@reset_tag_default
+
+@chara_pos name="Erna" x=3 y=-4.6
+@chara_pos name="Elisa" x=1.5 y=-4.6
+@chara_pos name="kalua" x=3 y=-4.6
+@chara_pos name="Charlotte" x=1.5 y=-4.6
+@chara_pos name="Martha" x=1.5 y=-4.6
+
+[playbgm wait=false time=1 storage="music"]
+
+[show name=Elisa]
+#エリーザ
+はあ、はあ、[l][r]
+･･･魔物たちの死[r]
+を確認しました･･･[p]
+
+[show name=kalua]
+#カルア
+はあ、はあ、一味ちがうな、[r]
+こりゃあ。[p]
+
+[show name=Martha]
+#マーサ
+ううぅ、強いよぉ～。[p]
+
+[show name=Erna]
+#エルナ
+一度休息を取って態勢を整えた[r]
+いですね･･･[p]
+
+[show name=Elisa]
+#エリーザ
+はい、皆さんの消耗が激しいで[r]
+す。どこか休める場所があれば[r]
+いいのですが･･･[p]
+
+[show name=Charlotte]
+#シャーロット
+あらぁ？少し遠いところですが、[r]
+あそこに水場が見えますわ。[p]
+
+[show name=kalua]
+#カルア
+まじで！？早く行こうぜ！[p]
+
+[show name=Martha]
+#マーサ
+あたしも休みたいなぁ･･･[p]
+
+[show name=Elisa]
+#エリーザ
+エルナ様･･･[p]
+
+[show name=Erna]
+#エルナ
+少し心配ですがあの水場へ向か[r]
+い、一度休憩しましょう。[p]
+
+#エルナ
+そこで態勢を整えた後、侵軍を[r]
+再開します。[p]
+
+[chara_remove name="Elisa"]
+[chara_remove name="Erna"]
+[chara_remove name="kalua"]
+[chara_remove name="Charlotte"]
+[chara_remove name="Martha"]
+[hidemessage]
+[touch_screen touch="true"]
