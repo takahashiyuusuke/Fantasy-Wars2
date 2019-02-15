@@ -213,6 +213,6 @@ public class UnitManager : MonoBehaviour {
         CheckFlg = true;
     }
     public void ClearObj() {
-        clear.SetActive(true);
+        //clear.SetActive(true);
     }
 }

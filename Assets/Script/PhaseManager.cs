@@ -628,7 +628,7 @@ public class PhaseManager : MonoBehaviour {
         waitingBtn.interactable = false;
 
         // 敵キャラ数チェック
-        EnemyCheck();
+        //EnemyCheck();
     }
     /// <summary>
     /// ターン終了時
@@ -642,7 +642,7 @@ public class PhaseManager : MonoBehaviour {
         phase = Enums.PHASE.START;
 
 
-        EnemyCheck();
+        //EnemyCheck();
     }
 
     void EnemyStartPhase() {
