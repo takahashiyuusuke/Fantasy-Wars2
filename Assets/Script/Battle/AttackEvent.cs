@@ -33,6 +33,11 @@ public class AttackEvent : MonoBehaviour {
     public Enums.BATTLE myAttackState, targetAttackState; // 攻撃成功判定
     public Text myHPText, targetHPText; // 表示用
 
+
+    // スクリプト
+    public AudioManager audioManager;
+
+
     // 各イベントの実行フラグ
     bool[] runninge =  {
          true, // ダメージ処理
@@ -139,6 +144,10 @@ public class AttackEvent : MonoBehaviour {
                             // エフェクトを生成する
                             //GameObject ef_attack = Resources.Load<GameObject>("Prefabs/ef_attack1");
                             //Instantiate(ef_attack, targetUnitObj.transform.position, Quaternion.identity);
+
+                            // SEを再生
+                            //audioManager.AttackSE();
+
                         }
                         else goto case Enums.BATTLE.NO_DAMAGE;
                         break;
@@ -153,6 +162,8 @@ public class AttackEvent : MonoBehaviour {
                             // エフェクトを生成する
                             //GameObject ef_attack = Resources.Load<GameObject>("Prefabs/ef_attack2");
                             //Instantiate(ef_attack, targetUnitObj.transform.position, Quaternion.identity);
+
+
                         }
                         else goto case Enums.BATTLE.NO_DAMAGE;
                         break;

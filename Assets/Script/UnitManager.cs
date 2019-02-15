@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitManager {
+public class UnitManager : MonoBehaviour {
     // ルートの算出に必要なフィールドデータ
     int fieldWidth, fieldHeight;
 
-    public int ClearFlg = 0;
-    public int EnemyCount = 10;
-    public int PlayerCount = 10;
+    public bool CheckFlg = false;
+    [HideInInspector]
+    public int EnemyCount = 0;
+    [HideInInspector]
+    public int PlayerCount = 0;
+
+    public GameObject clear;
+    public GameObject Over;
 
     GameObject[,] mapUnitObj;
+
+    public PhaseManager phaseManager;
+
+    void Update() {
+
+    }
 
     /// <summary>
     /// コンストラクター
@@ -158,30 +169,50 @@ public class UnitManager {
 
     // 味方ユニットの数を調べる
     public void CheckPlayerUnits() {
+        PlayerCount = 0;
         for (int y = 0; y < fieldHeight; y++)
             for (int x = 0; x < fieldWidth; x++)
                 if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ALLY)
                 {
                     PlayerCount++;
                 }
+        Debug.Log("自キャラ数:" + PlayerCount);
         if (PlayerCount == 0)
         {
-            //gameOver.SetActive(true);
+            //Over.SetActive(true);
             Debug.Log("ゲームオーバー");
         }
     }
 
     // 敵ユニットの数を調べる
     public void CheckEnemyUnits() {
+        EnemyCount = 0;
         for (int y = 0; y < fieldHeight; y++)
-            for (int x = 0; x < fieldWidth; x++)
-                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY) {
-                    EnemyCount++;
-                }
-        if(EnemyCount == 0)
         {
-            //gameClear.SetActive(true);
-            Debug.Log("ステージクリア");
+            for (int x = 0; x < fieldWidth; x++) { 
+                if (mapUnitObj[y, x] != null && mapUnitObj[y, x].gameObject.GetComponent<UnitInfo>().aRMY == Enums.ARMY.ENEMY)
+                {
+                    EnemyCount++;
+                    Debug.Log("敵キャラ数C:" + PlayerCount);
+                }
+            }
         }
+
+        Debug.Log("敵キャラ数A:" + EnemyCount);
+
+        int a = EnemyCount;
+
+        if (EnemyCount == 0 && CheckFlg == true)
+        {
+            Debug.Log("ステージクリア");
+            //
+            //phaseManager.GameClear();
+            ClearObj();
+            //clear.SetActive(true);
+        }
+        CheckFlg = true;
+    }
+    public void ClearObj() {
+        clear.SetActive(true);
     }
 }

@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 /// Phaseの管理
 /// </summary>
 public class PhaseManager : MonoBehaviour {
-
-    public int abc = 0;
+    [HideInInspector]
+    public int PCount, ECount;
 
 
     // UI
@@ -129,11 +129,6 @@ public class PhaseManager : MonoBehaviour {
         // カーソル更新時に呼び出す処理の登録
         CursorController.AddCallBack((Vector3 newPos) => { cursorPos = newPos; });
 
-        EnemyCheck();
-        PlayerCheck();
-        //Main.GameManager.GetUnit().CheckEnemyUnits();
-        //Main.GameManager.GetUnit().CheckPlayerUnits();
-
 
         // シーンをロード
         //SceneManager.LoadScene("conversation", LoadSceneMode.Additive);
@@ -141,7 +136,7 @@ public class PhaseManager : MonoBehaviour {
 
     void Update() {
         Debug.Log(phase);
-            switch (phase)
+        switch (phase)
             {
                 case Enums.PHASE.START:
                     StartPhase();
@@ -520,6 +515,9 @@ public class PhaseManager : MonoBehaviour {
                     attackEvent.targetHPText = textEnemyHP;
                     battleManager.AddEvent(attackEvent);
 
+                    // SEの再生
+                    //audioManager.AttackSE();
+
                     myAttackCount--;
                 }
 
@@ -542,6 +540,9 @@ public class PhaseManager : MonoBehaviour {
                     attackEvent.myAttackState = enemyAttackState;
                     attackEvent.targetHPText = textMyHP;
                     battleManager.AddEvent(attackEvent);
+
+                    // SEの再生
+                    //audioManager.AttackSE();
 
                     enemyAttackCount--;
                 }
@@ -628,7 +629,6 @@ public class PhaseManager : MonoBehaviour {
 
         // 敵キャラ数チェック
         EnemyCheck();
-        //Main.GameManager.GetUnit().CheckEnemyUnits();
     }
     /// <summary>
     /// ターン終了時
@@ -640,16 +640,14 @@ public class PhaseManager : MonoBehaviour {
         // 敵ターンに切り替える
         TurnChange(Enums.ARMY.ENEMY);
         phase = Enums.PHASE.START;
+
+
+        EnemyCheck();
     }
 
     void EnemyStartPhase() {
         // ターン終了ボタンの無効化
         turnEndBtn.interactable = false;
-
-        
-
-
-        
 
 
         if (turnImageAnim == null)
@@ -837,6 +835,9 @@ public class PhaseManager : MonoBehaviour {
 
                     battleManager.AddEvent(attackEvent);
 
+                    // SEの再生
+                    //audioManager.AttackSE();
+
                     enemyAttackCount--;
                 }
 
@@ -862,6 +863,9 @@ public class PhaseManager : MonoBehaviour {
                     attackEvent.targetHPText = textEnemyHP;
 
                     battleManager.AddEvent(attackEvent);
+
+                    // SEの再生
+                    //audioManager.AttackSE();
 
                     myAttackCount--;
                 }
@@ -944,8 +948,6 @@ public class PhaseManager : MonoBehaviour {
         else
             phase = Enums.PHASE.STANDBY;
 
-        EnemyCheck();
-        PlayerCheck();
 
         //Main.GameManager.GetUnit().CheckEnemyUnits();
         //Main.GameManager.GetUnit().CheckPlayerUnits();
@@ -963,23 +965,24 @@ public class PhaseManager : MonoBehaviour {
     /// </summary>
     void EnemyCheck() {
         //Main.GameManager.GetUnit().CheckEnemyUnits();
-        ////Debug.Log("敵数:" + unitManager.EnemyCount);
-        //if (unitManager.EnemyCount == 1)
-        //{
-        //    aaaa.SetActive(true);
-        //}
-        ////bbbb.SetActive(true);
+        unitManager.CheckEnemyUnits();
+        Debug.Log("敵キャラ数B:" + unitManager.EnemyCount);
+        
     }
 
+    /// <summary>
+    /// プレイヤーキャラ数をチェックする
+    /// </summary>
     void PlayerCheck() {
-        //Main.GameManager.GetUnit().CheckPlayerUnits();
-        ////Debug.Log("味方数:" + unitManager.EnemyCount);
-        //if (unitManager.PlayerCount == 1)
-        //{
-        //    bbbb.SetActive(true);
-        //}
+        Main.GameManager.GetUnit().CheckPlayerUnits();        
     }
 
+    public void GameClear() {
+        aaaa.SetActive(true);
+    }
+    public void GameOver() {
+        bbbb.SetActive(true);
+    }
 
 
     /// <summary>
